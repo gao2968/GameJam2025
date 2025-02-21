@@ -24,7 +24,11 @@ void Player::Initialize()
 
 void Player::Update()
 {
-	//Movement();
+	if (nearest_enemy_length > 300) { color = 0x00ff00; }
+
+	if (nearest_enemy_length < 100) { color = 0x0000ff; }
+	else if (nearest_enemy_length < 200) { color = 0x00ffff; }
+	else if (nearest_enemy_length < 300) { color = 0xffff00; }
 }
 
 void Player::Draw() const
@@ -32,7 +36,7 @@ void Player::Draw() const
 	__super::Draw();
 
 	DrawFormatString(local_location.x, local_location.y, 0x0000ff, "x%f y%f", location.x, location.y);
-	DrawFormatString(local_location.x, local_location.y+20, 0x0000ff, "x%f y%f", local_location.x, local_location.y);
+	DrawFormatString(local_location.x, local_location.y + 20, 0x0000ff, "x%f y%f", local_location.x, local_location.y);
 
 	DrawLine(640, 0, 640, 1280, 0xff0000);
 	DrawLine(0, 360, 1280, 360, 0xff0000);
@@ -52,8 +56,6 @@ void Player::Movement(Vector2D velocity)
 	if (location.x >= 540.f && location.y >= 260.f &&
 		location.x <= 1380.f && location.y <= 820.f)
 	{
-		/*location.x += velocity.x;
-		location.y -= velocity.y;*/
 		camera_stop_x = false;
 		camera_stop_y = false;
 
@@ -69,22 +71,15 @@ void Player::Movement(Vector2D velocity)
 	else
 	{
 		//制限
-		if (location.x <= 0.f)
-		{
-			location.x = 0.f;
-		}
-		if (location.x >= 1920.f)
-		{
-			location.x = 1920.f;
-		}
-		if (location.y <= 0.f)
-		{
-			location.y = 0.f;
-		}
-		if (location.y >= 1080.f)
-		{
-			location.y = 1080.f;
-		}
+		if (location.x <= 0.f) { location.x = 0.f; }
+		if (location.x >= 1920.f) { location.x = 1920.f; }
+		if (location.y <= 0.f) { location.y = 0.f; }
+		if (location.y >= 1080.f) { location.y = 1080.f; }
+
+		if (local_location.x <= 100.f) { local_location.x = 100.f; }
+		if (local_location.x >= 1180.f) { local_location.x = 1180.f; }
+		if (local_location.y <= 100.f) { local_location.y = 100.f; }
+		if (local_location.y >= 620.f) { local_location.y = 620.f; }
 
 		local_location.x += velocity.x;
 		local_location.y -= velocity.y;
@@ -115,8 +110,6 @@ void Player::Movement(Vector2D velocity)
 			}
 		}
 	}
-
-	
 }
 
 bool Player::GetCameraStopX()
@@ -128,3 +121,4 @@ bool Player::GetCameraStopY()
 {
 	return camera_stop_y;
 }
+

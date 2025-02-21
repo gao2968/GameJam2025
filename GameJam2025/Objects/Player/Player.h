@@ -4,10 +4,9 @@
 class Player : public GameObject
 {
 private:
-	//Vector2D velocity;
-
 	bool camera_stop_x;
 	bool camera_stop_y;
+
 
 public:
 	Player();
@@ -23,5 +22,7 @@ public:
 
 	bool GetCameraStopX();
 	bool GetCameraStopY();
+
+	float nearest_enemy_length;
 };
 

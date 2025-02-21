@@ -67,6 +67,7 @@
 // ���C���֐��i�v���O�����͂�������n�܂�܂��B�j
 int WINAPI WinMain(_In_ HINSTANCE ih, _In_opt_ HINSTANCE ioh, _In_ LPSTR il, _In_ int ii)
 {
+	SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);
 	// ��O�����i�ُ킪����������Acatch���ɔ�т܂��j
 	try
 	{

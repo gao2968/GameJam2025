@@ -2,6 +2,10 @@
 
 #include"../Utility/Vector2D.h"
 
+//ステージの大きさ
+#define STAGE_HEIGHT 1080.f
+#define STAGE_WIDHT 1920.f
+
 class GameObject
 {
 protected:
@@ -25,5 +29,7 @@ public:
 	void SetLocation(Vector2D location);
 	Vector2D GetLocation() const;
 	Vector2D GetBoxSize() const;
+
+	virtual float ObjectLength(GameObject* object);
 };
 
