@@ -2,6 +2,7 @@
 #include "SceneBase.h"
 #include "../Objects/Player/Player.h"
 #include "../Objects/Stage/Stage.h"
+#include "../Objects/Enemy/Enemy.h"
 #include "../Objects/GameObject.h"
 
 class GameMainScene:public SceneBase
@@ -9,6 +10,10 @@ class GameMainScene:public SceneBase
 private:
 	Stage* stage;
 	Player* player;
+	Enemy* enemy;
+
+	int player_num;
+	int enemy_num[3];
 public:
 	GameMainScene();
 	~GameMainScene();
@@ -22,5 +27,6 @@ public:
 
 public:
 	Vector2D GetInputVelocity();
+
 };
 

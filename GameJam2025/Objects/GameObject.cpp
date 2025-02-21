@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include"DxLib.h"
+#include <math.h>
 
 GameObject::GameObject() : color(0x0), location(0.f), box_size(0.f), local_location(0.f)
 {
@@ -60,3 +61,14 @@ Vector2D GameObject::GetBoxSize() const
 {
 	return this->box_size;
 }
+
+float GameObject::ObjectLength(GameObject* object)
+{
+	float length;
+	
+	length = powf(powf(local_location.x - object->local_location.x, 2) + powf(local_location.y - object->local_location.y, 2), 0.5);
+
+	return length;
+}
+
+
