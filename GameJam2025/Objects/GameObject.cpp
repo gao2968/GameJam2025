@@ -1,7 +1,7 @@
 #include "GameObject.h"
 #include"DxLib.h"
 
-GameObject::GameObject() : color(0x0), location(0.f), box_size(0.f)
+GameObject::GameObject() : color(0x0), location(0.f), box_size(0.f), local_location(0.f)
 {
 }
 
@@ -20,24 +20,30 @@ void GameObject::Initialize()
 
 void GameObject::Update()
 {
-	location.x += 1.f;
+	//location.x += 1.f;
 
-	if (location.x >= 640.f)
-	{
-		location.x = 0.f;
-	}
+	//if (location.x >= 640.f)
+	//{
+	//	location.x = 0.f;
+	//}
 }
 
 void GameObject::Draw() const
 {
-	Vector2D upper_left = location - (box_size / 2.f);
-	Vector2D lower_right = location + (box_size / 2.f);
+	Vector2D upper_left = local_location - (box_size / 2.f);
+	Vector2D lower_right = local_location + (box_size / 2.f);
 
 	DrawBoxAA(upper_left.x, upper_left.y, lower_right.x, lower_right.y, color, TRUE);
 }
 
 void GameObject::Finalize()
 {
+}
+
+void GameObject::Movement(Vector2D velocity)
+{
+	local_location.x -= velocity.x;
+	local_location.y += velocity.y;
 }
 
 void GameObject::SetLocation(Vector2D location)
