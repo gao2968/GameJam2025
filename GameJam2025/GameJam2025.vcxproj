@@ -143,6 +143,7 @@
     <ClCompile Include="Objects\GameObject.cpp" />
     <ClCompile Include="Objects\Player\Player.cpp" />
     <ClCompile Include="Objects\Stage\Stage.cpp" />
+    <ClCompile Include="Objects\TimeLimitCircle.cpp" />
     <ClCompile Include="Utility\ResourceManager.cpp" />
     <ClCompile Include="Scene\EndScene.cpp" />
     <ClCompile Include="Scene\GameMainScene.cpp" />
