@@ -25,7 +25,7 @@ void Stage::Update()
 void Stage::Draw() const
 {
 	__super::Draw();
-	DrawFormatString(local_location.x, local_location.y, 0xff0000, "x%f y%f", local_location.x, local_location.y);
+	DrawFormatString(local_location.x, local_location.y, 0xff0000, "x%f y%f", location.x, location.y);
 }
 
 void Stage::Finalize()

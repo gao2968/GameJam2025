@@ -32,6 +32,7 @@ void Player::Draw() const
 	__super::Draw();
 
 	DrawFormatString(local_location.x, local_location.y, 0x0000ff, "x%f y%f", location.x, location.y);
+	DrawFormatString(local_location.x, local_location.y+20, 0x0000ff, "x%f y%f", local_location.x, local_location.y);
 
 	DrawLine(640, 0, 640, 1280, 0xff0000);
 	DrawLine(0, 360, 1280, 360, 0xff0000);
@@ -48,46 +49,74 @@ void Player::Movement(Vector2D velocity)
 
 	//ステージ端ならカーソル自体移動　そうではないなら、カーソルは常に画面中央に来るように
 	//左上座標　右下座標
-	//if (location.x >= 540.f && location.y >= 260.f &&
-	//	location.x <= 1820.f && location.y <= 980.f)
-	//{
-	//	/*location.x += velocity.x;
-	//	location.y -= velocity.y;*/
-	//	camera_stop_x = false;
-	//	camera_stop_y = false;
-	//}
-	//else
-	//{
-	//	if (location.x <= 540.f || location.x >= 1820.f)
-	//	{
-	//		camera_stop_x = true;
-	//	}
-	//	if (location.y <= 260.f || location.y >= 980.f)
-	//	{
-	//		camera_stop_y = true;
-	//	}
+	if (location.x >= 540.f && location.y >= 260.f &&
+		location.x <= 1380.f && location.y <= 820.f)
+	{
+		/*location.x += velocity.x;
+		location.y -= velocity.y;*/
+		camera_stop_x = false;
+		camera_stop_y = false;
 
-	//	//制限
-	//	if (location.x <= 0.f)
-	//	{
-	//		location.x = 0.f;
-	//	}
-	//	if (location.x >= 1920.f)
-	//	{
-	//		location.x = 1920.f;
-	//	}
-	//	if (location.y <= 0.f)
-	//	{
-	//		location.y = 0.f;
-	//	}
-	//	if (location.y >= 1080.f)
-	//	{
-	//		location.y = 1080.f;
-	//	}
+		if ((int)local_location.x != 640)
+		{
+			local_location.x = 640.f;
+		}
+		if ((int)local_location.y != 360)
+		{
+			local_location.y = 360.f;
+		}
+	}
+	else
+	{
+		//制限
+		if (location.x <= 0.f)
+		{
+			location.x = 0.f;
+		}
+		if (location.x >= 1920.f)
+		{
+			location.x = 1920.f;
+		}
+		if (location.y <= 0.f)
+		{
+			location.y = 0.f;
+		}
+		if (location.y >= 1080.f)
+		{
+			location.y = 1080.f;
+		}
 
-	//	local_location.x += velocity.x;
-	//	local_location.y -= velocity.y;
-	//}
+		local_location.x += velocity.x;
+		local_location.y -= velocity.y;
+
+		if (location.x <= 540.f || location.x >= 1380.f)
+		{
+			camera_stop_x = true;
+		}
+		else
+		{
+			camera_stop_x = false;
+			if ((int)local_location.x != 640)
+			{
+				local_location.x = 640.f;
+			}
+		}
+
+		if (location.y <= 260.f || location.y >= 820.f)
+		{
+			camera_stop_y = true;
+		}
+		else
+		{
+			camera_stop_y = false;
+			if ((int)local_location.y != 360)
+			{
+				local_location.y = 360.f;
+			}
+		}
+	}
+
+	
 }
 
 bool Player::GetCameraStopX()
