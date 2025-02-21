@@ -7,6 +7,7 @@ enum eSceneType
 	E_MAIN,
 	E_HELP,
 	E_END,
+	E_RANKING,
 	E_TEST = 99
 };
 
@@ -33,4 +34,9 @@ public:
 
 	//���݂̃V�[������擾
 	virtual eSceneType GetNowScene() const = 0;
+
+	virtual bool GetEndFlag()
+	{
+		return false;
+	}
 };

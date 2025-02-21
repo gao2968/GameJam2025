@@ -1,4 +1,4 @@
-#include "TitleScene.h"
+﻿#include "TitleScene.h"
 #include "../Utility/InputControl.h"
 #include "../Utility/ResourceManager.h"
 #include "DxLib.h"
@@ -8,6 +8,7 @@ TitleScene::TitleScene()
 	, title_sound(NULL)
 	, tamesi(NULL)
 	, select(TitleSelect::InGame)
+	, end_flg(false)
 {
 
 }
@@ -23,46 +24,70 @@ void TitleScene::Initialize()
 	//インスタンス取得
 	ResourceManager* rm = ResourceManager::GetInstance();
 
-	title_image = rm->GetImages("Resource/Images/stage.png")[0];
-	tamesi = rm->GetImages("Resource/Images/ryouka.png")[0];
+	title_image = rm->GetImages("Resource/Images/title.png")[0];
 	
+	SetFontSize(64);
 }
 
 eSceneType TitleScene::Update()
 {
-	/*if (InputControl::GetKey())
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_DOWN))
 	{
 		if (select == TitleSelect::EXIT)
 		{
-			select = TitleSelect::NEXT_STAGE;
+			select = TitleSelect::InGame;
+		}
+		else if (select == TitleSelect::InGame)
+		{
+			select = TitleSelect::Help;
+		}
+		else if (select == TitleSelect::Help)
+		{
+			select = TitleSelect::Ranking;
 		}
 		else
 		{
 			select = TitleSelect::EXIT;
 		}
 	}
-	if (IM->GetKeyDown(KEY_INPUT_UP))
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_UP))
 	{
-		if (select == TitleSelect::NEXT_STAGE)
+		if (select == TitleSelect::InGame)
 		{
 			select = TitleSelect::EXIT;
 		}
+		else if (select == TitleSelect::EXIT)
+		{
+			select = TitleSelect::Ranking;
+		}
+		else if (select == TitleSelect::Ranking)
+		{
+			select = TitleSelect::Help;
+		}
 		else
 		{
-			select = TitleSelect::NEXT_STAGE;
+			select = TitleSelect::InGame;
 		}
 	}
-	if (IM->GetKeyDown(KEY_INPUT_RETURN))
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_A))
 	{
 		if (select == TitleSelect::EXIT)
 		{
-			end_flg = true;
+			return eSceneType::E_END;
 		}
-		else {
-
-			return eSceneType::eInGame;
+		if (select == TitleSelect::InGame)
+		{
+			return eSceneType::E_MAIN;
 		}
-	}*/
+		else if (select == TitleSelect::Help)
+		{
+			return eSceneType::E_HELP;
+		}
+		else if (select == TitleSelect::Ranking)
+		{
+			return eSceneType::E_RANKING;
+		}
+	}
 	return GetNowScene();
 }
 
@@ -72,13 +97,41 @@ void TitleScene::Draw() const
 	//親クラスのDrawを呼び出す。
 	__super::Draw();
 
-	DrawString(100, 100, "title", WHITE);
-
 	// 背景画像の描画
-	DrawRotaGraph(640, 400, 0.33, 0.0, title_image, TRUE);
+	DrawRotaGraph(640, 360, 1.0, 0.0, title_image, TRUE);
 
-	// 背景画像の描画
-	DrawRotaGraph(640, 400, 0.2, 0.0, tamesi, TRUE);
+	switch (select)
+	{
+	case InGame:
+		DrawString(DRAW_SET_X - 80, DRAW_SET_Y - 3, "→", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y, "スタート", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "ヘルプ", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "ランキング", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y +207, "終了", WHITE);
+		break;
+	case Help:
+		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 67, "→", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y, "スタート", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "ヘルプ", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "ランキング", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "終了", WHITE);
+		break;
+	case Ranking:
+		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 137, "→", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y, "スタート", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "ヘルプ", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "ランキング", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "終了", WHITE);
+		break;
+	case EXIT:
+		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 207, "→", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y, "スタート", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "ヘルプ", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "ランキング", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "終了", RED);
+		break;
+	}
+
 }
 
 //�I��������
@@ -91,4 +144,9 @@ void TitleScene::Finalize()
 eSceneType TitleScene::GetNowScene() const
 {
 	return eSceneType::E_TITLE;
+}
+
+bool TitleScene::GetEndFlag()
+{
+	return end_flg;
 }

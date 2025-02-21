@@ -47,7 +47,7 @@ void SceneManager::Initialize()
 	SetAlwaysRunFlag(true);
 
 	//�^�C�g���V�[������n�߂�
-	ChangeScene(eSceneType::E_MAIN);
+	ChangeScene(eSceneType::E_TITLE);
 }
 
 //�V�[���}�l�[�W���[�@�\�F�X�V����
