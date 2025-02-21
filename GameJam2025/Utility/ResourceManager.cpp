@@ -1,16 +1,16 @@
 #include "ResourceManager.h"
 #include "DxLib.h"
 
-// Ã“Iƒƒ“ƒo•Ï”’è‹`
-ResourceManager* ResourceManager::instance = nullptr;	// ©ƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^
+// ï¿½Ã“Iï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Ïï¿½ï¿½ï¿½`
+ResourceManager* ResourceManager::instance = nullptr;	// ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½^
 
 /// <summary>
-/// ƒCƒ“ƒXƒ^ƒ“ƒXæ“¾ˆ—
+/// ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 /// </summary>
-/// <returns>ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‹p‚·‚é</returns>
+/// <returns>ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½ï¿½Ô‹pï¿½ï¿½ï¿½ï¿½</returns>
 ResourceManager* ResourceManager::GetInstance()
 {
-	// ƒCƒ“ƒXƒ^ƒ“ƒX‚ª¶¬‚³‚ê‚Ä‚¢‚È‚¢ê‡A¶¬‚·‚é
+	// ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (instance == nullptr)
 	{
 		instance = new ResourceManager();
@@ -20,52 +20,52 @@ ResourceManager* ResourceManager::GetInstance()
 }
 
 /// <summary>
-/// ƒCƒ“ƒXƒ^ƒ“ƒXíœˆ—
+/// ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½íœï¿½ï¿½ï¿½ï¿½
 /// </summary>
 void ResourceManager::DeleteInstance()
 {
-	// ƒCƒ“ƒXƒ^ƒ“ƒX‚ª¶¬‚³‚ê‚Ä‚¢‚éê‡Aíœ‚·‚é
+	// ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ê‡ï¿½Aï¿½íœï¿½ï¿½ï¿½ï¿½
 	if (instance != nullptr)
 	{
-		// ‰æ‘œƒŠƒ\[ƒX‚Ì‰ğ•ú
+		// ï¿½æ‘œï¿½ï¿½ï¿½\ï¿½[ï¿½Xï¿½Ì‰ï¿½ï¿½
 		instance->UnLoadImages();
-		// ‰¹Œ¹ƒŠƒ\[ƒX‚Ì‰ğ•ú
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½[ï¿½Xï¿½Ì‰ï¿½ï¿½
 		instance->UnLoadSounds();
-		// ƒCƒ“ƒXƒ^ƒ“ƒX‚ğíœ‚·‚é
+		// ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½ï¿½íœï¿½ï¿½ï¿½ï¿½
 		delete instance;
 		instance = nullptr;
 	}
 }
 
 /// <summary>
-/// ‰æ‘œæ“¾ˆ—
+/// ï¿½æ‘œï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 /// </summary>
-/// <param name="file_name">ƒtƒ@ƒCƒ‹ƒpƒX</param>
-/// <param name="all_num">‰æ‘œ‚Ì•ªŠ„‘”</param>
-/// <param name="num_x">‰¡‚Ì•ªŠ„</param>
-/// <param name="num_y">c‚Ì•ªŠ„</param>
-/// <param name="size_x">‰¡‚ÌƒTƒCƒY(px)</param>
-/// <param name="size_y">c‚ÌƒTƒCƒY(px)</param>
-/// <returns>“Ç‚İ‚ñ‚¾‰æ‘œƒnƒ“ƒhƒ‹‚Ìvector”z—ñ</returns>
+/// <param name="file_name">ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X</param>
+/// <param name="all_num">ï¿½æ‘œï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+/// <param name="num_x">ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½</param>
+/// <param name="num_y">ï¿½cï¿½Ì•ï¿½ï¿½ï¿½</param>
+/// <param name="size_x">ï¿½ï¿½ï¿½ÌƒTï¿½Cï¿½Y(px)</param>
+/// <param name="size_y">ï¿½cï¿½ÌƒTï¿½Cï¿½Y(px)</param>
+/// <returns>ï¿½Ç‚İï¿½ï¿½ñ‚¾‰æ‘œï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½vectorï¿½zï¿½ï¿½</returns>
 const std::vector<int>& ResourceManager::GetImages(std::string file_name, int all_num, int num_x, int num_y, int size_x, int size_y)
 {
-	// ƒRƒ“ƒeƒi“à‚É‰æ‘œƒf[ƒ^‚ª–³‚¢ê‡A‰æ‘œ“Ç‚İ‚İ‚ğs‚¤
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½ï¿½É‰æ‘œï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Aï¿½æ‘œï¿½Ç‚İï¿½ï¿½İ‚ï¿½sï¿½ï¿½
 	if (images_container.count(file_name) == NULL)
 	{
-		// •ªŠ„“Ç‚İ‚İ‚ğs‚¤Hs‚í‚È‚¢H
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½İ‚ï¿½sï¿½ï¿½ï¿½Hï¿½sï¿½ï¿½È‚ï¿½ï¿½H
 		if (all_num == 1)
 		{
-			// •ªŠ„“Ç‚İ‚İ‚ğs‚í‚È‚¢
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½İ‚ï¿½sï¿½ï¿½È‚ï¿½
 			CreateImagesResource(file_name);
 		}
 		else
 		{
-			// •ªŠ„“Ç‚İ‚İ‚ğs‚¤
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½İ‚ï¿½sï¿½ï¿½
 			CreateImagesResource(file_name, all_num, num_x, num_y, size_x, size_y);
 		}
 	}
 
-	// ƒRƒ“ƒeƒi“à‚Ìƒf[ƒ^‚ğ•Ô‚·
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½ï¿½Ìƒfï¿½[ï¿½^ï¿½ï¿½Ô‚ï¿½
 	return images_container[file_name];
 }
 const std::vector<int>& ResourceManager::GetImages(const char* file_name, int all_num, int num_x, int num_y, int size_x, int size_y)
@@ -74,20 +74,20 @@ const std::vector<int>& ResourceManager::GetImages(const char* file_name, int al
 }
 
 /// <summary>
-/// ‰¹Œ¹æ“¾ˆ—
+/// ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 /// </summary>
-/// <param name="file_path">‰¹Œ¹‚Ìƒtƒ@ƒCƒ‹ƒpƒX</param>
-/// <returns>‰¹Œ¹ƒnƒ“ƒhƒ‹ƒf[ƒ^</returns>
+/// <param name="file_path">ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X</param>
+/// <returns>ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½fï¿½[ï¿½^</returns>
 int ResourceManager::GetSounds(std::string file_path)
 {
-	// ƒRƒ“ƒeƒi“à‚Éw’èƒtƒ@ƒCƒ‹‚ª–³‚¯‚ê‚ÎA¶¬‚·‚é
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½ï¿½Éwï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (sounds_container.count(file_path) == NULL)
 	{
-		// ‰¹Œ¹‚Ì“Ç‚İ‚İ‚ğs‚¤
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ì“Ç‚İï¿½ï¿½İ‚ï¿½sï¿½ï¿½
 		CreateSoundsResource(file_path);
 	}
 
-	// ƒRƒ“ƒeƒi“à‚Ìƒf[ƒ^‚ğ•Ô‚·
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½ï¿½Ìƒfï¿½[ï¿½^ï¿½ï¿½Ô‚ï¿½
 	return sounds_container[file_path];
 }
 int ResourceManager::GetSounds(const char* file_path)
@@ -96,101 +96,101 @@ int ResourceManager::GetSounds(const char* file_path)
 }
 
 /// <summary>
-/// ‰æ‘œ‰ğ•úˆ—
+/// ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 void ResourceManager::UnLoadImages()
 {
-	// ƒRƒ“ƒeƒi“à‚É‰æ‘œ‚ª–³‚¯‚ê‚ÎAˆ—‚ğI—¹‚·‚é
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½ï¿½É‰æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (images_container.size() == NULL)
 	{
 		return;
 	}
 
-	// ‘S‚Ä‚Ì‰æ‘œ‚ğíœ
+	// ï¿½Sï¿½Ä‚Ì‰æ‘œï¿½ï¿½íœ
 	for (std::pair<std::string, std::vector<int>> value : images_container)
 	{
 		DeleteSharingGraph(value.second[0]);
 		value.second.clear();
 	}
 
-	// ƒRƒ“ƒeƒi‚ğ‰ğ•ú
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½ï¿½ï¿½ï¿½
 	images_container.clear();
 }
 
 /// <summary>
-/// ‰¹Œ¹‰ğ•úˆ—
+/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 void ResourceManager::UnLoadSounds()
 {
-	// ƒRƒ“ƒeƒi“à‚É‰¹Œ¹‚ª–³‚¯‚ê‚ÎAˆ—‚ğI—¹‚·‚é
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½ï¿½É‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎAï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (sounds_container.size() == NULL)
 	{
 		return;
 	}
 
-	// ‘S‚Ä‚Ì‰æ‘œ‚ğíœ
+	// ï¿½Sï¿½Ä‚Ì‰æ‘œï¿½ï¿½íœ
 	for (std::pair<std::string, int> value : sounds_container)
 	{
 		DeleteSoundMem(value.second);
 	}
 
-	// ƒRƒ“ƒeƒi‚ğ‰ğ•ú
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½ï¿½ï¿½ï¿½
 	sounds_container.clear();
 }
 
 /// <summary>
-/// ‰æ‘œ“Ç‚İ‚İˆ—
+/// ï¿½æ‘œï¿½Ç‚İï¿½ï¿½İï¿½ï¿½ï¿½
 /// </summary>
-/// <param name="file_path">ƒtƒ@ƒCƒ‹ƒpƒX</param>
+/// <param name="file_path">ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X</param>
 void ResourceManager::CreateImagesResource(std::string file_path)
 {
-	// w’è‚³‚ê‚½‰æ‘œƒtƒ@ƒCƒ‹“Ç‚İ‚Ş
+	// ï¿½wï¿½è‚³ï¿½ê‚½ï¿½æ‘œï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
 	int handle = LoadGraph(file_path.c_str());
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ï¿½Gï¿½ï¿½ï¿½[ï¿½`ï¿½Fï¿½bï¿½N
 	if (handle == -1)
 	{
-		throw (file_path + "‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+		throw (file_path + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½\n");
 	}
 
-	// ƒRƒ“ƒeƒi‚É“Ç‚İ‚ñ‚¾‰æ‘œ‚ğ’Ç‰Á‚·‚é
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½É“Ç‚İï¿½ï¿½ñ‚¾‰æ‘œï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½
 	images_container[file_path].push_back(handle);
 }
 void ResourceManager::CreateImagesResource(std::string file_name, int all_num, int num_x, int num_y, int size_x, int size_y)
 {
-	// •ªŠ„‚·‚é‰æ‘œ•ª‚¾‚¯ƒƒ‚ƒŠ‚ğŠm•Û‚·‚é
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Û‚ï¿½ï¿½ï¿½
 	int* handle = new int[all_num];
 
-	// w’è‚³‚ê‚½‰æ‘œƒtƒ@ƒCƒ‹‚ğ•ªŠ„‚Å“Ç‚İ‚Ş
+	// ï¿½wï¿½è‚³ï¿½ê‚½ï¿½æ‘œï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ğ•ªŠï¿½ï¿½Å“Ç‚İï¿½ï¿½ï¿½
 	int result = LoadDivGraph(file_name.c_str(), all_num, num_x, num_y, size_x, size_y, handle);
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ï¿½Gï¿½ï¿½ï¿½[ï¿½`ï¿½Fï¿½bï¿½N
 	if (result == -1)
 	{
-		throw (file_name + "‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+		throw (file_name + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½\n");
 	}
 
-	// ƒRƒ“ƒeƒi‚É“Ç‚İ‚ñ‚¾‰æ‘œ‚ğ’Ç‰Á‚·‚é
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½É“Ç‚İï¿½ï¿½ñ‚¾‰æ‘œï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (int i = 0; i < all_num; i++)
 	{
 		images_container[file_name].push_back(handle[i]);
 	}
 
-	// Šm•Û‚µ‚½ƒƒ‚ƒŠ‚ğ‰ğ•ú‚·‚é
+	// ï¿½mï¿½Û‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	delete[] handle;
 }
 
 void ResourceManager::CreateSoundsResource(std::string file_path)
 {
-	// w’è‚³‚ê‚½ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚Ş
+	// ï¿½wï¿½è‚³ï¿½ê‚½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
 	int handle = LoadSoundMem(file_path.c_str());
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ï¿½Gï¿½ï¿½ï¿½[ï¿½`ï¿½Fï¿½bï¿½N
 	if (handle == -1)
 	{
-		throw (file_path + "‚ª‚ ‚è‚Ü‚¹‚ñ\n");
+		throw (file_path + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½\n");
 	}
 
-	// ƒRƒ“ƒeƒi‚É“Ç‚İ‚ñ‚¾‰¹Œ¹‚ğ’Ç‰Á‚·‚é
+	// ï¿½Rï¿½ï¿½ï¿½eï¿½iï¿½É“Ç‚İï¿½ï¿½ñ‚¾‰ï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½
 	sounds_container[file_path] = handle;
 }

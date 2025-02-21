@@ -19,6 +19,8 @@ public:
 	virtual void Draw() const;
 	virtual void Finalize();
 
+	virtual void Movement(Vector2D velocity);
+
 public:
 	void SetLocation(Vector2D location);
 	Vector2D GetLocation() const;
