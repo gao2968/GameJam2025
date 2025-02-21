@@ -1,7 +1,7 @@
 #include "GameObject.h"
 #include"DxLib.h"
 
-GameObject::GameObject() : color(0x0), location(0.f), box_size(0.f)
+GameObject::GameObject() : color(0x0), location(0.f), box_size(0.f), local_location(0.f)
 {
 }
 
@@ -20,12 +20,12 @@ void GameObject::Initialize()
 
 void GameObject::Update()
 {
-	location.x += 1.f;
+	//location.x += 1.f;
 
-	if (location.x >= 640.f)
-	{
-		location.x = 0.f;
-	}
+	//if (location.x >= 640.f)
+	//{
+	//	location.x = 0.f;
+	//}
 }
 
 void GameObject::Draw() const

@@ -7,6 +7,7 @@ class GameObject
 protected:
 	unsigned int color;
 	Vector2D location;
+	Vector2D local_location;
 	Vector2D box_size;
 
 public:
