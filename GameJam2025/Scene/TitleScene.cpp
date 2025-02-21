@@ -1,5 +1,6 @@
 #include "TitleScene.h"
 #include "../Utility/InputControl.h"
+#include "../Utility/ResourceManager.h"
 #include "DxLib.h"
 
 TitleScene::TitleScene()
@@ -15,7 +16,8 @@ TitleScene::~TitleScene()
 //����������
 void TitleScene::Initialize()
 {
-	
+	//インスタンス取得
+	ResourceManager* rm = ResourceManager::GetInstance();
 }
 
 eSceneType TitleScene::Update()

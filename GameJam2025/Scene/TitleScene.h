@@ -7,6 +7,8 @@
 class TitleScene : public SceneBase
 {
 private:
+	int title_image;
+	int title_sound;
 
 public:
 	TitleScene();
