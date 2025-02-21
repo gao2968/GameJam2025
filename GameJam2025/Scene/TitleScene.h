@@ -3,12 +3,22 @@
 #include "SceneBase.h"
 #include "../Utility/Vector2D.h"
 
+#define WHITE 0xFFFFFF
+
+enum TitleSelect {
+	InGame,
+	Help,
+	Ranking,
+	EXIT,
+};
 
 class TitleScene : public SceneBase
 {
 private:
 	int title_image;
 	int title_sound;
+	int tamesi;
+	TitleSelect select;
 
 public:
 	TitleScene();
