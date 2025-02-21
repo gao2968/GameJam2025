@@ -26,37 +26,62 @@ void GameMainScene::Initialize()
 	enemy->Initialize();
 
 	SetFontSize(24);
+
+	state = SearchPhase;
 }
 
 eSceneType GameMainScene::Update()
 {
-	stage->Update();
-	player->Update();
-	enemy->Update();
-
 	Vector2D velocity(GetInputVelocity());
-	if(player->GetCameraStopX())
-	{ 
-		velocity.x = 0.f;
-	}
-
-	if (player->GetCameraStopY())
+	switch (state)
 	{
-		velocity.y = 0.f;
+	case SearchPhase:
+
+		stage->Update();
+		player->Update();
+		enemy->Update();
+
+		
+		if (player->GetCameraStopX())
+		{
+			velocity.x = 0.f;
+		}
+
+		if (player->GetCameraStopY())
+		{
+			velocity.y = 0.f;
+		}
+
+		stage->Movement(velocity);
+		enemy->Movement(velocity);
+
+		player->Movement(GetInputVelocity());
+		player->nearest_enemy_length = player->ObjectLength(enemy);//game objectに変更するかも 敵の数ループして最も近い敵との距離を入れる
+
+		if (player->ObjectLength(enemy) <= 100.f && InputControl::GetButtonDown(XINPUT_BUTTON_B) && enemy->battle_phase == 0)
+		{
+			enemy->StartBattlePhaseOne();
+			state = BattlePhaseOne;
+		}
+		break;
+
+	case BattlePhaseOne:
+		enemy->Update();
+		enemy->battle_phase = state;
+		break;
+
+	case BattlePhaseTwo:
+		enemy->Update();
+		enemy->battle_phase = state;
+		break;
+
+	case EndPhase:
+		break;
+
+	default:
+		break;
 	}
 
-	stage->Movement(velocity);
-	enemy->Movement(velocity);
-
-	
-	
-	player->Movement(GetInputVelocity());
-	player->nearest_enemy_length = player->ObjectLength(enemy);//gameobjectに変更するかも 敵の数ループして最も近い敵との距離を入れる
-
-	if (player->ObjectLength(enemy) <= 100.f && InputControl::GetButtonDown(XINPUT_BUTTON_B) && enemy->battle_phase == 0)
-	{
-		enemy->StartBattlePhaseOne();
-	}
 
 	return GetNowScene();
 }

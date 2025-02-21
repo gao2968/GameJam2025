@@ -5,6 +5,14 @@
 #include "../Objects/Enemy/Enemy.h"
 #include "../Objects/GameObject.h"
 
+enum MainState
+{
+	SearchPhase,
+	BattlePhaseOne,
+	BattlePhaseTwo,
+	EndPhase = 99
+};
+
 class GameMainScene:public SceneBase
 {
 private:
@@ -14,6 +22,8 @@ private:
 
 	int player_num;
 	int enemy_num[3];
+
+	int state;
 public:
 	GameMainScene();
 	~GameMainScene();
