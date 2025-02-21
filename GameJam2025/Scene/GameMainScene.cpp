@@ -24,6 +24,8 @@ void GameMainScene::Initialize()
 	stage->Initialize();
 	player->Initialize();
 	enemy->Initialize();
+
+	SetFontSize(24);
 }
 
 eSceneType GameMainScene::Update()
