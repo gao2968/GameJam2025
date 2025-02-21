@@ -1,8 +1,10 @@
 #include "HelpScene.h"
 #include "../Utility/InputControl.h"
+#include "../Utility/ResourceManager.h"
 #include "DxLib.h"
 
-HelpScene::HelpScene()
+HelpScene::HelpScene() 
+	: help_image(NULL)
 {
 
 }
@@ -15,7 +17,10 @@ HelpScene::~HelpScene()
 //����������
 void HelpScene::Initialize()
 {
-	
+	//インスタンス取得
+	ResourceManager* rm = ResourceManager::GetInstance();
+
+	help_image = rm->GetImages("Resource/Images/Help.png")[0];
 }
 //�X�V����
 eSceneType HelpScene::Update()
@@ -33,7 +38,8 @@ void HelpScene::Draw() const
 	//親クラスのDrawを呼び出す。
 	__super::Draw();
 
-	/*DrawString(100, 100, "Bボタンで戻る", GetColor(255, 255, 255));*/
+	// 背景画像の描画
+	DrawRotaGraph(640, 360, 1.0, 0.0, help_image, TRUE);
 	
 }
 
