@@ -4,7 +4,10 @@
 class Player : public GameObject
 {
 private:
-	Vector2D velocity;
+	//Vector2D velocity;
+
+	bool camera_stop_x;
+	bool camera_stop_y;
 
 public:
 	Player();
@@ -15,7 +18,10 @@ public:
 	virtual void Draw() const;
 	virtual void Finalize();
 
-private:
-	void Movement();
+public:
+	void Movement(Vector2D velocity) override;
+
+	bool GetCameraStopX();
+	bool GetCameraStopY();
 };
 

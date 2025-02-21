@@ -30,14 +30,20 @@ void GameObject::Update()
 
 void GameObject::Draw() const
 {
-	Vector2D upper_left = location - (box_size / 2.f);
-	Vector2D lower_right = location + (box_size / 2.f);
+	Vector2D upper_left = local_location - (box_size / 2.f);
+	Vector2D lower_right = local_location + (box_size / 2.f);
 
 	DrawBoxAA(upper_left.x, upper_left.y, lower_right.x, lower_right.y, color, TRUE);
 }
 
 void GameObject::Finalize()
 {
+}
+
+void GameObject::Movement(Vector2D velocity)
+{
+	local_location.x -= velocity.x;
+	local_location.y += velocity.y;
 }
 
 void GameObject::SetLocation(Vector2D location)
