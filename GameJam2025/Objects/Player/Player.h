@@ -23,6 +23,8 @@ public:
 	bool GetCameraStopX();
 	bool GetCameraStopY();
 
-	float nearest_enemy_length;
+	float nearest_enemy_length = 9999.f;
+
+	float ObjectLength(GameObject* object) override;
 };
 

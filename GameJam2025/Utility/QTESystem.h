@@ -3,6 +3,7 @@ enum QTEState
 {
 	success,
 	faild,
+	input_faild,
 	midway
 };
 class QTESystem

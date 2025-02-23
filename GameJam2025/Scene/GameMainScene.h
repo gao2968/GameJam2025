@@ -20,10 +20,17 @@ private:
 	Player* player;
 	Enemy* enemy;
 
-	int player_num;
-	int enemy_num[3];
+	std::vector<GameObject*> object;
+	Enemy* nearest_enemy;
+	int nearest_enemy_num = -1;
+
+	int player_num = 0;
+	int enemy_num[3] = { 2,3,4 };
 
 	int state;
+
+	int hp = 10800;	//hp兼timer
+	int score = 0;
 public:
 	GameMainScene();
 	~GameMainScene();
@@ -38,5 +45,9 @@ public:
 public:
 	Vector2D GetInputVelocity();
 
+	//プレイヤーに近い敵を見つける
+	void SearchNearestEnemy();
+
+	void CalculationHp();
 };
 

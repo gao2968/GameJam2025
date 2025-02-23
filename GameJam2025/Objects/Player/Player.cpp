@@ -122,3 +122,15 @@ bool Player::GetCameraStopY()
 	return camera_stop_y;
 }
 
+float Player::ObjectLength(GameObject* object)
+{
+	float length = __super::ObjectLength(object);
+
+	if (length < nearest_enemy_length)
+	{
+		nearest_enemy_length = length;
+	}
+
+	return length;
+}
+

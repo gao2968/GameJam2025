@@ -56,6 +56,10 @@ QTEState QTESystem::InQTE()
 			elapsed_time = -1.f;
 			return success;
 		}
+		else if (InputControl::GetButtonDown(XINPUT_BUTTON_B) || InputControl::GetButtonDown(XINPUT_BUTTON_X) || InputControl::GetButtonDown(XINPUT_BUTTON_Y))
+		{
+			return input_faild;
+		}
 		break;
 
 	case 1:
@@ -63,6 +67,10 @@ QTEState QTESystem::InQTE()
 		{
 			elapsed_time = -1.f;
 			return success;
+		}
+		else if (InputControl::GetButtonDown(XINPUT_BUTTON_A) || InputControl::GetButtonDown(XINPUT_BUTTON_X) || InputControl::GetButtonDown(XINPUT_BUTTON_Y))
+		{
+			return input_faild;
 		}
 		break;
 
@@ -72,6 +80,10 @@ QTEState QTESystem::InQTE()
 			elapsed_time = -1.f;
 			return success;
 		}
+		else if (InputControl::GetButtonDown(XINPUT_BUTTON_A) || InputControl::GetButtonDown(XINPUT_BUTTON_B) || InputControl::GetButtonDown(XINPUT_BUTTON_Y))
+		{
+			return input_faild;
+		}
 		break;
 
 	case 3:
@@ -79,6 +91,10 @@ QTEState QTESystem::InQTE()
 		{
 			elapsed_time = -1.f;
 			return success;
+		}
+		else if (InputControl::GetButtonDown(XINPUT_BUTTON_A) || InputControl::GetButtonDown(XINPUT_BUTTON_B) || InputControl::GetButtonDown(XINPUT_BUTTON_X))
+		{
+			return input_faild;
 		}
 		break;
 
