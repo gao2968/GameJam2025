@@ -23,7 +23,7 @@ private:
 	int phase_two_timer;	//フェーズ2の時間制限
 	int battle_count;	//
 	int phase_one_cnt;
-
+	int phase_one_enemy_size;
 
 	int font = 0x000000;
 public:

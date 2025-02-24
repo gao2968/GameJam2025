@@ -17,13 +17,14 @@ void Enemy::Initialize()
 	//location = Vector2D(960.f, 540.f);
 	location = Vector2D((float)GetRand(1920), (float)GetRand(1080));
 	local_location = (location - Vector2D(1920 / 2, 1080 / 2)) + Vector2D(1280 / 2, 720 / 2);
-	box_size = Vector2D(512.f);
+	box_size = Vector2D(128.f);
 	color = 0x0000ff;
 	state = 0;
 	battle_phase = 0;
 	phase_two_timer = 1200.f;
 	battle_count = 0;
 	phase_one_cnt = 0;
+	phase_one_enemy_size = 0;
 
 	pattern.resize(3);
 	for (int i = 0; i < 3; i++)
@@ -90,7 +91,41 @@ void Enemy::Update()
 
 void Enemy::Draw() const
 {
+	//親クラスで画像の描画
 	__super::Draw();
+
+	//フェーズ1の敵の描画
+	Vector2D draw_location;
+	Vector2D draw_box_size = Vector2D(phase_one_enemy_size);
+	Vector2D upper_left;
+	Vector2D lower_right;
+	if (battle_phase == 1)
+	{
+		switch (QTESystem::GetButtonPhaseOne())
+		{
+		case 0:	//A
+			draw_location = Vector2D(640.f, 480.f);
+			break;
+		case 1: //B
+			draw_location = Vector2D(960.f, 360.f);
+			break;
+		case 2: //X
+			draw_location = Vector2D(320.f, 360.f);
+			break;
+		case 3: //Y
+			draw_location = Vector2D(640.f, 180.f);
+			break;
+		default:
+			break;
+		}
+		upper_left = draw_location - (draw_box_size / 2.f);
+		lower_right = draw_location + (draw_box_size / 2.f);
+		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image, TRUE);
+	}
+	
+
+
+
 	//DrawFormatString(local_location.x, local_location.y - 30, 0xff00ff, "num%d", pattern_num);
 	//DrawFormatString(local_location.x, local_location.y - 70, 0xff00ff, "phase%d", battle_phase);
 	DrawFormatString(local_location.x, local_location.y - 90, 0xff00ff, "time%d", phase_two_timer);
@@ -132,9 +167,12 @@ void Enemy::StartBattlePhaseTwo()
 
 void Enemy::InBattlePhaseOne()
 {
+	phase_one_enemy_size += 3; //だんだん近づかせる
 	int result = QTESystem::InQTE();
 	if (result == success)
 	{
+		phase_one_enemy_size = 0;
+
 		add_score = 10;
 		if (++phase_one_cnt > 3)
 		{
@@ -156,6 +194,7 @@ void Enemy::InBattlePhaseOne()
 
 void Enemy::InBattlePhaseTwo()
 {
+	
 	int res = QTESystem::InQTE();
 	if (res == success)
 	{
@@ -230,23 +269,23 @@ bool Enemy::SetEnemyType(int type)
 	switch (type)
 	{
 	case arai:
-		image = rm->GetImages("Resource/Images/arai.png")[0];
+		image = rm->GetImages("Resource/Images/arai_512.png")[0];
 		break;
 
 	case maesiro:
-		image = rm->GetImages("Resource/Images/maesiro.png")[0];
+		image = rm->GetImages("Resource/Images/maesiro_512.png")[0];
 		break;
 
 	case maetu:
-		image = rm->GetImages("Resource/Images/maetu.png")[0];
+		image = rm->GetImages("Resource/Images/maetu_512.png")[0];
 		break;
 
 	case ryouka:
-		image = rm->GetImages("Resource/Images/ryouka.png")[0];
+		image = rm->GetImages("Resource/Images/ryouka_512.png")[0];
 		break;
 
 	case toubaru:
-		image = rm->GetImages("Resource/Images/toubaru.png")[0];
+		image = rm->GetImages("Resource/Images/toubaru_512.png")[0];
 		break;
 
 	default:
