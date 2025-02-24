@@ -6,7 +6,18 @@
 TitleScene::TitleScene()
 	: title_image(NULL)
 	, title_sound(NULL)
-	, tamesi(NULL)
+	,start(NULL)
+	,help(NULL)
+	,ranking(NULL)
+	,end(NULL)
+	, start_red(NULL)
+	, help_red(NULL)
+	, ranking_red(NULL)
+	, end_red(NULL)
+	,kao(NULL)
+	, kao2(NULL)
+	, kao3(NULL)
+	, kao4(NULL)
 	, select(TitleSelect::InGame)
 	, end_flg(false)
 {
@@ -25,6 +36,18 @@ void TitleScene::Initialize()
 	ResourceManager* rm = ResourceManager::GetInstance();
 
 	title_image = rm->GetImages("Resource/Images/title.png")[0];
+	start = rm->GetImages("Resource/Images/start.png")[0];
+	help = rm->GetImages("Resource/Images/H_font.png")[0];
+	ranking = rm->GetImages("Resource/Images/ranking.png")[0];
+	end = rm->GetImages("Resource/Images/end.png")[0];
+	start_red = rm->GetImages("Resource/Images/start_red.png")[0];
+	help_red = rm->GetImages("Resource/Images/H_font_red.png")[0];
+	ranking_red = rm->GetImages("Resource/Images/ranking_red.png")[0];
+	end_red = rm->GetImages("Resource/Images/end_red.png")[0];
+	kao = rm->GetImages("Resource/Images/point.png")[0];
+	kao2 = rm->GetImages("Resource/Images/point2.png")[0];
+	kao3 = rm->GetImages("Resource/Images/point3.png")[0];
+	kao4 = rm->GetImages("Resource/Images/point4.png")[0];
 	
 	SetFontSize(60);
 }
@@ -103,32 +126,32 @@ void TitleScene::Draw() const
 	switch (select)
 	{
 	case TitleSelect::InGame:
-		DrawString(DRAW_SET_X - 80, DRAW_SET_Y - 3, "->", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y, "START", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "HELP", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "RANKING", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y +207, "END", WHITE);
+		DrawRotaGraph(DRAW_SET_X - 100, DRAW_SET_Y - 3, 0.3, 0.0, kao, TRUE);
+		DrawRotaGraph(640, DRAW_SET_Y, 1.0, 0.0, start_red, TRUE);
+		DrawRotaGraph(600, DRAW_SET_Y + 67, 1.0, 0.0, help, TRUE);
+		DrawRotaGraph(670, DRAW_SET_Y + 137, 1.0, 0.0, ranking, TRUE);
+		DrawRotaGraph(560, DRAW_SET_Y + 207, 0.9, 0.0, end, TRUE);
 		break;
 	case TitleSelect::Help:
-		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 67, "->", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y, "START", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "HELP", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "RANKING", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "END", WHITE);
+		DrawRotaGraph(DRAW_SET_X - 100, DRAW_SET_Y + 77, 0.23, 0.0, kao3, TRUE);
+		DrawRotaGraph(640, DRAW_SET_Y, 1.0, 0.0, start, TRUE);
+		DrawRotaGraph(600, DRAW_SET_Y + 67, 1.0, 0.0, help_red, TRUE);
+		DrawRotaGraph(670, DRAW_SET_Y + 137, 1.0, 0.0, ranking, TRUE);
+		DrawRotaGraph(560, DRAW_SET_Y + 207, 0.9, 0.0, end, TRUE);
 		break;
 	case TitleSelect::Ranking:
-		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 137, "->", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y, "START", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "HELP", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "RANKING", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "END", WHITE);
+		DrawRotaGraph(DRAW_SET_X - 98, DRAW_SET_Y + 158, 0.18, 0.0, kao4, TRUE);
+		DrawRotaGraph(640, DRAW_SET_Y, 1.0, 0.0, start, TRUE);
+		DrawRotaGraph(600, DRAW_SET_Y + 67, 1.0, 0.0, help, TRUE);
+		DrawRotaGraph(670, DRAW_SET_Y + 137, 1.0, 0.0, ranking_red, TRUE);
+		DrawRotaGraph(560, DRAW_SET_Y + 207, 0.9, 0.0, end, TRUE);
 		break;
 	case TitleSelect::EXIT:
-		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 207, "->", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y, "START", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "HELP", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "RANKING", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "END", RED);
+		DrawRotaGraph(DRAW_SET_X - 100, DRAW_SET_Y + 220, 0.16, 0.0, kao2, TRUE);
+		DrawRotaGraph(640, DRAW_SET_Y, 1.0, 0.0, start, TRUE);
+		DrawRotaGraph(600, DRAW_SET_Y + 67, 1.0, 0.0, help, TRUE);
+		DrawRotaGraph(670, DRAW_SET_Y + 137, 1.0, 0.0, ranking, TRUE);
+		DrawRotaGraph(560, DRAW_SET_Y + 207, 0.9, 0.0, end_red, TRUE);
 		break;
 	}
 

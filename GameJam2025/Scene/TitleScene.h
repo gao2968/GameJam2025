@@ -3,8 +3,8 @@
 #include "SceneBase.h"
 #include "../Utility/Vector2D.h"
 
-#define DRAW_SET_X 530
-#define DRAW_SET_Y 380
+#define DRAW_SET_X 540
+#define DRAW_SET_Y 400
 
 #define WHITE 0xFFFFFF
 #define RED 0xFF0000
@@ -21,7 +21,18 @@ class TitleScene : public SceneBase
 private:
 	int title_image;
 	int title_sound;
-	int tamesi;
+	int start;
+	int help;
+	int ranking;
+	int end;
+	int start_red;
+	int help_red;
+	int ranking_red;
+	int end_red;
+	int kao;
+	int kao2;
+	int kao3;
+	int kao4;
 	bool end_flg;
 	TitleSelect select;
 
