@@ -32,4 +32,8 @@ public:
 	Vector2D& operator /= (const Vector2D& location);
 
 	void ToInt(int* x, int* y)const;
+
+	float length() const;
+	
+	Vector2D normalized() const;
 };

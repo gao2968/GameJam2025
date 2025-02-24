@@ -45,9 +45,9 @@ void Enemy::Initialize()
 	
 	ResourceManager* rm = ResourceManager::GetInstance();
 	timecard = rm->GetImages("Resource/Images/time_card.png")[0];
-	tai_image = rm->GetImages("Resource/Images/tai.png")[0];
-	sya_image = rm->GetImages("Resource/Images/sya.png")[0];
-	taisya_image = rm->GetImages("Resource/Images/taisya_fonts.png")[0];
+	tai_image = rm->GetImages("Resource/Images/tai_128.png")[0];
+	sya_image = rm->GetImages("Resource/Images/sya_128.png")[0];
+	taisya_image = rm->GetImages("Resource/Images/taisya_fonts_.png")[0];
 
 	anim_len = 500.f;
 	anim_state = 0;
@@ -116,7 +116,7 @@ void Enemy::Update()
 			break;
 		}
 
-		if (anim_state == 1)
+		if (anim_state != 0)
 		{
 			PhaseTwoAnimUpdate();
 		}
@@ -200,7 +200,7 @@ void Enemy::Draw() const
 	
 
 
-	if (anim_state == 1)
+	if (anim_state != 0)
 	{
 		PhaseTwoAnimDraw();
 	}
@@ -224,10 +224,13 @@ void Enemy::StartBattlePhaseOne()
 
 void Enemy::StartBattlePhaseTwo()
 {
-	//秒数はこっちで管理
-	if (QTESystem::StartQTEPhaseTwo(phase_two_timer,pattern[pattern_cnt][pattern_num[pattern_cnt]]) == success)
+	if (anim_state == 0) 
 	{
-		state = 1;
+		//秒数はこっちで管理
+		if (QTESystem::StartQTEPhaseTwo(phase_two_timer, pattern[pattern_cnt][pattern_num[pattern_cnt]]) == success)
+		{
+			state = 1;
+		}
 	}
 }
 
@@ -267,7 +270,6 @@ void Enemy::InBattlePhaseTwo()
 	int res = QTESystem::InQTE();
 	if (res == success)
 	{
-		anim_state = 1;
 		add_score = 10;
 		//一定回数こなしたら終わり
 		if (pattern_cnt == 0 && pattern_num[pattern_cnt] == 0)
@@ -286,6 +288,8 @@ void Enemy::InBattlePhaseTwo()
 				font += 255;
 				add_score = 50;
 				//phase_two_timer = 1200.f;
+				anim_state = 1;
+
 			}
 			state = 0;
 		}
@@ -369,48 +373,93 @@ bool Enemy::SetEnemyType(int type)
 
 void Enemy::PhaseTwoAnimDraw() const
 {
-	Vector2D loc[4];
-	Vector2D center(640.f, 360.f);//左上だから
-	Vector2D vec[4];
-
-	vec[0] = Vector2D(-1, -1);
-	vec[1] = Vector2D(1, -1);
-	vec[2] = Vector2D(1, 1);
-	vec[3] = Vector2D(-1, 1);
-
-	for (int i = 0; i < 4; i++)
+	if (anim_state == 1)
 	{
-		loc[i] = center + vec[i] * anim_len;
-		DrawGraph(loc[i].x, loc[i].y, tai_image, TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 210);
+
+		for (int i = 0; i < 4; i++)
+		{
+			Vector2D draw_location = anim_location[i];
+			Vector2D draw_box_size = Vector2D(anim_rate);
+			Vector2D upper_left = draw_location - (draw_box_size / 2.f);
+			Vector2D lower_right = draw_location + (draw_box_size / 2.f);
+			if (pattern_cnt == 1)
+			{
+				DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, tai_image, TRUE);
+			}
+			else if(pattern_cnt == 0)
+			{
+				DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, sya_image, TRUE);
+			}
+		}
 	}
+	else if (anim_state == 2)
+	{
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
-	DrawGraph(center.x, center.y, tai_image, TRUE);
-
+		Vector2D draw_location(640.f, 360.f);
+		Vector2D draw_box_size = Vector2D(256.f);
+		Vector2D upper_left = draw_location - (draw_box_size / 2.f);
+		Vector2D lower_right = draw_location + (draw_box_size / 2.f);
+		if (pattern_cnt == 1)
+		{
+			DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, tai_image, TRUE);
+		}
+		else if (pattern_cnt == 0)
+		{
+			DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, sya_image, TRUE);
+		}
+	}
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 }
 
 void Enemy::PhaseTwoAnimUpdate()
 {
-	Vector2D loc[4];
-	Vector2D center(640.f, 360.f);
-	Vector2D vec[4];
-
-	vec[0] = Vector2D(-1, -1);
-	vec[1] = Vector2D(1, -1);
-	vec[2] = Vector2D(1, 1);
-	vec[3] = Vector2D(-1, 1);
-
-	for (int i = 0; i < 4; i++)
+	if (anim_state == 1)
 	{
-		loc[i] = center + vec[i] * anim_len;
+		Vector2D loc[4];
+		Vector2D center(640.f, 360.f);
+		Vector2D vec[4];
+
+	/*	vec[0] = Vector2D(-1, -1);
+		vec[1] = Vector2D(1, -1);
+		vec[2] = Vector2D(1, 1);
+		vec[3] = Vector2D(-1, 1);*/
+
+		vec[0] = Vector2D(Vector2D(0,0) - center).normalized();
+		vec[1] = Vector2D(Vector2D(1280, 0) - center).normalized();
+		vec[2] = Vector2D(Vector2D(1280, 720) - center).normalized();
+		vec[3] = Vector2D(Vector2D(0, 720) - center).normalized();
+
+		for (int i = 0; i < 4; i++)
+		{
+			loc[i] = center + vec[i] * anim_len;
+
+			anim_location[i] = loc[i];
+		}
+
+		anim_len -= 10.f;
+
+		float length;
+		length = powf(powf(center.x - loc[0].x, 2.f) + powf(center.y - loc[0].y, 2.f), 0.5f);
+
+		anim_rate -= 16.f;
+
+		if (length <= 0.f)
+		{
+			anim_state = 2;
+			//anim_rate = 256.f;
+		}
 	}
-
-	anim_len--;
-
-	float length;
-	length = powf(powf(center.x - loc[0].x, 2.f) + powf(center.y - loc[0].y, 2.f), 0.5f);
-
-	if (length <= 30)
+	else if (anim_state == 2)
 	{
-		anim_state = 0;
+		anim_rate += 16.f;
+
+		if (anim_rate >= 1024.f)
+		{
+			anim_rate = 1024.f;
+			anim_state = 0;
+			anim_len = 500.f;
+		}
 	}
 }

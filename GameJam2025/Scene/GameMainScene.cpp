@@ -32,6 +32,7 @@ void GameMainScene::Initialize()
 	{
 		object[i]->Initialize();
 	}
+
 	for (int i = 0; i < 5; i++)
 	{
 		if (Enemy* e = dynamic_cast<Enemy*>(object[enemy_num[i]]))

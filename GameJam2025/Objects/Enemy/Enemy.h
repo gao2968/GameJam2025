@@ -42,6 +42,8 @@ private:
 
 	int anim_state;	//0停止　1再生
 	float anim_len;
+	Vector2D anim_location[4];
+	float anim_rate = 1024.f;
 public:
 	Enemy();
 	virtual ~Enemy();

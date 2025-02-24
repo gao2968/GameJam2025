@@ -1,5 +1,6 @@
 #include "Vector2D.h"
 #include "UserTemplate.h"
+#include <cmath> 
 
 Vector2D::Vector2D() : x(0.f), y(0.f)
 {
@@ -150,4 +151,18 @@ void Vector2D::ToInt(int* x, int* y) const
 {
 	*x = static_cast<int>(this->x);
 	*y = static_cast<int>(this->y);
+}
+
+float Vector2D::length() const
+{
+	return std::sqrt(x * x + y * y);
+}
+
+Vector2D Vector2D::normalized() const
+{
+	float len = length();
+	if (len > 0.00001f) {
+		return Vector2D(x / len, y / len);
+	}
+	return Vector2D(0, 0);
 }
