@@ -5,106 +5,106 @@
 #include <vector>
 
 /// <summary>
-/// ƒŠƒ\[ƒXŠÇ—ƒNƒ‰ƒX
+/// ï¿½ï¿½ï¿½\ï¿½[ï¿½Xï¿½Ç—ï¿½ï¿½Nï¿½ï¿½ï¿½X
 /// </summary>
 class ResourceManager
 {
 private:
-	// ©ƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^iÀ‘Ì‚ğƒAƒhƒŒƒX‚Ìæ‚Å•Û—Lj
+	// ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½iï¿½ï¿½ï¿½Ì‚ï¿½Aï¿½hï¿½ï¿½ï¿½Xï¿½Ìï¿½Å•Û—Lï¿½j
 	static ResourceManager* instance;
 
-	std::map<std::string, std::vector<int>> images_container;	// ‰æ‘œƒRƒ“ƒeƒi
-	std::map<std::string, int> sounds_container;				// ‰¹Œ¹ƒRƒ“ƒeƒi
+	std::map<std::string, std::vector<int>> images_container;	// ï¿½æ‘œï¿½Rï¿½ï¿½ï¿½eï¿½i
+	std::map<std::string, int> sounds_container;				// ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½eï¿½i
 
 private:
-	// ƒNƒ‰ƒX‚ÌÀ‘Ì‚ğƒƒ“ƒoŠÖ”“à‚Å‚µ‚©¶¬‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
+	// ï¿½Nï¿½ï¿½ï¿½Xï¿½Ìï¿½ï¿½Ì‚ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Öï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
 	ResourceManager() = default;
 
-	// ƒRƒs[ƒK[ƒh
+	// ï¿½Rï¿½sï¿½[ï¿½Kï¿½[ï¿½h
 	ResourceManager(const ResourceManager&) = delete;
 	ResourceManager& operator = (const ResourceManager&) = delete;
-	// ~ƒRƒs[ƒK[ƒh
+	// ~ï¿½Rï¿½sï¿½[ï¿½Kï¿½[ï¿½h
 
 public:
 	~ResourceManager() = default;
 
 	/// <summary>
-	/// ƒCƒ“ƒXƒ^ƒ“ƒXæ“¾ˆ—
+	/// ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
-	/// <returns>ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‹p‚·‚é</returns>
+	/// <returns>ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½Ìƒ|ï¿½Cï¿½ï¿½ï¿½^ï¿½ï¿½Ô‹pï¿½ï¿½ï¿½ï¿½</returns>
 	static ResourceManager* GetInstance();
 
 	/// <summary>
-	/// ƒCƒ“ƒXƒ^ƒ“ƒXíœˆ—
+	/// ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½íœï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	static void DeleteInstance();
 
 public:
 	/// <summary>
-	/// ‰æ‘œæ“¾ˆ—
+	/// ï¿½æ‘œï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
-	/// <param name="file_name">ƒtƒ@ƒCƒ‹ƒpƒX</param>
-	/// <param name="all_num">‰æ‘œ‚Ì•ªŠ„‘”</param>
-	/// <param name="num_x">‰¡‚Ì•ªŠ„</param>
-	/// <param name="num_y">c‚Ì•ªŠ„</param>
-	/// <param name="size_x">‰¡‚ÌƒTƒCƒY(px)</param>
-	/// <param name="size_y">c‚ÌƒTƒCƒY(px)</param>
-	/// <returns>“Ç‚İ‚ñ‚¾‰æ‘œƒnƒ“ƒhƒ‹‚Ìvector”z—ñ</returns>
+	/// <param name="file_name">ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X</param>
+	/// <param name="all_num">ï¿½æ‘œï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+	/// <param name="num_x">ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½</param>
+	/// <param name="num_y">ï¿½cï¿½Ì•ï¿½ï¿½ï¿½</param>
+	/// <param name="size_x">ï¿½ï¿½ï¿½ÌƒTï¿½Cï¿½Y(px)</param>
+	/// <param name="size_y">ï¿½cï¿½ÌƒTï¿½Cï¿½Y(px)</param>
+	/// <returns>ï¿½Ç‚İï¿½ï¿½ñ‚¾‰æ‘œï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½vectorï¿½zï¿½ï¿½</returns>
 	const std::vector<int>& GetImages(std::string file_name, int all_num = 1, int num_x = 1, int num_y = 1, int size_x = 0, int size_y = 0);
 	/// <summary>
-	/// ‰æ‘œæ“¾ˆ—
+	/// ï¿½æ‘œï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
-	/// <param name="file_name">ƒtƒ@ƒCƒ‹ƒpƒX</param>
-	/// <param name="all_num">‰æ‘œ‚Ì•ªŠ„‘”</param>
-	/// <param name="num_x">‰¡‚Ì•ªŠ„</param>
-	/// <param name="num_y">c‚Ì•ªŠ„</param>
-	/// <param name="size_x">‰¡‚ÌƒTƒCƒY(px)</param>
-	/// <param name="size_y">c‚ÌƒTƒCƒY(px)</param>
-	/// <returns>“Ç‚İ‚ñ‚¾‰æ‘œƒnƒ“ƒhƒ‹‚Ìvector”z—ñ</returns>
+	/// <param name="file_name">ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X</param>
+	/// <param name="all_num">ï¿½æ‘œï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+	/// <param name="num_x">ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½</param>
+	/// <param name="num_y">ï¿½cï¿½Ì•ï¿½ï¿½ï¿½</param>
+	/// <param name="size_x">ï¿½ï¿½ï¿½ÌƒTï¿½Cï¿½Y(px)</param>
+	/// <param name="size_y">ï¿½cï¿½ÌƒTï¿½Cï¿½Y(px)</param>
+	/// <returns>ï¿½Ç‚İï¿½ï¿½ñ‚¾‰æ‘œï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ï¿½vectorï¿½zï¿½ï¿½</returns>
 	const std::vector<int>& GetImages(const char* file_name, int all_num = 1, int num_x = 1, int num_y = 1, int size_x = 0, int size_y = 0);
 
 	/// <summary>
-	/// ‰¹Œ¹æ“¾ˆ—
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
-	/// <param name="file_path">‰¹Œ¹‚Ìƒtƒ@ƒCƒ‹ƒpƒX</param>
-	/// <returns>‰¹Œ¹ƒnƒ“ƒhƒ‹ƒf[ƒ^</returns>
+	/// <param name="file_path">ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X</param>
+	/// <returns>ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½fï¿½[ï¿½^</returns>
 	int GetSounds(std::string file_path);
 	/// <summary>
-	/// ‰¹Œ¹æ“¾ˆ—
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
-	/// <param name="file_path">‰¹Œ¹‚Ìƒtƒ@ƒCƒ‹ƒpƒX</param>
-	/// <returns>‰¹Œ¹ƒnƒ“ƒhƒ‹ƒf[ƒ^</returns>
+	/// <param name="file_path">ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒtï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X</param>
+	/// <returns>ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½hï¿½ï¿½ï¿½fï¿½[ï¿½^</returns>
 	int GetSounds(const char* file_path);
 
 	/// <summary>
-	/// ‰æ‘œ‰ğ•úˆ—
+	/// ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	void UnLoadImages();
 
 	/// <summary>
-	/// ‰¹Œ¹‰ğ•úˆ—
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	void UnLoadSounds();
 
 private:
 	/// <summary>
-	/// ‰æ‘œ“Ç‚İ‚İˆ—
+	/// ï¿½æ‘œï¿½Ç‚İï¿½ï¿½İï¿½ï¿½ï¿½
 	/// </summary>
-	/// <param name="file_path">ƒtƒ@ƒCƒ‹ƒpƒX</param>
+	/// <param name="file_path">ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X</param>
 	void CreateImagesResource(std::string file_path);
 
 	/// <summary>
-	/// ‰æ‘œ•ªŠ„“Ç‚İ‚İˆ—
+	/// ï¿½æ‘œï¿½ï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½İï¿½ï¿½ï¿½
 	/// </summary>
-	/// <param name="file_name">ƒtƒ@ƒCƒ‹ƒpƒX</param>
-	/// <param name="all_num">‰æ‘œ‚Ì•ªŠ„‘”</param>
-	/// <param name="num_x">‰¡‚Ì•ªŠ„</param>
-	/// <param name="num_y">c‚Ì•ªŠ„</param>
-	/// <param name="size_x">‰¡‚ÌƒTƒCƒY(px)</param>
-	/// <param name="size_y">c‚ÌƒTƒCƒY(px)</param>
+	/// <param name="file_name">ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½pï¿½X</param>
+	/// <param name="all_num">ï¿½æ‘œï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</param>
+	/// <param name="num_x">ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½</param>
+	/// <param name="num_y">ï¿½cï¿½Ì•ï¿½ï¿½ï¿½</param>
+	/// <param name="size_x">ï¿½ï¿½ï¿½ÌƒTï¿½Cï¿½Y(px)</param>
+	/// <param name="size_y">ï¿½cï¿½ÌƒTï¿½Cï¿½Y(px)</param>
 	void CreateImagesResource(std::string file_name, int all_num, int num_x, int num_y, int size_x, int size_y);
 
-	// ‰¹Œ¹“Ç‚İ‚İˆ—
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½İï¿½ï¿½ï¿½
 	void CreateSoundsResource(std::string file_path);
 };
 

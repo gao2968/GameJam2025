@@ -1,6 +1,16 @@
 #pragma once
 #include "../GameObject.h"
 #include <vector>
+#include "../TimeLimitCircle.h"
+
+enum Enemy_Type
+{
+	arai,
+	maesiro,
+	maetu,
+	ryouka,
+	toubaru
+};
 
 class Enemy : public GameObject
 {
@@ -14,7 +24,9 @@ private:
 	int phase_two_timer;	//フェーズ2の時間制限
 	int battle_count;	//
 	int phase_one_cnt;
+	int phase_one_enemy_size;
 
+	TimeLimitCircle circle;
 
 	int font = 0x000000;
 public:
@@ -43,5 +55,7 @@ public:
 	bool miss;	//入力ミス
 	bool result; //最終結果　除霊できたか
 	int add_score; //成功回数 追加すべきスコア ゲームメインのスコアに追加したらゲームメインで0にする
+
+	bool SetEnemyType(int type);
 };
 
