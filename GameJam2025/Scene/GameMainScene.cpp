@@ -22,7 +22,7 @@ void GameMainScene::Initialize()
 	QTESystem::Initialize();
 	object.push_back(new Player);
 	object.push_back(new Stage);
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		object.push_back(new Enemy);
 	}
@@ -31,7 +31,7 @@ void GameMainScene::Initialize()
 	{
 		object[i]->Initialize();
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		if (Enemy* e = dynamic_cast<Enemy*>(object[enemy_num[i]]))
 		{
@@ -156,7 +156,7 @@ eSceneType GameMainScene::Update()
 
 		//残りの敵を数える
 		enemy_cnt = 0;
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			if (object[enemy_num[i]] != nullptr)
 			{
@@ -225,6 +225,8 @@ void GameMainScene::Draw() const
 	{
 		DrawResult();
 	}
+
+	DrawGraph(0, 0, frame, TRUE);
 }
 
 void GameMainScene::Finalize()

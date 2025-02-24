@@ -45,7 +45,12 @@ void Enemy::Initialize()
 	
 	ResourceManager* rm = ResourceManager::GetInstance();
 	timecard = rm->GetImages("Resource/Images/time_card.png")[0];
+	tai_image = rm->GetImages("Resource/Images/tai.png")[0];
+	sya_image = rm->GetImages("Resource/Images/sya.png")[0];
+	taisya_image = rm->GetImages("Resource/Images/taisya_fonts.png")[0];
 
+	anim_len = 500.f;
+	anim_state = 0;
 	circle.TimeLimitCircleInit();
 }
 
@@ -110,6 +115,11 @@ void Enemy::Update()
 		default:
 			break;
 		}
+
+		if (anim_state == 1)
+		{
+			PhaseTwoAnimUpdate();
+		}
 	}
 }
 
@@ -143,6 +153,12 @@ void Enemy::Draw() const
 			break;
 		}
 
+		upper_left = draw_location - (draw_box_size / 2.f);
+		lower_right = draw_location + (draw_box_size / 2.f);
+		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image, TRUE);
+
+		draw_location = Vector2D(640.f, 360.f);
+		draw_box_size = Vector2D(256.f);
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image, TRUE);
@@ -181,19 +197,13 @@ void Enemy::Draw() const
 		circle.TimeLimitCircleDraw();
 	}
 
+	
 
-	//DrawFormatString(local_location.x, local_location.y - 30, 0xff00ff, "num%d", pattern_num);
-	//DrawFormatString(local_location.x, local_location.y - 70, 0xff00ff, "phase%d", battle_phase);
-	/*DrawFormatString(local_location.x, local_location.y - 90, 0xff00ff, "time%d", phase_two_timer);
-	for (int i = 0; i < pattern.size(); i++)
+
+	if (anim_state == 1)
 	{
-		for (int j = 0; j < pattern[i].size(); j++)
-		{
-			DrawFormatString(local_location.x - 20 * j, local_location.y - i * 20, font, "%d", pattern[i][j]);
-		}
-	}*/
-
-	QTESystem::Draw();
+		PhaseTwoAnimDraw();
+	}
 }
 
 void Enemy::Finalize()
@@ -257,6 +267,7 @@ void Enemy::InBattlePhaseTwo()
 	int res = QTESystem::InQTE();
 	if (res == success)
 	{
+		anim_state = 1;
 		add_score = 10;
 		//一定回数こなしたら終わり
 		if (pattern_cnt == 0 && pattern_num[pattern_cnt] == 0)
@@ -354,4 +365,52 @@ bool Enemy::SetEnemyType(int type)
 
 	if (image != -1) return true;
 	return false;
+}
+
+void Enemy::PhaseTwoAnimDraw() const
+{
+	Vector2D loc[4];
+	Vector2D center(640.f, 360.f);//左上だから
+	Vector2D vec[4];
+
+	vec[0] = Vector2D(-1, -1);
+	vec[1] = Vector2D(1, -1);
+	vec[2] = Vector2D(1, 1);
+	vec[3] = Vector2D(-1, 1);
+
+	for (int i = 0; i < 4; i++)
+	{
+		loc[i] = center + vec[i] * anim_len;
+		DrawGraph(loc[i].x, loc[i].y, tai_image, TRUE);
+	}
+
+	DrawGraph(center.x, center.y, tai_image, TRUE);
+
+}
+
+void Enemy::PhaseTwoAnimUpdate()
+{
+	Vector2D loc[4];
+	Vector2D center(640.f, 360.f);
+	Vector2D vec[4];
+
+	vec[0] = Vector2D(-1, -1);
+	vec[1] = Vector2D(1, -1);
+	vec[2] = Vector2D(1, 1);
+	vec[3] = Vector2D(-1, 1);
+
+	for (int i = 0; i < 4; i++)
+	{
+		loc[i] = center + vec[i] * anim_len;
+	}
+
+	anim_len--;
+
+	float length;
+	length = powf(powf(center.x - loc[0].x, 2.f) + powf(center.y - loc[0].y, 2.f), 0.5f);
+
+	if (length <= 30)
+	{
+		anim_state = 0;
+	}
 }

@@ -35,6 +35,13 @@ private:
 	float timecard_size;
 
 	int font = 0x000000;
+
+	int tai_image;
+	int sya_image;
+	int taisya_image;
+
+	int anim_state;	//0停止　1再生
+	float anim_len;
 public:
 	Enemy();
 	virtual ~Enemy();
@@ -63,5 +70,8 @@ public:
 	int add_score; //成功回数 追加すべきスコア ゲームメインのスコアに追加したらゲームメインで0にする
 
 	bool SetEnemyType(int type);
+
+	void PhaseTwoAnimDraw() const;
+	void PhaseTwoAnimUpdate();
 };
 

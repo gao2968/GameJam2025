@@ -27,7 +27,7 @@ private:
 	int nearest_enemy_num = -1;
 
 	int player_num = 0;
-	int enemy_num[3] = { 2,3,4 };
+	int enemy_num[5] = { 2,3,4,5,6 };
 
 	int state;
 
