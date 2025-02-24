@@ -83,6 +83,7 @@
 //	}
 //}
 
+//í“¬‰‰o‚Ì‰Šú‰»
 void TimeLimitCircle::TimeLimitCircleInit(void)
 {
 	//‰æ‘œ‚Ì“Ç‚İ‚İ
@@ -99,12 +100,14 @@ void TimeLimitCircle::TimeLimitCircleInit(void)
 	button_images_outline[3] = LoadGraph("Resource/Images/xbox_button_color_y_outline.png");
 }
 
+//§ŒÀŠÔ‚Ì‰~Œ^ƒQ[ƒW‚Ì•`‰æ
 void TimeLimitCircle::TimeLimitCircleDraw(void) const
 {
 	//‰~‚ÌƒOƒ‰ƒt‚Ì•`‰æ
 	DrawCircleGauge(645, 350, 100.0, timelimit_circle_image, AnglePercent);
 }
 
+//í“¬‚ÌƒRƒ}ƒ“ƒh‰æ–Ê‚Ì•`‰æ
 int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int num) const
 {
 	//}Œ`‚Ì’l“n‚µ
@@ -132,6 +135,12 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 		else if (num == 1)
 		{
 			DrawGraph(440, 370, button_images[button[0]], TRUE);
+			DrawGraph(720, 370, button_images_outline[button[1]], TRUE);
+			DrawGraph(580, 125, button_images_outline[button[2]], TRUE);
+		}
+		else
+		{
+			DrawGraph(440, 370, button_images_outline[button[0]], TRUE);
 			DrawGraph(720, 370, button_images_outline[button[1]], TRUE);
 			DrawGraph(580, 125, button_images_outline[button[2]], TRUE);
 		}
@@ -169,6 +178,13 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 		else if (num == 1)
 		{
 			DrawGraph(420, 280, button_images[button[0]], TRUE);
+			DrawGraph(580, 450, button_images_outline[button[1]], TRUE);
+			DrawGraph(740, 280, button_images_outline[button[2]], TRUE);
+			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
+		}
+		else
+		{
+			DrawGraph(420, 280, button_images_outline[button[0]], TRUE);
 			DrawGraph(580, 450, button_images_outline[button[1]], TRUE);
 			DrawGraph(740, 280, button_images_outline[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
@@ -219,6 +235,14 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 		else if (num == 1)
 		{
 			DrawGraph(420, 230, button_images[button[0]], TRUE);
+			DrawGraph(480, 440, button_images_outline[button[1]], TRUE);
+			DrawGraph(690, 440, button_images_outline[button[2]], TRUE);
+			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
+			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
+		}
+		else
+		{
+			DrawGraph(420, 230, button_images_outline[button[0]], TRUE);
 			DrawGraph(480, 440, button_images_outline[button[1]], TRUE);
 			DrawGraph(690, 440, button_images_outline[button[2]], TRUE);
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
@@ -284,6 +308,15 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 		else if (num == 1)
 		{
 			DrawGraph(420, 210, button_images[button[0]], TRUE);
+			DrawGraph(420, 370, button_images_outline[button[1]], TRUE);
+			DrawGraph(580, 460, button_images_outline[button[2]], TRUE);
+			DrawGraph(740, 370, button_images_outline[button[3]], TRUE);
+			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
+			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
+		}
+		else
+		{
+			DrawGraph(420, 210, button_images_outline[button[0]], TRUE);
 			DrawGraph(420, 370, button_images_outline[button[1]], TRUE);
 			DrawGraph(580, 460, button_images_outline[button[2]], TRUE);
 			DrawGraph(740, 370, button_images_outline[button[3]], TRUE);
@@ -373,11 +406,22 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 		}
+		else
+		{
+			DrawGraph(420, 200, button_images_outline[button[0]], TRUE);
+			DrawGraph(400, 340, button_images_outline[button[1]], TRUE);
+			DrawGraph(500, 460, button_images_outline[button[2]], TRUE);
+			DrawGraph(680, 460, button_images_outline[button[3]], TRUE);
+			DrawGraph(760, 340, button_images_outline[button[4]], TRUE);
+			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
+			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
+		}
 	}
 
 	return i;
 }
 
+//§ŒÀŠÔ‚ÌXV
 void TimeLimitCircle::TimeLimitCircleUpdate(float time)
 {
 	//360ƒtƒŒ[ƒ€‚Åˆêü‚·‚é‚æ‚¤‚ÉŠp“x“‚Ì’l‚ğ‰ÁZ
