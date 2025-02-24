@@ -88,6 +88,7 @@ void TimeLimitCircle::TimeLimitCircleInit(void)
 {
 	//âÊëúÇÃì«Ç›çûÇ›
 	timelimit_circle_image = LoadGraph("Resource/Images/simple_frame_01_circle_red.png");
+	cursor_aura = LoadGraph("Resource/Images/command_aura.png");
 
 	button_images[0] = LoadGraph("Resource/Images/xbox_button_color_a.png");
 	button_images[1] = LoadGraph("Resource/Images/xbox_button_color_b.png");
@@ -125,18 +126,24 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(440, 370, button_images[button[0]], TRUE);
 			DrawGraph(720, 370, button_images[button[1]], TRUE);
 			DrawGraph(580, 125, button_images[button[2]], TRUE);
+
+			DrawGraph(580, 125, cursor_aura, TRUE);
 		}
 		else if (num == 2)
 		{
 			DrawGraph(440, 370, button_images[button[0]], TRUE);
 			DrawGraph(720, 370, button_images[button[1]], TRUE);
 			DrawGraph(580, 125, button_images_outline[button[2]], TRUE);
+
+			DrawGraph(720, 370, cursor_aura, TRUE);
 		}
 		else if (num == 1)
 		{
 			DrawGraph(440, 370, button_images[button[0]], TRUE);
 			DrawGraph(720, 370, button_images_outline[button[1]], TRUE);
 			DrawGraph(580, 125, button_images_outline[button[2]], TRUE);
+
+			DrawGraph(440, 370, cursor_aura, TRUE);
 		}
 		else
 		{
@@ -160,6 +167,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(580, 450, button_images[button[1]], TRUE);
 			DrawGraph(740, 280, button_images[button[2]], TRUE);
 			DrawGraph(580, 120, button_images[button[3]], TRUE);
+
+			DrawGraph(580, 120, cursor_aura, TRUE);
 		}
 		else if (num == 3)
 		{
@@ -167,6 +176,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(580, 450, button_images[button[1]], TRUE);
 			DrawGraph(740, 280, button_images[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
+
+			DrawGraph(740, 280, cursor_aura, TRUE);
 		}
 		else if (num == 2)
 		{
@@ -174,6 +185,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(580, 450, button_images[button[1]], TRUE);
 			DrawGraph(740, 280, button_images_outline[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
+
+			DrawGraph(580, 450, cursor_aura, TRUE);
 		}
 		else if (num == 1)
 		{
@@ -181,6 +194,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(580, 450, button_images_outline[button[1]], TRUE);
 			DrawGraph(740, 280, button_images_outline[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
+
+			DrawGraph(420, 280, cursor_aura, TRUE);
 		}
 		else
 		{
@@ -207,6 +222,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(690, 440, button_images[button[2]], TRUE);
 			DrawGraph(740, 230, button_images[button[3]], TRUE);
 			DrawGraph(580, 115, button_images[button[4]], TRUE);
+
+			DrawGraph(580, 115, cursor_aura, TRUE);
 		}
 		else if (num == 4)
 		{
@@ -215,6 +232,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(690, 440, button_images[button[2]], TRUE);
 			DrawGraph(740, 230, button_images[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
+
+			DrawGraph(740, 230, cursor_aura, TRUE);
 		}
 		else if (num == 3)
 		{
@@ -223,6 +242,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(690, 440, button_images[button[2]], TRUE);
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
+
+			DrawGraph(690, 440, cursor_aura, TRUE);
 		}
 		else if (num == 2)
 		{
@@ -231,6 +252,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(690, 440, button_images_outline[button[2]], TRUE);
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
+
+			DrawGraph(480, 440, cursor_aura, TRUE);
 		}
 		else if (num == 1)
 		{
@@ -239,6 +262,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(690, 440, button_images_outline[button[2]], TRUE);
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
+
+			DrawGraph(420, 230, cursor_aura, TRUE);
 		}
 		else
 		{
@@ -268,6 +293,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 370, button_images[button[3]], TRUE);
 			DrawGraph(740, 210, button_images[button[4]], TRUE);
 			DrawGraph(580, 115, button_images[button[5]], TRUE);
+
+			DrawGraph(580, 115, cursor_aura, TRUE);
 		}
 		else if (num == 5)
 		{
@@ -277,6 +304,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 370, button_images[button[3]], TRUE);
 			DrawGraph(740, 210, button_images[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
+
+			DrawGraph(740, 210, cursor_aura, TRUE);
 		}
 		else if (num == 4)
 		{
@@ -286,6 +315,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 370, button_images[button[3]], TRUE);
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
+
+			DrawGraph(740, 370, cursor_aura, TRUE);
 		}
 		else if (num == 3)
 		{
@@ -295,6 +326,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 370, button_images_outline[button[3]], TRUE);
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
+
+			DrawGraph(580, 460, cursor_aura, TRUE);
 		}
 		else if (num == 2)
 		{
@@ -304,6 +337,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 370, button_images_outline[button[3]], TRUE);
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
+
+			DrawGraph(420, 370, cursor_aura, TRUE);
 		}
 		else if (num == 1)
 		{
@@ -313,6 +348,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 370, button_images_outline[button[3]], TRUE);
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
+
+			DrawGraph(420, 210, cursor_aura, TRUE);
 		}
 		else
 		{
@@ -345,6 +382,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(760, 340, button_images[button[4]], TRUE);
 			DrawGraph(740, 200, button_images[button[5]], TRUE);
 			DrawGraph(580, 115, button_images[button[6]], TRUE);
+
+			DrawGraph(580, 115, cursor_aura, TRUE);
 		}
 		else if (num == 6)
 		{
@@ -355,6 +394,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(760, 340, button_images[button[4]], TRUE);
 			DrawGraph(740, 200, button_images[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
+
+			DrawGraph(740, 200, cursor_aura, TRUE);
 		}
 		else if (num == 5)
 		{
@@ -365,6 +406,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(760, 340, button_images[button[4]], TRUE);
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
+
+			DrawGraph(760, 340, cursor_aura, TRUE);
 		}
 		else if (num == 4)
 		{
@@ -375,6 +418,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(760, 340, button_images_outline[button[4]], TRUE);
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
+
+			DrawGraph(680, 460, cursor_aura, TRUE);
 		}
 		else if (num == 3)
 		{
@@ -385,6 +430,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(760, 340, button_images_outline[button[4]], TRUE);
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
+
+			DrawGraph(500, 460, cursor_aura, TRUE);
 		}
 		else if (num == 2)
 		{
@@ -395,6 +442,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(760, 340, button_images_outline[button[4]], TRUE);
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
+
+			DrawGraph(400, 340, cursor_aura, TRUE);
 		}
 		else if (num == 1)
 		{
@@ -405,6 +454,8 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(760, 340, button_images_outline[button[4]], TRUE);
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
+
+			DrawGraph(420, 200, cursor_aura, TRUE);
 		}
 		else
 		{

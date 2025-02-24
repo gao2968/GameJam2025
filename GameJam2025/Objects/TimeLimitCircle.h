@@ -7,6 +7,7 @@ private:
 	double AnglePercent = 0.0;
 	int button_images[4];
 	int button_images_outline[4];
+	int cursor_aura;
 public:
 	void TimeLimitCircleInit(void);
 	void TimeLimitCircleDraw(void) const;
