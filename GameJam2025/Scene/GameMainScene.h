@@ -4,6 +4,7 @@
 #include "../Objects/Stage/Stage.h"
 #include "../Objects/Enemy/Enemy.h"
 #include "../Objects/GameObject.h"
+#include "../Utility/Ui.h"
 
 #define INITHP 10800
 
@@ -21,6 +22,7 @@ private:
 	Stage* stage;
 	Player* player;
 	Enemy* enemy;
+	Ui* ui;
 
 	std::vector<GameObject*> object;
 	Enemy* nearest_enemy;
@@ -34,6 +36,8 @@ private:
 	int hp = INITHP;	//hp兼timer
 	int score = 0;
 	int enemy_cnt;	//残りの敵
+
+	int gamemain_sound;
 
 	bool result;
 

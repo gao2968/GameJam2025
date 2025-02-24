@@ -9,6 +9,7 @@
 
 
 GameMainScene::GameMainScene()
+	:gamemain_sound(NULL)
 {
 	
 }
@@ -44,12 +45,25 @@ void GameMainScene::Initialize()
 
 	state = SearchPhase;
 
+	ui = new Ui;
+	ui->Initialize();
+
 	ResourceManager* rm = ResourceManager::GetInstance();
 	frame = rm->GetImages("Resource/Images/frame_camera -1280.png")[0];
+
+	gamemain_sound = rm->GetSounds("Resource/BGM/Sentou_1.mp3");
+
+	// 音楽がすでに再生中かどうかを確認
+	if (CheckSoundMem(gamemain_sound) == 0) {
+		PlaySoundMem(gamemain_sound, DX_PLAYTYPE_BACK);
+	}
 }
 
 eSceneType GameMainScene::Update()
 {
+
+	ui->SetHp(hp);
+
 	if (result)
 	{
 		if(InputControl::GetButtonDown(XINPUT_BUTTON_A))
@@ -190,6 +204,8 @@ void GameMainScene::Draw() const
 {
 	object[1]->Draw();
 
+	ui->Draw();
+
 	switch (state)
 	{
 	case SearchPhase:
@@ -255,7 +271,7 @@ void GameMainScene::DrawResult() const
 
 	SetFontSize(64);
 	int sec = hp / 60;
-	DrawFormatString(450, 250, 0xffffff, "残り時間 %d秒", sec);
+	DrawFormatString(450, 250, 0xffffff, "残り時間 %d", sec);
 	DrawFormatString(450, 320, 0xffffff, "スコア %d", score);
 	DrawFormatString(280, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);
 	SetFontSize(24);
