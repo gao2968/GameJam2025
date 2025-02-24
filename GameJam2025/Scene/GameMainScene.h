@@ -33,6 +33,7 @@ private:
 
 	int hp = INITHP;	//hp兼timer
 	int score = 0;
+	int enemy_cnt;	//残りの敵
 public:
 	GameMainScene();
 	~GameMainScene();
@@ -54,5 +55,6 @@ public:
 
 	int GetHp() { return hp; }
 	int GetScore() { return score; }
+	int GetEnemyCount(){ return enemy_cnt; }
 };
 

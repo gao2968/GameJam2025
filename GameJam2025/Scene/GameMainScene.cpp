@@ -147,8 +147,18 @@ eSceneType GameMainScene::Update()
 		break;
 	}
 
+	//残りの敵を数える
+	enemy_cnt = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		if (object[enemy_num[i]] != nullptr)
+		{
+			enemy_cnt++;
+		}
+	}
+
 	//シーンチェンジ
-	if (hp < 0 || (object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr))
+	if (hp < 0 || enemy_cnt == 0/*(object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr)*/)
 	{
 		return E_TITLE;
 	}
