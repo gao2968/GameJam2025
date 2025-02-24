@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "../Utility/QTESystem.h"
+#include "../Utility/ResourceManager.h"
 
 
 GameMainScene::GameMainScene()
@@ -42,6 +43,9 @@ void GameMainScene::Initialize()
 	SetFontSize(24);
 
 	state = SearchPhase;
+
+	ResourceManager* rm = ResourceManager::GetInstance();
+	frame = rm->GetImages("Resource/Images/frame_camera -1280.png")[0];
 }
 
 eSceneType GameMainScene::Update()

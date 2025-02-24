@@ -36,6 +36,8 @@ private:
 	int enemy_cnt;	//残りの敵
 
 	bool result;
+
+	int frame;
 public:
 	GameMainScene();
 	~GameMainScene();
