@@ -149,7 +149,7 @@ void Enemy::Draw() const
 	
 	if (battle_phase == 2)
 	{
-		circle.BattleSquareDraw(pattern[pattern_cnt].size(), pattern[pattern_cnt]);
+		circle.BattleSquareDraw(pattern[pattern_cnt].size(), pattern[pattern_cnt], pattern_num[pattern_cnt]);
 		circle.TimeLimitCircleDraw();
 	}
 
