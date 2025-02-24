@@ -7,7 +7,9 @@ private:
 	bool camera_stop_x;
 	bool camera_stop_y;
 
-
+	Vector2D oval_radius;
+	bool oval_flg;
+	float speed;
 public:
 	Player();
 	virtual ~Player();

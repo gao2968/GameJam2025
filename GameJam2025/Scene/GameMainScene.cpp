@@ -4,6 +4,7 @@
 #include "DxLib.h"
 #include <stdio.h>
 #include <math.h>
+#include "../Utility/QTESystem.h"
 
 
 GameMainScene::GameMainScene()
@@ -17,14 +18,7 @@ GameMainScene::~GameMainScene()
 
 void GameMainScene::Initialize()
 {
-	//stage = new Stage;
-	//player = new Player;
-	//enemy = new Enemy;
-
-	//stage->Initialize();
-	//player->Initialize();
-	//enemy->Initialize();
-
+	QTESystem::Initialize();
 	object.push_back(new Player);
 	object.push_back(new Stage);
 	for (int i = 0; i < 3; i++)
@@ -52,108 +46,125 @@ void GameMainScene::Initialize()
 
 eSceneType GameMainScene::Update()
 {
-	CalculationHp();
-
-	if (nearest_enemy !=  nullptr && nearest_enemy->add_score > 0)
+	if (result)
 	{
-		score += nearest_enemy->add_score;
-		nearest_enemy->add_score = 0;
+		if(InputControl::GetButtonDown(XINPUT_BUTTON_A))
+		{
+			return E_TITLE;
+		}
 	}
-
-	Vector2D velocity(GetInputVelocity());
-	switch (state)
+	else
 	{
-	case SearchPhase:
+		CalculationHp();
 
-		for (int i = 0; i < object.size(); i++)
+		if (nearest_enemy != nullptr && nearest_enemy->add_score > 0)
 		{
-			if (object[i] == nullptr) continue;
-			object[i]->Update();
+			score += nearest_enemy->add_score;
+			nearest_enemy->add_score = 0;
 		}
-		
-		if (Player* p = dynamic_cast<Player*>(object[player_num]))
+
+		Vector2D velocity(GetInputVelocity());
+		switch (state)
 		{
-			if (p->GetCameraStopX())
+		case SearchPhase:
+
+			for (int i = 0; i < object.size(); i++)
 			{
-				velocity.x = 0.f;
+				if (object[i] == nullptr) continue;
+				object[i]->Update();
 			}
 
-			if (p->GetCameraStopY())
+			if (Player* p = dynamic_cast<Player*>(object[player_num]))
 			{
-				velocity.y = 0.f;
+				if (p->GetCameraStopX())
+				{
+					velocity.x = 0.f;
+				}
+
+				if (p->GetCameraStopY())
+				{
+					velocity.y = 0.f;
+				}
+			}
+
+			for (int i = 1; i < object.size(); i++)
+			{
+				if (object[i] == nullptr) continue;
+				object[i]->Movement(velocity);
+			}
+			//stage->Movement(velocity);
+			//enemy->Movement(velocity);
+
+			//player->Movement(GetInputVelocity());
+			//player->nearest_enemy_length = player->ObjectLength(enemy);//game objectに変更するかも 敵の数ループして最も近い敵との距離を入れる
+
+			if (Player* p = dynamic_cast<Player*>(object[player_num]))
+			{
+				p->Movement(GetInputVelocity());
+				//p->nearest_enemy_length = 9999.f;//game objectに変更するかも 敵の数ループして最も近い敵との距離を入れる
+				//for (int i = 2; i < object.size(); i++) //enemyが入ってる部分
+				//{
+				//	p->ObjectLength(object[i]);
+				//}
+
+				SearchNearestEnemy();
+
+
+				if (nearest_enemy != nullptr && p->ObjectLength(nearest_enemy) <= 100.f
+					&& InputControl::GetButtonDown(XINPUT_BUTTON_A) && nearest_enemy->battle_phase == 0)
+				{
+					nearest_enemy->StartBattlePhaseOne();
+					state = BattlePhaseOne;
+				}
+			}
+
+
+			break;
+
+		case BattlePhaseOne:
+			/*enemy->Update();
+			state = enemy->battle_phase;*/
+
+			nearest_enemy->Update();
+			state = nearest_enemy->battle_phase;
+			break;
+
+		case BattlePhaseTwo:
+			//enemy->Update();
+			//state = enemy->battle_phase;
+
+			nearest_enemy->Update();
+			state = nearest_enemy->battle_phase;
+			break;
+
+		case EndPhase:
+			state = SearchPhase;
+			nearest_enemy = nullptr;
+			if (nearest_enemy_num != -1)
+			{
+				object[nearest_enemy_num] = nullptr;
+			}
+			break;
+
+		default:
+			break;
+		}
+
+		//残りの敵を数える
+		enemy_cnt = 0;
+		for (int i = 0; i < 3; i++)
+		{
+			if (object[enemy_num[i]] != nullptr)
+			{
+				enemy_cnt++;
 			}
 		}
-		
-		for (int i = 1; i < object.size(); i++)
+
+		//シーンチェンジ
+		if (hp < 0 || enemy_cnt == 0/*(object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr)*/)
 		{
-			if (object[i] == nullptr) continue;
-			object[i]->Movement(velocity);
-		}
-		//stage->Movement(velocity);
-		//enemy->Movement(velocity);
-
-		//player->Movement(GetInputVelocity());
-		//player->nearest_enemy_length = player->ObjectLength(enemy);//game objectに変更するかも 敵の数ループして最も近い敵との距離を入れる
-
-		if (Player* p = dynamic_cast<Player*>(object[player_num]))
-		{
-			p->Movement(GetInputVelocity());
-			//p->nearest_enemy_length = 9999.f;//game objectに変更するかも 敵の数ループして最も近い敵との距離を入れる
-			//for (int i = 2; i < object.size(); i++) //enemyが入ってる部分
-			//{
-			//	p->ObjectLength(object[i]);
-			//}
-			
-			SearchNearestEnemy();
-
-
-			if (nearest_enemy != nullptr && p->ObjectLength(nearest_enemy) <= 100.f 
-				&& InputControl::GetButtonDown(XINPUT_BUTTON_A) && nearest_enemy->battle_phase == 0)
-			{
-				nearest_enemy->StartBattlePhaseOne();
-				state = BattlePhaseOne;
-			}
-		}
-
-		
-		break;
-
-	case BattlePhaseOne:
-		/*enemy->Update();
-		state = enemy->battle_phase;*/
-
-		nearest_enemy->Update();
-		state = nearest_enemy->battle_phase;
-		break;
-
-	case BattlePhaseTwo:
-		//enemy->Update();
-		//state = enemy->battle_phase;
-
-		nearest_enemy->Update();
-		state = nearest_enemy->battle_phase;
-		break;
-
-	case EndPhase:
-		state = SearchPhase;
-		nearest_enemy = nullptr;
-		if (nearest_enemy_num != -1)
-		{
-			object[nearest_enemy_num] = nullptr;
-		}
-		break;
-
-	default:
-		break;
-	}
-
-	//残りの敵を数える
-	enemy_cnt = 0;
-	for (int i = 0; i < 3; i++)
-	{
-		if (object[enemy_num[i]] != nullptr)
-		{
-			enemy_cnt++;
+			//return E_TITLE;
+			result = true;
 		}
 	}
 
@@ -173,22 +184,12 @@ eSceneType GameMainScene::Update()
 
 void GameMainScene::Draw() const
 {
-	for (int i = 1; i < object.size(); i++)
-	{
-		if (object[i] == nullptr) continue;
-		object[i]->Draw();
-	}
-	object[player_num]->Draw();
-
-	DrawFormatString(0, 0, 0x000000, "x%f y%f", InputControl::GetLeftStick().x, InputControl::GetLeftStick().y);
-	DrawFormatString(0, 40, 0x000000, "hp %d", hp);
-	DrawFormatString(0, 80, 0xff0000, "score %d", score);
-	//DrawFormatString(0, 20, 0x000000, "length%f", player->ObjectLength(enemy));
+	object[1]->Draw();
 
 	switch (state)
 	{
 	case SearchPhase:
-
+		object[player_num]->Draw();
 		break;
 
 	case BattlePhaseOne:
@@ -209,6 +210,17 @@ void GameMainScene::Draw() const
 	default:
 		break;
 	}
+
+	for (int i = 2; i < object.size(); i++)
+	{
+		if (object[i] == nullptr) continue;
+		object[i]->Draw();
+	}
+
+	if (result)
+	{
+		DrawResult();
+	}
 }
 
 void GameMainScene::Finalize()
@@ -219,12 +231,30 @@ void GameMainScene::Finalize()
 	}
 }
 
-// ���݂̃V�[�����擾
+//    ݂̃V [     擾
 eSceneType GameMainScene::GetNowScene() const
 {
 	return eSceneType::E_MAIN;
 }
 
+
+void GameMainScene::DrawResult() const
+{
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
+	DrawBox(0, 0, 1280, 720, 0x000000, TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+
+	SetFontSize(128);
+	DrawString(450, 60, "RESULT", 0xffffff);
+
+	SetFontSize(64);
+	int sec = hp / 60;
+	DrawFormatString(450, 250, 0xffffff, "残り時間 %d秒", sec);
+	DrawFormatString(450, 320, 0xffffff, "スコア %d", score);
+	DrawFormatString(280, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);
+	SetFontSize(24);
+
+}
 
 Vector2D GameMainScene::GetInputVelocity()
 {

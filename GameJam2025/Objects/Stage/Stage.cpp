@@ -20,6 +20,7 @@ void Stage::Initialize()
 	//インスタンス取得
 	ResourceManager* rm = ResourceManager::GetInstance();
 	image = rm->GetImages("Resource/Images/stage.png")[0];
+	frame = rm->GetImages("Resource/Images/frame.png")[0];
 }
 
 void Stage::Update()
@@ -30,8 +31,14 @@ void Stage::Update()
 void Stage::Draw() const
 {
 	DrawBoxAA(0.f, 0.f, 1280.f, 720.f, 0x000000, TRUE);
+
 	__super::Draw();
-	DrawFormatString(local_location.x, local_location.y, 0xff0000, "x%f y%f", location.x, location.y);
+
+	Vector2D upper_left = local_location - (box_size / 2.f);
+	Vector2D lower_right = local_location + (box_size / 2.f);
+	DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, frame, TRUE);
+
+	//DrawFormatString(local_location.x, local_location.y, 0xff0000, "x%f y%f", location.x, location.y);
 }
 
 void Stage::Finalize()

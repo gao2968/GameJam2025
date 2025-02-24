@@ -117,5 +117,12 @@ void QTESystem::Update()
 
 void QTESystem::Draw()
 {
-	DrawFormatString(300, 0, 0x00ff00, "button %d", button);
+	//DrawFormatString(300, 0, 0x00ff00, "button %d", button);
+}
+
+void QTESystem::Initialize()
+{
+	elapsed_time = -1.f;
+	button = 0;
+	phase = 1; 
 }

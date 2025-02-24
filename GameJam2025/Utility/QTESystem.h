@@ -32,5 +32,7 @@ public:
 	static void Draw();
 
 	static int GetButtonPhaseOne() { return button; }
+
+	static void Initialize();
 };
 
