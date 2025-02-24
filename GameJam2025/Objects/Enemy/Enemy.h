@@ -30,7 +30,9 @@ private:
 
 	int timecard;
 	int timecard_cnt;
+	int timecard_button;
 	bool timecard_flg;
+	float timecard_size;
 
 	int font = 0x000000;
 public:

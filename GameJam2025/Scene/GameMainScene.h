@@ -34,6 +34,8 @@ private:
 	int hp = INITHP;	//hp兼timer
 	int score = 0;
 	int enemy_cnt;	//残りの敵
+
+	bool result;
 public:
 	GameMainScene();
 	~GameMainScene();
@@ -46,6 +48,8 @@ public:
 	virtual eSceneType GetNowScene() const override;
 
 public:
+	void DrawResult() const;
+
 	Vector2D GetInputVelocity();
 
 	//プレイヤーに近い敵を見つける

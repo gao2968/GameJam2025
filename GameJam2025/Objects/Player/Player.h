@@ -9,6 +9,7 @@ private:
 
 	Vector2D oval_radius;
 	bool oval_flg;
+	float speed;
 public:
 	Player();
 	virtual ~Player();

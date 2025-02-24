@@ -24,6 +24,8 @@ void Player::Initialize()
 	oval_radius = Vector2D(32.f);
 
 	oval_flg = true;
+
+	speed = 1.f;
 }
 
 void Player::Update()
@@ -53,16 +55,20 @@ void Player::Update()
 
 	color = GetColor(r, g, b);
 
+	speed = (1 - step) * 5.f + 1.f;
+
 	if (oval_flg)
 	{
-		if (--oval_radius.x < 0)
+		oval_radius.x -= speed;
+		if (oval_radius.x < 0)
 		{
 			oval_flg = !oval_flg;
 		}
 	}
 	else
 	{
-		if (++oval_radius.x > 32)
+		oval_radius.x += speed;
+		if (oval_radius.x > 32)
 		{
 			oval_flg = !oval_flg;
 		}
@@ -73,11 +79,11 @@ void Player::Draw() const
 {
 	__super::Draw();
 
-	DrawFormatString(local_location.x, local_location.y, 0x0000ff, "x%f y%f", location.x, location.y);
-	DrawFormatString(local_location.x, local_location.y + 20, 0x0000ff, "x%f y%f", local_location.x, local_location.y);
+	/*DrawFormatString(local_location.x, local_location.y, 0x0000ff, "x%f y%f", location.x, location.y);
+	DrawFormatString(local_location.x, local_location.y + 20, 0x0000ff, "x%f y%f", local_location.x, local_location.y);*/
 
-	DrawLine(640, 0, 640, 1280, 0xff0000);
-	DrawLine(0, 360, 1280, 360, 0xff0000);
+	//DrawLine(640, 0, 640, 1280, 0xff0000);
+	//DrawLine(0, 360, 1280, 360, 0xff0000);
 
 	//DrawBoxAA(upper_left.x, upper_left.y, lower_right.x, lower_right.y, color, TRUE);
 	/*DrawOvalAA(local_location.x, local_location.y,
