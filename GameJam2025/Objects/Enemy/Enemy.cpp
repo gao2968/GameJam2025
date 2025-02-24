@@ -3,6 +3,7 @@
 #include "../../Utility/InputControl.h"
 #include "../../Utility/ResourceManager.h"
 #include "DxLib.h"
+#include "../TimeLimitCircle.h"
 
 Enemy::Enemy() 
 {
@@ -41,6 +42,7 @@ void Enemy::Initialize()
 	
 	/*pattern_num = pattern.size() - 1;*/
 	
+	circle.TimeLimitCircleInit();
 }
 
 void Enemy::Update()
@@ -77,6 +79,7 @@ void Enemy::Update()
 
 		case 1:
 			InBattlePhaseTwo();
+			circle.TimeLimitCircleUpdate(1200);
 			break;
 
 		case 2:
@@ -123,7 +126,13 @@ void Enemy::Draw() const
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image, TRUE);
 	}
 	
+	if (battle_phase == 2)
+	{
+		circle.BattleSquareDraw(pattern[pattern_cnt].size(), pattern[pattern_cnt]);
+		circle.TimeLimitCircleDraw();
 
+
+	}
 
 
 	//DrawFormatString(local_location.x, local_location.y - 30, 0xff00ff, "num%d", pattern_num);

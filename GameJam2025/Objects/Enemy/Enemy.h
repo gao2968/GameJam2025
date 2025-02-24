@@ -1,6 +1,7 @@
 #pragma once
 #include "../GameObject.h"
 #include <vector>
+#include "../TimeLimitCircle.h"
 
 enum Enemy_Type
 {
@@ -24,6 +25,8 @@ private:
 	int battle_count;	//
 	int phase_one_cnt;
 	int phase_one_enemy_size;
+
+	TimeLimitCircle circle;
 
 	int font = 0x000000;
 public:
