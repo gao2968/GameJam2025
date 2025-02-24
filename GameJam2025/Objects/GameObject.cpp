@@ -34,7 +34,9 @@ void GameObject::Draw() const
 	Vector2D upper_left = local_location - (box_size / 2.f);
 	Vector2D lower_right = local_location + (box_size / 2.f);
 
-	DrawBoxAA(upper_left.x, upper_left.y, lower_right.x, lower_right.y, color, TRUE);
+	//DrawBoxAA(upper_left.x, upper_left.y, lower_right.x, lower_right.y, color, TRUE);
+
+	DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image, TRUE);
 }
 
 void GameObject::Finalize()

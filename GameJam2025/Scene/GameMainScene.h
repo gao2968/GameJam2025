@@ -5,6 +5,8 @@
 #include "../Objects/Enemy/Enemy.h"
 #include "../Objects/GameObject.h"
 
+#define INITHP 10800
+
 enum MainState
 {
 	SearchPhase,
@@ -29,7 +31,7 @@ private:
 
 	int state;
 
-	int hp = 10800;	//hp兼timer
+	int hp = INITHP;	//hp兼timer
 	int score = 0;
 public:
 	GameMainScene();
@@ -49,5 +51,8 @@ public:
 	void SearchNearestEnemy();
 
 	void CalculationHp();
+
+	int GetHp() { return hp; }
+	int GetScore() { return score; }
 };
 

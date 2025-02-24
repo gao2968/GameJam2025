@@ -13,6 +13,7 @@ protected:
 	Vector2D location;
 	Vector2D local_location;
 	Vector2D box_size;
+	int image;
 
 public:
 	GameObject();

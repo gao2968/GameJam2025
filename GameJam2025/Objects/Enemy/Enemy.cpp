@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "../../Utility/QTESystem.h"
 #include "../../Utility/InputControl.h"
+#include "../../Utility/ResourceManager.h"
 #include "DxLib.h"
 
 Enemy::Enemy() 
@@ -16,7 +17,7 @@ void Enemy::Initialize()
 	//location = Vector2D(960.f, 540.f);
 	location = Vector2D((float)GetRand(1920), (float)GetRand(1080));
 	local_location = (location - Vector2D(1920 / 2, 1080 / 2)) + Vector2D(1280 / 2, 720 / 2);
-	box_size = Vector2D(32.f);
+	box_size = Vector2D(512.f);
 	color = 0x0000ff;
 	state = 0;
 	battle_phase = 0;
@@ -38,6 +39,7 @@ void Enemy::Initialize()
 	}
 	
 	/*pattern_num = pattern.size() - 1;*/
+	
 }
 
 void Enemy::Update()
@@ -219,4 +221,38 @@ void Enemy::InitializationForRestart()
 		pattern_num.push_back(pattern[i].size() - 1);
 		pattern_cnt = i;
 	}
+}
+
+bool Enemy::SetEnemyType(int type)
+{
+	//インスタンス取得
+	ResourceManager* rm = ResourceManager::GetInstance();
+	switch (type)
+	{
+	case arai:
+		image = rm->GetImages("Resource/Images/arai.png")[0];
+		break;
+
+	case maesiro:
+		image = rm->GetImages("Resource/Images/maesiro.png")[0];
+		break;
+
+	case maetu:
+		image = rm->GetImages("Resource/Images/maetu.png")[0];
+		break;
+
+	case ryouka:
+		image = rm->GetImages("Resource/Images/ryouka.png")[0];
+		break;
+
+	case toubaru:
+		image = rm->GetImages("Resource/Images/toubaru.png")[0];
+		break;
+
+	default:
+		break;
+	}
+
+	if (image != -1) return true;
+	return false;
 }

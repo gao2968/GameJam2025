@@ -36,6 +36,13 @@ void GameMainScene::Initialize()
 	{
 		object[i]->Initialize();
 	}
+	for (int i = 0; i < 3; i++)
+	{
+		if (Enemy* e = dynamic_cast<Enemy*>(object[enemy_num[i]]))
+		{
+			e->SetEnemyType(i);
+		}
+	}
 
 
 	SetFontSize(24);

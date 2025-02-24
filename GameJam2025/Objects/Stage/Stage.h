@@ -7,7 +7,6 @@ class Stage : public GameObject
 {
 private:
 	Vector2D velocity;
-
 public:
 	Stage();
 	virtual ~Stage();

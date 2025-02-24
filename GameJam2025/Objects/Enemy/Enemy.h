@@ -2,6 +2,15 @@
 #include "../GameObject.h"
 #include <vector>
 
+enum Enemy_Type
+{
+	arai,
+	maesiro,
+	maetu,
+	ryouka,
+	toubaru
+};
+
 class Enemy : public GameObject
 {
 private:
@@ -43,5 +52,7 @@ public:
 	bool miss;	//入力ミス
 	bool result; //最終結果　除霊できたか
 	int add_score; //成功回数 追加すべきスコア ゲームメインのスコアに追加したらゲームメインで0にする
+
+	bool SetEnemyType(int type);
 };
 
