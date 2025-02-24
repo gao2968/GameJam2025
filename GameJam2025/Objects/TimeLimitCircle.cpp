@@ -108,44 +108,81 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button) const
 	//éOäpå`ÇÃï`âÊ
 	if (i == 3)
 	{
+		//ê}å`ÇÃï`âÊ
 		DrawTriangle(460, 475, 830, 475, 645, 125, GetColor(255, 255, 255), TRUE);
-		DrawGraph(645, 125, button_images[button[0]], TRUE);
-		DrawGraph(830, 475, button_images[button[1]], TRUE);
-		DrawGraph(460, 475, button_images[button[2]], TRUE);
+
+		//É{É^ÉìÇÃï`âÊ
+		DrawGraph(440, 370, button_images[button[0]], TRUE);
+		DrawGraph(720, 370, button_images[button[1]], TRUE);
+		DrawGraph(580, 125, button_images[button[2]], TRUE);
 	}
 
 	//éläpå`ÇÃï`âÊ
 	if (i == 4)
 	{
+		//ê}å`ÇÃï`âÊ
 		DrawTriangle(430, 350, 860, 350, 645, 130, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(430, 350, 860, 350, 645, 560, GetColor(255, 255, 255), TRUE);
+
+		//É{É^ÉìÇÃï`âÊ
+		DrawGraph(420, 280, button_images[button[0]], TRUE);
+		DrawGraph(580, 450, button_images[button[1]], TRUE);
+		DrawGraph(740, 280, button_images[button[2]], TRUE);
+		DrawGraph(580, 120, button_images[button[3]], TRUE);
 	}
 
 	//å‹äpå`ÇÃï`âÊ
 	if (i == 5)
 	{
+		//ê}å`ÇÃï`âÊ
 		DrawTriangle(440, 270, 645, 130, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 270, 525, 530, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(525, 530, 765, 530, 850, 270, GetColor(255, 255, 255), TRUE);
+
+		//É{É^ÉìÇÃï`âÊ
+		DrawGraph(420, 230, button_images[button[0]], TRUE);
+		DrawGraph(480, 440, button_images[button[1]], TRUE);
+		DrawGraph(690, 440, button_images[button[2]], TRUE);
+		DrawGraph(740, 230, button_images[button[3]], TRUE);
+		DrawGraph(580, 115, button_images[button[4]], TRUE);
 	}
 
 	//òZäpå`ÇÃï`âÊ
 	if (i == 6)
 	{
+		//ê}å`ÇÃï`âÊ
 		DrawTriangle(440, 270, 645, 130, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 270, 440, 430, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 430, 850, 430, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 430, 645, 570, 850, 430, GetColor(255, 255, 255), TRUE);
+
+		//É{É^ÉìÇÃï`âÊ
+		DrawGraph(420, 210, button_images[button[0]], TRUE);
+		DrawGraph(420, 370, button_images[button[1]], TRUE);
+		DrawGraph(580, 460, button_images[button[2]], TRUE);
+		DrawGraph(740, 370, button_images[button[3]], TRUE);
+		DrawGraph(740, 210, button_images[button[4]], TRUE);
+		DrawGraph(580, 115, button_images[button[5]], TRUE);
 	}
 
 	//éµäpå`ÇÃï`âÊ
 	if (i == 7)
 	{
+		//ê}å`ÇÃï`âÊ
 		DrawTriangle(460, 230, 645, 130, 830, 230, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(460, 230, 430, 380, 830, 230, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(430, 380, 860, 380, 830, 230, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(430, 380, 550, 550, 860, 380, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(550, 550, 730, 550, 860, 380, GetColor(255, 255, 255), TRUE);
+
+		//É{É^ÉìÇÃï`âÊ
+		DrawGraph(420, 200, button_images[button[0]], TRUE);
+		DrawGraph(400, 340, button_images[button[1]], TRUE);
+		DrawGraph(500, 460, button_images[button[2]], TRUE);
+		DrawGraph(680, 460, button_images[button[3]], TRUE);
+		DrawGraph(760, 340, button_images[button[4]], TRUE);
+		DrawGraph(740, 200, button_images[button[5]], TRUE);
+		DrawGraph(580, 115, button_images[button[6]], TRUE);
 	}
 
 	return i;
