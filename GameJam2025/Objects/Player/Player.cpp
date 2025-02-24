@@ -20,15 +20,53 @@ void Player::Initialize()
 	location = Vector2D(1920 / 2, 1080 / 2);
 
 	local_location = Vector2D(1280 / 2, 720 / 2);
+
+	oval_radius = Vector2D(32.f);
+
+	oval_flg = true;
 }
 
 void Player::Update()
 {
-	if (nearest_enemy_length > 300) { color = 0x00ff00; }
+	/*if (nearest_enemy_length > 300) { color = 0x00ff00; }
 
 	if (nearest_enemy_length < 100) { color = 0x0000ff; }
 	else if (nearest_enemy_length < 200) { color = 0x00ffff; }
-	else if (nearest_enemy_length < 300) { color = 0xffff00; }
+	else if (nearest_enemy_length < 300) { color = 0xffff00; }*/
+
+	//色の変化
+	int r, g, b;
+	float step = (nearest_enemy_length - 50.0) / (300.0 - 50.0);
+
+	if (step > 1.f)
+	{
+		step = 1.f;
+	}
+	if (step < 0)
+	{
+		step = 0.f;
+	}
+
+	r = static_cast<int>(255 * (1 - step));
+	g = static_cast<int>(255 * step);
+	b = 0;
+
+	color = GetColor(r, g, b);
+
+	if (oval_flg)
+	{
+		if (--oval_radius.x < 0)
+		{
+			oval_flg = !oval_flg;
+		}
+	}
+	else
+	{
+		if (++oval_radius.x > 32)
+		{
+			oval_flg = !oval_flg;
+		}
+	}
 }
 
 void Player::Draw() const
@@ -40,6 +78,16 @@ void Player::Draw() const
 
 	DrawLine(640, 0, 640, 1280, 0xff0000);
 	DrawLine(0, 360, 1280, 360, 0xff0000);
+
+	//DrawBoxAA(upper_left.x, upper_left.y, lower_right.x, lower_right.y, color, TRUE);
+	/*DrawOvalAA(local_location.x, local_location.y,
+		oval_radius.x + oval_radius.x / 2, oval_radius.y + oval_radius.y / 2, 32, 0x7d7d7d, TRUE);*/
+
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200);
+	DrawOvalAA(local_location.x, local_location.y, oval_radius.x, oval_radius.y, 32, color, TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+	
+	
 }
 
 void Player::Finalize()

@@ -42,6 +42,9 @@ void Enemy::Initialize()
 	
 	/*pattern_num = pattern.size() - 1;*/
 	
+	ResourceManager* rm = ResourceManager::GetInstance();
+	timecard = rm->GetImages("Resource/Images/time_card.png")[0];
+
 	circle.TimeLimitCircleInit();
 }
 
@@ -64,6 +67,15 @@ void Enemy::Update()
 
 		default:
 			break;
+		}
+
+		if (timecard_flg)
+		{
+			if (++timecard_cnt > 30)
+			{
+				timecard_flg = false;
+				timecard_cnt = 0;
+			}
 		}
 	}
 
@@ -124,14 +136,21 @@ void Enemy::Draw() const
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image, TRUE);
+
+		if (timecard_flg)
+		{
+			draw_box_size = Vector2D(140.f, 240.f);
+			upper_left = draw_location - (draw_box_size / 2.f);
+			lower_right = draw_location + (draw_box_size / 2.f);
+			DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, timecard, TRUE);
+		}
+
 	}
 	
 	if (battle_phase == 2)
 	{
 		circle.BattleSquareDraw(pattern[pattern_cnt].size(), pattern[pattern_cnt]);
 		circle.TimeLimitCircleDraw();
-
-
 	}
 
 
@@ -181,6 +200,8 @@ void Enemy::InBattlePhaseOne()
 	if (result == success)
 	{
 		phase_one_enemy_size = 0;
+
+		timecard_flg = true;
 
 		add_score = 10;
 		if (++phase_one_cnt > 3)

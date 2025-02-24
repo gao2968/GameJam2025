@@ -168,17 +168,7 @@ eSceneType GameMainScene::Update()
 
 void GameMainScene::Draw() const
 {
-	for (int i = 1; i < object.size(); i++)
-	{
-		if (object[i] == nullptr) continue;
-		object[i]->Draw();
-	}
-	object[player_num]->Draw();
-
-	DrawFormatString(0, 0, 0x000000, "x%f y%f", InputControl::GetLeftStick().x, InputControl::GetLeftStick().y);
-	DrawFormatString(0, 40, 0x000000, "hp %d", hp);
-	DrawFormatString(0, 80, 0xff0000, "score %d", score);
-	//DrawFormatString(0, 20, 0x000000, "length%f", player->ObjectLength(enemy));
+	object[1]->Draw();
 
 	switch (state)
 	{
@@ -204,6 +194,19 @@ void GameMainScene::Draw() const
 	default:
 		break;
 	}
+
+	for (int i = 2; i < object.size(); i++)
+	{
+		if (object[i] == nullptr) continue;
+		object[i]->Draw();
+	}
+
+	object[player_num]->Draw();
+
+	DrawFormatString(0, 0, 0x000000, "x%f y%f", InputControl::GetLeftStick().x, InputControl::GetLeftStick().y);
+	DrawFormatString(0, 40, 0x000000, "hp %d", hp);
+	DrawFormatString(0, 80, 0xff0000, "score %d", score);
+	//DrawFormatString(0, 20, 0x000000, "length%f", player->ObjectLength(enemy));
 }
 
 void GameMainScene::Finalize()

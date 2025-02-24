@@ -28,6 +28,10 @@ private:
 
 	TimeLimitCircle circle;
 
+	int timecard;
+	int timecard_cnt;
+	bool timecard_flg;
+
 	int font = 0x000000;
 public:
 	Enemy();
