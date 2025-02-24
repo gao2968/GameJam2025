@@ -163,7 +163,8 @@ eSceneType GameMainScene::Update()
 		//シーンチェンジ
 		if (hp < 0 || enemy_cnt == 0/*(object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr)*/)
 		{
-			return E_TITLE;
+			//return E_TITLE;
+			result = true;
 		}
 	}
 	return GetNowScene();
@@ -204,7 +205,10 @@ void GameMainScene::Draw() const
 		object[i]->Draw();
 	}
 
-	//DrawResult();
+	if (result)
+	{
+		DrawResult();
+	}
 }
 
 void GameMainScene::Finalize()
@@ -235,7 +239,7 @@ void GameMainScene::DrawResult() const
 	int sec = hp / 60;
 	DrawFormatString(450, 250, 0xffffff, "残り時間 %d秒", sec);
 	DrawFormatString(450, 320, 0xffffff, "スコア %d", score);
-	DrawFormatString(450, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);
+	DrawFormatString(280, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);
 	SetFontSize(24);
 
 }
