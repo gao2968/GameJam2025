@@ -163,6 +163,11 @@ eSceneType GameMainScene::Update()
 		return E_TITLE;
 	}
 
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_LEFT_SHOULDER))
+	{
+		return eSceneType::E_END;
+	}
+
 	return GetNowScene();
 }
 

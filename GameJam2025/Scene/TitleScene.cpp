@@ -96,7 +96,7 @@ eSceneType TitleScene::Update()
 	{
 		if (select == TitleSelect::EXIT)
 		{
-			return eSceneType::E_END;
+			return eSceneType::E_OWARI;
 		}
 		if (select == TitleSelect::InGame)
 		{

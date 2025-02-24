@@ -5,6 +5,7 @@
 #include "GameMainScene.h"
 #include "HelpScene.h"
 #include "EndScene.h"
+#include "RankingScene.h"
 
 
 SceneManager::SceneManager() : current_scene(nullptr)
@@ -78,7 +79,7 @@ void SceneManager::Update()
 			Draw();
 
 			//�G���h���I�����Ă�����A�Q�[����I������
-			if (next == eSceneType::E_END)
+			if (next == eSceneType::E_OWARI)
 			{
 				break;
 			}
@@ -167,6 +168,8 @@ SceneBase* SceneManager::CreateScene(eSceneType scene_type)
 		return new HelpScene;
 	case eSceneType::E_END:
 		return new EndScene;
+	/*case eSceneType::E_RANKING:
+		return new RankingScene;*/
 	default:
 		return nullptr;
 	}

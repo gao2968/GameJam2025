@@ -145,6 +145,7 @@
     <ClCompile Include="Objects\Player\Player.cpp" />
     <ClCompile Include="Objects\Stage\Stage.cpp" />
     <ClCompile Include="Objects\TimeLimitCircle.cpp" />
+    <ClCompile Include="Scene\RankingScene.cpp" />
     <ClCompile Include="Utility\QTESystem.cpp" />
     <ClCompile Include="Utility\ResourceManager.cpp" />
     <ClCompile Include="Scene\EndScene.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Objects\Player\Player.h" />
     <ClInclude Include="Objects\Stage\Stage.h" />
     <ClInclude Include="Objects\TimeLimitCircle.h" />
+    <ClInclude Include="Scene\RankingScene.h" />
     <ClInclude Include="Utility\QTESystem.h" />
     <ClInclude Include="Utility\ResourceManager.h" />
     <ClInclude Include="Scene\EndScene.h" />
