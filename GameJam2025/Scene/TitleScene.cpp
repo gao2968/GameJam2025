@@ -26,7 +26,7 @@ void TitleScene::Initialize()
 
 	title_image = rm->GetImages("Resource/Images/title.png")[0];
 	
-	SetFontSize(64);
+	SetFontSize(60);
 }
 
 eSceneType TitleScene::Update()
@@ -102,33 +102,33 @@ void TitleScene::Draw() const
 
 	switch (select)
 	{
-	case InGame:
-		DrawString(DRAW_SET_X - 80, DRAW_SET_Y - 3, "→", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y, "スタート", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "ヘルプ", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "ランキング", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y +207, "終了", WHITE);
+	case TitleSelect::InGame:
+		DrawString(DRAW_SET_X - 80, DRAW_SET_Y - 3, "->", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y, "START", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "HELP", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "RANKING", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y +207, "END", WHITE);
 		break;
-	case Help:
-		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 67, "→", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y, "スタート", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "ヘルプ", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "ランキング", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "終了", WHITE);
+	case TitleSelect::Help:
+		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 67, "->", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y, "START", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "HELP", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "RANKING", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "END", WHITE);
 		break;
-	case Ranking:
-		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 137, "→", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y, "スタート", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "ヘルプ", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "ランキング", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "終了", WHITE);
+	case TitleSelect::Ranking:
+		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 137, "->", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y, "START", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "HELP", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "RANKING", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "END", WHITE);
 		break;
-	case EXIT:
-		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 207, "→", RED);
-		DrawString(DRAW_SET_X, DRAW_SET_Y, "スタート", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "ヘルプ", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "ランキング", WHITE);
-		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "終了", RED);
+	case TitleSelect::EXIT:
+		DrawString(DRAW_SET_X - 80, DRAW_SET_Y + 207, "->", RED);
+		DrawString(DRAW_SET_X, DRAW_SET_Y, "START", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 67, "HELP", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 137, "RANKING", WHITE);
+		DrawString(DRAW_SET_X, DRAW_SET_Y + 207, "END", RED);
 		break;
 	}
 
