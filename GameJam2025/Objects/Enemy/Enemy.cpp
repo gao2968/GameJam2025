@@ -194,7 +194,6 @@ void Enemy::InBattlePhaseOne()
 
 void Enemy::InBattlePhaseTwo()
 {
-	
 	int res = QTESystem::InQTE();
 	if (res == success)
 	{
@@ -215,6 +214,7 @@ void Enemy::InBattlePhaseTwo()
 				pattern_cnt--;
 				font += 255;
 				add_score = 50;
+				phase_two_timer = 1200.f;
 			}
 			state = 0;
 		}
