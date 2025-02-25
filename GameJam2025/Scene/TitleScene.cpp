@@ -56,6 +56,21 @@ void TitleScene::Initialize()
 
 	
 	SetFontSize(60);
+
+	title_sound = rm->GetSounds("Resource/BGM/Title.mp3");
+
+	kettei_sound = rm->GetSounds("Resource/SE/Kettei.mp3");
+
+	sentaku_sound = rm->GetSounds("Resource/SE/Sentaku.mp3");
+
+	ChangeVolumeSoundMem(150, sentaku_sound); // ここで音量を設定
+
+	// 音楽がすでに再生中かどうかを確認
+	if (CheckSoundMem(title_sound) == 0) {
+		// 音量を設定 (0〜255 の範囲内)
+		ChangeVolumeSoundMem(200, title_sound); // ここで音量を設定
+		PlaySoundMem(title_sound, DX_PLAYTYPE_BACK);
+	}
 }
 
 eSceneType TitleScene::Update()
@@ -66,18 +81,22 @@ eSceneType TitleScene::Update()
 		if (select == TitleSelect::EXIT)
 		{
 			select = TitleSelect::InGame;
+			PlaySoundMem(sentaku_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		else if (select == TitleSelect::InGame)
 		{
 			select = TitleSelect::Help;
+			PlaySoundMem(sentaku_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		else if (select == TitleSelect::Help)
 		{
 			select = TitleSelect::Ranking;
+			PlaySoundMem(sentaku_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		else
 		{
 			select = TitleSelect::EXIT;
+			PlaySoundMem(sentaku_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 	}
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_UP))
@@ -86,18 +105,22 @@ eSceneType TitleScene::Update()
 		if (select == TitleSelect::InGame)
 		{
 			select = TitleSelect::EXIT;
+			PlaySoundMem(sentaku_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		else if (select == TitleSelect::EXIT)
 		{
 			select = TitleSelect::Ranking;
+			PlaySoundMem(sentaku_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		else if (select == TitleSelect::Ranking)
 		{
 			select = TitleSelect::Help;
+			PlaySoundMem(sentaku_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		else
 		{
 			select = TitleSelect::InGame;
+			PlaySoundMem(sentaku_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 	}
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_A))
@@ -105,18 +128,22 @@ eSceneType TitleScene::Update()
 		PlaySoundMem(kakutei, DX_PLAYTYPE_BACK);
 		if (select == TitleSelect::EXIT)
 		{
+			PlaySoundMem(kettei_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 			return eSceneType::E_OWARI;
 		}
 		if (select == TitleSelect::InGame)
 		{
+			PlaySoundMem(kettei_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 			return eSceneType::E_MAIN;
 		}
 		else if (select == TitleSelect::Help)
 		{
+			PlaySoundMem(kettei_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 			return eSceneType::E_HELP;
 		}
 		else if (select == TitleSelect::Ranking)
 		{
+			PlaySoundMem(kettei_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 			return eSceneType::E_RANKING;
 		}
 	}
@@ -171,6 +198,8 @@ void TitleScene::Finalize()
 {
 	// 親クラスの終了時処理を呼び出す
 	__super::Finalize();
+	// 音楽を止める
+	StopSoundMem(title_sound);
 }
 
 eSceneType TitleScene::GetNowScene() const

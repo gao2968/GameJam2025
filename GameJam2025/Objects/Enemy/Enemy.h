@@ -40,13 +40,18 @@ private:
 	int sya_image;
 	int taisya_image;
 
+	int teki_idou_sound;
+	int combo_sound;
+	int mojikannsei_sound;
+	int kougeki_1_sound;
+	int kougeki_2_sound;
+
 	int anim_state;	//0停止　1再生
 	float anim_len;
 	Vector2D anim_location[4];
 	float anim_rate = 1024.f;
 
 	int image_original; //透過してない画像
-
 
 	int lose_se;
 	int attack_se[2];

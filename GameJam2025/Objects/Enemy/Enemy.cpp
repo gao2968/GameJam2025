@@ -15,7 +15,6 @@ Enemy::~Enemy()
 
 void Enemy::Initialize()
 {
-	//location = Vector2D(960.f, 540.f);
 	location = Vector2D((float)GetRand(1720) + 100, (float)GetRand(880) + 100);
 	local_location = (location - Vector2D(1920 / 2, 1080 / 2)) + Vector2D(1280 / 2, 720 / 2);
 	box_size = Vector2D(128.f);
@@ -31,23 +30,29 @@ void Enemy::Initialize()
 	pattern.resize(3);
 	for (int i = 0; i < 3; i++)
 	{
-		//for (int j = 0; j < 5; j++)
 		for (int j = 0; j < GetRand(4) + 3; j++)
 		{
-			//pattern.push_back(GetRand(3));
 			pattern[i].push_back(GetRand(3));
 		}
 		pattern_num.push_back(pattern[i].size() - 1);
 		pattern_cnt = i;
 	}
 	
-	/*pattern_num = pattern.size() - 1;*/
-	
 	ResourceManager* rm = ResourceManager::GetInstance();
-	timecard = rm->GetImages("Resource/Images/time_card.png")[0];
+	timecard = rm->GetImages("Resource/Images/time_card_flash.png")[0];
 	tai_image = rm->GetImages("Resource/Images/tai_128.png")[0];
 	sya_image = rm->GetImages("Resource/Images/sya_128.png")[0];
 	taisya_image = rm->GetImages("Resource/Images/taisya_fonts_200.png")[0];
+
+	teki_idou_sound = rm->GetSounds("Resource/SE/Teki_idou.mp3");
+
+	combo_sound = rm->GetSounds("Resource/SE/Combo.mp3");
+
+	mojikannsei_sound = rm->GetSounds("Resource/SE/Mojikannsei.mp3");
+
+	kougeki_1_sound = rm->GetSounds("Resource/SE/Kougeki_1.mp3");
+
+	kougeki_2_sound = rm->GetSounds("Resource/SE/Kougeki_2.mp3");
 
 	lose_se = rm->GetSounds("Resource/SE/Tekinosi.mp3");
 	attack_se[0] = rm->GetSounds("Resource/SE/Kougeki_1.mp3");
@@ -58,6 +63,7 @@ void Enemy::Initialize()
 	anim_len = 500.f;
 	anim_state = 0;
 	anim_rate = 512.f;
+
 	circle.TimeLimitCircleInit();
 }
 
@@ -67,9 +73,6 @@ void Enemy::Update()
 	{
 		switch (state)
 		{
-		case 0:
-			break;
-
 		case 1:
 			if (!timecard_flg)
 			{
@@ -94,16 +97,15 @@ void Enemy::Update()
 			{
 				timecard_flg = false;
 				timecard_cnt = 0;
+				timecard_size = 0.f;
 			}
 
-			timecard_size += 0.1f;
+			timecard_size += 0.05f;
 		}
 	}
 
 	if (battle_phase == 2)
 	{
-		phase_two_timer--;
-
 		switch (state)
 		{
 		case 0:
@@ -125,10 +127,13 @@ void Enemy::Update()
 		default:
 			break;
 		}
-
 		if (anim_state != 0)
 		{
 			PhaseTwoAnimUpdate();
+		}
+		else
+		{
+			phase_two_timer--;
 		}
 	}
 }
@@ -194,7 +199,7 @@ void Enemy::Draw() const
 			break;
 		}
 
-		draw_box_size = Vector2D(140.f, 240.f);
+		draw_box_size = Vector2D(240.f) * (2 - timecard_size);
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, timecard, TRUE);
@@ -211,12 +216,23 @@ void Enemy::Draw() const
 			circle.BattleSquareDraw(pattern[pattern_cnt].size(), pattern[pattern_cnt], pattern_num[pattern_cnt]);
 		}
 		circle.TimeLimitCircleDraw();
+
+		draw_location = Vector2D(640.f, 360.f);
+		draw_box_size = Vector2D(256.f);
+		upper_left = draw_location - (draw_box_size / 2.f);
+		lower_right = draw_location + (draw_box_size / 2.f);
+
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 120);
+		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image_original, TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+		
 	}
 
 	if (anim_state != 0)
 	{
 		PhaseTwoAnimDraw();
 	}
+
 }
 
 void Enemy::Finalize()
@@ -249,6 +265,7 @@ void Enemy::StartBattlePhaseTwo()
 
 void Enemy::InBattlePhaseOne()
 {
+	PlaySoundMem(teki_idou_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 	phase_one_enemy_size += 3; //だんだん近づかせる
 	int result = QTESystem::InQTE();
 	if (result == success)
@@ -256,6 +273,8 @@ void Enemy::InBattlePhaseOne()
 		phase_one_enemy_size = 0;
 
 		timecard_flg = true;
+
+		PlaySoundMem(kougeki_1_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 
 		add_score = 10;
 		if (++phase_one_cnt > 3)
@@ -288,6 +307,7 @@ void Enemy::InBattlePhaseTwo()
 	if (res == success)
 	{
 		add_score = 10;
+		PlaySoundMem(kougeki_2_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		//一定回数こなしたら終わり
 		if (pattern_cnt == 0 && pattern_num[pattern_cnt] == 0)
 		{
@@ -297,18 +317,17 @@ void Enemy::InBattlePhaseTwo()
 			add_score = 100;
 			pattern_cnt = -1;
 			anim_state = 1;
+			PlaySoundMem(combo_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		else
 		{
-			//pattern_num--;
 			if (pattern_num[pattern_cnt]-- == 0)	//このタイミングで一行終了
 			{
 				pattern_cnt--;
 				font += 255;
 				add_score = 50;
-				//phase_two_timer = 1200.f;
 				anim_state = 1;
-
+				PlaySoundMem(mojikannsei_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 			}
 			state = 0;
 		}
@@ -365,27 +384,27 @@ bool Enemy::SetEnemyType(int type)
 	{
 	case arai:
 		image = rm->GetImages("Resource/Images/arai_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/arai_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/arai_aura.png")[0];
 		break;
 
 	case maesiro:
 		image = rm->GetImages("Resource/Images/maesiro_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/maesiro_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/maesiro_aura.png")[0];
 		break;
 
 	case maetu:
 		image = rm->GetImages("Resource/Images/maetu_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/maetu_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/maetu_aura.png")[0];
 		break;
 
 	case ryouka:
 		image = rm->GetImages("Resource/Images/ryouka_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/ryouka_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/ryouka_aura.png")[0];
 		break;
 
 	case toubaru:
 		image = rm->GetImages("Resource/Images/toubaru_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/toubaru_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/toubaru_aura.png")[0];
 		break;
 
 	default:
@@ -476,11 +495,6 @@ void Enemy::PhaseTwoAnimUpdate()
 		Vector2D center(640.f, 360.f);
 		Vector2D vec[4];
 
-	/*	vec[0] = Vector2D(-1, -1);
-		vec[1] = Vector2D(1, -1);
-		vec[2] = Vector2D(1, 1);
-		vec[3] = Vector2D(-1, 1);*/
-
 		vec[0] = Vector2D(Vector2D(0,0) - center).normalized();
 		vec[1] = Vector2D(Vector2D(1280, 0) - center).normalized();
 		vec[2] = Vector2D(Vector2D(1280, 720) - center).normalized();
@@ -489,7 +503,6 @@ void Enemy::PhaseTwoAnimUpdate()
 		for (int i = 0; i < 4; i++)
 		{
 			loc[i] = center + vec[i] * anim_len;
-
 			anim_location[i] = loc[i];
 		}
 
@@ -508,7 +521,6 @@ void Enemy::PhaseTwoAnimUpdate()
 		if (length <= 0.f)
 		{
 			anim_state = 2;
-			//anim_rate = 256.f;
 		}
 	}
 	else if (anim_state == 2)

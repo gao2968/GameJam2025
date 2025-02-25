@@ -11,7 +11,6 @@ private:
 	int enemy_cnt;	//Žc‚è‚Ì“G
 
 	int stopwatch_image;
-	int cursor_image;
 	int meibo_image;
 
 public:

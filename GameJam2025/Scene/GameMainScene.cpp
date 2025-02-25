@@ -10,6 +10,8 @@
 
 GameMainScene::GameMainScene()
 	:gamemain_sound(NULL)
+	, tekinosi_sound(NULL)
+	,damage_sound(NULL)
 {
 	
 }
@@ -54,8 +56,14 @@ void GameMainScene::Initialize()
 
 	gamemain_sound = rm->GetSounds("Resource/BGM/Sentou_1.mp3");
 
+	damage_sound = rm->GetSounds("Resource/SE/Damage.mp3");
+
+	tekinosi_sound = rm->GetSounds("Resource/SE/Tekinosi.mp3");
+
 	// 音楽がすでに再生中かどうかを確認
 	if (CheckSoundMem(gamemain_sound) == 0) {
+		// 音量を設定 (0〜255 の範囲内)
+		ChangeVolumeSoundMem(200, gamemain_sound); // ここで音量を設定
 		PlaySoundMem(gamemain_sound, DX_PLAYTYPE_BACK);
 	}
 
@@ -67,12 +75,13 @@ eSceneType GameMainScene::Update()
 {
 
 	ui->SetHp(hp);
+	ui->Setenemy_cnt(enemy_cnt);
 
 	if (result)
 	{
 		if(InputControl::GetButtonDown(XINPUT_BUTTON_A))
 		{
-			return E_TITLE;
+			return E_END;
 		}
 	}
 	else
@@ -114,23 +123,11 @@ eSceneType GameMainScene::Update()
 				if (object[i] == nullptr) continue;
 				object[i]->Movement(velocity);
 			}
-			//stage->Movement(velocity);
-			//enemy->Movement(velocity);
-
-			//player->Movement(GetInputVelocity());
-			//player->nearest_enemy_length = player->ObjectLength(enemy);//game objectに変更するかも 敵の数ループして最も近い敵との距離を入れる
 
 			if (Player* p = dynamic_cast<Player*>(object[player_num]))
 			{
 				p->Movement(GetInputVelocity());
-				//p->nearest_enemy_length = 9999.f;//game objectに変更するかも 敵の数ループして最も近い敵との距離を入れる
-				//for (int i = 2; i < object.size(); i++) //enemyが入ってる部分
-				//{
-				//	p->ObjectLength(object[i]);
-				//}
-
 				SearchNearestEnemy();
-
 
 				if (nearest_enemy != nullptr && p->ObjectLength(nearest_enemy) <= 50.f
 					&& InputControl::GetButtonDown(XINPUT_BUTTON_A) && nearest_enemy->battle_phase == 0)
@@ -146,19 +143,17 @@ eSceneType GameMainScene::Update()
 			break;
 
 		case BattlePhaseOne:
-			/*enemy->Update();
-			state = enemy->battle_phase;*/
-
 			nearest_enemy->Update();
 			state = nearest_enemy->battle_phase;
+			// 音量を設定 (0〜255 の範囲内)
+			ChangeVolumeSoundMem(140, gamemain_sound); // ここで音量を設定
 			break;
 
 		case BattlePhaseTwo:
-			//enemy->Update();
-			//state = enemy->battle_phase;
-
 			nearest_enemy->Update();
 			state = nearest_enemy->battle_phase;
+			// 音量を設定 (0〜255 の範囲内)
+			ChangeVolumeSoundMem(140, gamemain_sound); // ここで音量を設定
 			break;
 
 		case EndPhase:
@@ -167,7 +162,8 @@ eSceneType GameMainScene::Update()
 			if (nearest_enemy_num != -1)
 			{
 				object[nearest_enemy_num] = nullptr;
-			}
+			}// 音量を設定 (0〜255 の範囲内)
+			ChangeVolumeSoundMem(200, gamemain_sound); // ここで音量を設定
 			break;
 
 		default:
@@ -185,9 +181,9 @@ eSceneType GameMainScene::Update()
 		}
 
 		//シーンチェンジ
-		if (hp < 0 || enemy_cnt == 0/*(object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr)*/)
+		if (hp < 0 || enemy_cnt == 0)
 		{
-			//return E_TITLE;
+			score *= (hp / 60);
 			result = true;
 		}
 	}
@@ -202,6 +198,7 @@ eSceneType GameMainScene::Update()
 	{
 		return E_END;
 	}
+
 
 	return GetNowScene();
 }
@@ -255,8 +252,15 @@ void GameMainScene::Finalize()
 {
 	for (int i = 0; i < object.size(); i++)
 	{
+		object[i]->Finalize();
 		delete object[i];
 	}
+
+	// 音楽を止める
+	StopSoundMem(gamemain_sound);
+
+	ui->Finalize();
+	delete ui;
 }
 
 //    ݂̃V [     擾
@@ -273,15 +277,17 @@ void GameMainScene::DrawResult() const
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 	SetFontSize(128);
-	DrawString(450, 60, "RESULT", 0xffffff);
+	DrawString(400, 280, "GAMESET", 0xffffff);
 
-	SetFontSize(64);
+	/*SetFontSize(64);
 	int sec = hp / 60;
 	DrawFormatString(450, 250, 0xffffff, "残り時間 %d", sec);
 	DrawFormatString(450, 320, 0xffffff, "スコア %d", score);
-	DrawFormatString(280, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);
-	SetFontSize(24);
+	DrawFormatString(280, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);*/
 
+	SetFontSize(64);
+	DrawString(700, 600, "push to A button", 0xffffff);
+	SetFontSize(24);
 }
 
 Vector2D GameMainScene::GetInputVelocity()
@@ -341,7 +347,7 @@ void GameMainScene::CalculationHp()
 	case BattlePhaseOne:
 		if (nearest_enemy->miss)	//入力ミスで減少
 		{
-			hp -= 100;
+			hp -= 120;
 			nearest_enemy->miss = false;
 		}
 		hp -= 1;
@@ -350,8 +356,9 @@ void GameMainScene::CalculationHp()
 	case BattlePhaseTwo:
 		if (nearest_enemy->miss)
 		{
-			hp -= 100;
+			hp -= 120;
 			nearest_enemy->miss = false;
+			PlaySoundMem(damage_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		hp -= 1;
 		break;
@@ -359,7 +366,7 @@ void GameMainScene::CalculationHp()
 	case EndPhase:
 		if (nearest_enemy->result)
 		{
-			hp += 1000;	//除霊で回復
+			hp += 600;	//除霊で回復
 		}
 		break;
 

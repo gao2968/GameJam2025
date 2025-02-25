@@ -45,7 +45,7 @@ QTEState QTESystem::InQTE()
 {
 	//timer_qte += 100.f / elapsed_time;
 
-	if (elapsed_time-- < 0.f)
+	if (elapsed_time-- <= 0.f)
 	//if (timer_qte >= 100.f)
 	{
 		elapsed_time = -1.f;
