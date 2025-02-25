@@ -58,9 +58,6 @@ void GameMainScene::Initialize()
 	if (CheckSoundMem(gamemain_sound) == 0) {
 		PlaySoundMem(gamemain_sound, DX_PLAYTYPE_BACK);
 	}
-
-	contact_se = rm->GetSounds("Resource/SE/Tekimikke.mp3");
-
 }
 
 eSceneType GameMainScene::Update()
@@ -72,7 +69,7 @@ eSceneType GameMainScene::Update()
 	{
 		if(InputControl::GetButtonDown(XINPUT_BUTTON_A))
 		{
-			return E_END;
+			return E_TITLE;
 		}
 	}
 	else
@@ -114,19 +111,29 @@ eSceneType GameMainScene::Update()
 				if (object[i] == nullptr) continue;
 				object[i]->Movement(velocity);
 			}
+			//stage->Movement(velocity);
+			//enemy->Movement(velocity);
+
+			//player->Movement(GetInputVelocity());
+			//player->nearest_enemy_length = player->ObjectLength(enemy);//game objectに変更するかも 敵の数ループして最も近い敵との距離を入れる
 
 			if (Player* p = dynamic_cast<Player*>(object[player_num]))
 			{
 				p->Movement(GetInputVelocity());
+				//p->nearest_enemy_length = 9999.f;//game objectに変更するかも 敵の数ループして最も近い敵との距離を入れる
+				//for (int i = 2; i < object.size(); i++) //enemyが入ってる部分
+				//{
+				//	p->ObjectLength(object[i]);
+				//}
+
 				SearchNearestEnemy();
 
-				if (nearest_enemy != nullptr && p->ObjectLength(nearest_enemy) <= 50.f
+
+				if (nearest_enemy != nullptr && p->ObjectLength(nearest_enemy) <= 100.f
 					&& InputControl::GetButtonDown(XINPUT_BUTTON_A) && nearest_enemy->battle_phase == 0)
 				{
 					nearest_enemy->StartBattlePhaseOne();
 					state = BattlePhaseOne;
-					PlaySoundMem(contact_se, DX_PLAYTYPE_BACK, TRUE);
-
 				}
 			}
 
@@ -134,11 +141,17 @@ eSceneType GameMainScene::Update()
 			break;
 
 		case BattlePhaseOne:
+			/*enemy->Update();
+			state = enemy->battle_phase;*/
+
 			nearest_enemy->Update();
 			state = nearest_enemy->battle_phase;
 			break;
 
 		case BattlePhaseTwo:
+			//enemy->Update();
+			//state = enemy->battle_phase;
+
 			nearest_enemy->Update();
 			state = nearest_enemy->battle_phase;
 			break;
@@ -167,11 +180,17 @@ eSceneType GameMainScene::Update()
 		}
 
 		//シーンチェンジ
-		if (hp < 0 || enemy_cnt == 0)
+		if (hp < 0 || enemy_cnt == 0/*(object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr)*/)
 		{
-			score *= (hp / 60);
+			//return E_TITLE;
 			result = true;
 		}
+	}
+
+	//シーンチェンジ
+	if (hp < 0 || enemy_cnt == 0/*(object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr)*/)
+	{
+		return E_END;
 	}
 
 	return GetNowScene();
@@ -244,34 +263,32 @@ void GameMainScene::DrawResult() const
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 	SetFontSize(128);
-	DrawString(400, 280, "GAMESET", 0xffffff);
+	DrawString(450, 60, "RESULT", 0xffffff);
 
-	/*SetFontSize(64);
+	SetFontSize(64);
 	int sec = hp / 60;
 	DrawFormatString(450, 250, 0xffffff, "残り時間 %d", sec);
 	DrawFormatString(450, 320, 0xffffff, "スコア %d", score);
-	DrawFormatString(280, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);*/
-
-	SetFontSize(64);
-	DrawString(700, 600, "push to A button", 0xffffff);
+	DrawFormatString(280, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);
 	SetFontSize(24);
+
 }
 
 Vector2D GameMainScene::GetInputVelocity()
 {
-	Vector2D velocity = InputControl::GetLeftStick();
+	Vector2D velocity;
 
-	if (fabsf(velocity.x) <= 0.2f)
+	velocity = InputControl::GetLeftStick() * 10.f;
+
+	if (fabsf(velocity.x) <= 0.1f)
 	{
 		velocity.x = 0.f;
 	}
 
-	if (fabsf(velocity.y) <= 0.2f)
+	if (fabsf(velocity.y) <= 0.1f)
 	{
 		velocity.y = 0.f;
 	}
-
-	velocity *=10.f;
 
 	return velocity;
 }
@@ -314,7 +331,7 @@ void GameMainScene::CalculationHp()
 	case BattlePhaseOne:
 		if (nearest_enemy->miss)	//入力ミスで減少
 		{
-			hp -= 120;
+			hp -= 100;
 			nearest_enemy->miss = false;
 		}
 		hp -= 1;
@@ -323,7 +340,7 @@ void GameMainScene::CalculationHp()
 	case BattlePhaseTwo:
 		if (nearest_enemy->miss)
 		{
-			hp -= 120;
+			hp -= 100;
 			nearest_enemy->miss = false;
 		}
 		hp -= 1;
@@ -332,7 +349,7 @@ void GameMainScene::CalculationHp()
 	case EndPhase:
 		if (nearest_enemy->result)
 		{
-			hp += 600;	//除霊で回復
+			hp += 1000;	//除霊で回復
 		}
 		break;
 

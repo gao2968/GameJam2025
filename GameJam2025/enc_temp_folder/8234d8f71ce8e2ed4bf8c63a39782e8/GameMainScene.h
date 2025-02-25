@@ -42,9 +42,6 @@ private:
 	bool result;
 
 	int frame;
-
-	int contact_se;
-
 public:
 	GameMainScene();
 	~GameMainScene();

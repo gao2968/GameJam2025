@@ -76,6 +76,11 @@ eSceneType EndScene::Update()
 		}
 	}
 
+	if (game->GetScore())
+	{
+		DrawFormatString(450, 250, 0xffffff, "%d");
+	}
+
 	return GetNowScene();
 
 }
