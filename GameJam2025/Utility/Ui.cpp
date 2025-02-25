@@ -5,7 +5,6 @@
 
 Ui::Ui()
 	: stopwatch_image(NULL)
-	, cursor_image(NULL)
 	, meibo_image(NULL)
 {
 
@@ -23,8 +22,6 @@ void Ui::Initialize()
 
 	stopwatch_image = rm->GetImages("Resource/Images/stopwatch.png")[0];
 
-	cursor_image = rm->GetImages("Resource/Images/cursor.png")[0];
-
 	meibo_image = rm->GetImages("Resource/Images/meibo.png")[0];
 }
 
@@ -40,14 +37,13 @@ void Ui::Draw()
 	// ストップウォッチ画像の描画
 	DrawRotaGraph(140, 620, 0.5, 0.0, stopwatch_image, TRUE);
 
-	// カーソル画像の描画
-	DrawRotaGraph(644, 372, 0.2, 0.0, cursor_image, TRUE);
-
 	// 名簿画像の描画
 	DrawRotaGraph(140, 120, 0.37, 0.0, meibo_image, TRUE);
 
 	DrawFormatString(115, 532, 0x000000, "TIME\n%d", hp / 60);
 	DrawFormatString(50, 82, 0xff0000, "score %d", score);
+	DrawFormatString(150, 82, 0xff0000, "enemy %d", enemy_cnt);
+
 }
 
 void Ui::Finalize()
