@@ -115,6 +115,9 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 	int i = square;
 	num += 1;
 
+	int SlideX = 0;
+	int SlideY = 0;
+
 	//三角形の描画
 	if (i == 3)
 	{
@@ -127,7 +130,18 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(720, 370, button_images[button[1]], TRUE);
 			DrawGraph(580, 125, button_images[button[2]], TRUE);
 
-			DrawGraph(580, 125, cursor_aura, TRUE);
+			if (miss_flg)
+			{
+				SlideX = GetRand(6) - 3;
+				SlideY = GetRand(6) - 3;	
+
+				DrawGraph(580 + SlideX, 125 + SlideY, cursor_aura, TRUE);
+
+			}
+			else
+			{
+				DrawGraph(580, 125, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 2)
 		{
@@ -473,8 +487,10 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 }
 
 //制限時間の更新
-void TimeLimitCircle::TimeLimitCircleUpdate(float time)
+void TimeLimitCircle::TimeLimitCircleUpdate(float time, bool miss)
 {
+	miss_flg = miss;
+
 	//360フレームで一周するように角度％の値を加算
 	AnglePercent += 100.0 / time;
 

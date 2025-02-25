@@ -105,7 +105,7 @@ void Enemy::Update()
 
 		case 1:
 			InBattlePhaseTwo();
-			circle.TimeLimitCircleUpdate(1200);
+			circle.TimeLimitCircleUpdate(1200, miss);
 			break;
 
 		case 2:

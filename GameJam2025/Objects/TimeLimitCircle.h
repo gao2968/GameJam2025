@@ -8,10 +8,11 @@ private:
 	int button_images[4];
 	int button_images_outline[4];
 	int cursor_aura;
+	bool miss_flg;
 public:
 	void TimeLimitCircleInit(void);
 	void TimeLimitCircleDraw(void) const;
 	int BattleSquareDraw(int square, std::vector<int> button, int num) const;
-	void TimeLimitCircleUpdate(float time);
+	void TimeLimitCircleUpdate(float time, bool miss);
 };
 
