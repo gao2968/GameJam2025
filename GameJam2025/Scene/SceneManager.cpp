@@ -6,6 +6,8 @@
 #include "HelpScene.h"
 #include "EndScene.h"
 #include "RankingScene.h"
+#include "Help2.h"
+#include "Help3.h"
 
 
 SceneManager::SceneManager() : current_scene(nullptr)
@@ -170,6 +172,10 @@ SceneBase* SceneManager::CreateScene(eSceneType scene_type)
 		return new EndScene;
 	case eSceneType::E_RANKING:
 		return new RankingScene;
+	case eSceneType::E_HELP2:
+		return new Help2;
+	case eSceneType::E_HELP3:
+		return new Help3;
 	default:
 		return nullptr;
 	}

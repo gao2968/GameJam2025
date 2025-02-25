@@ -9,7 +9,9 @@ enum eSceneType
 	E_END,
 	E_RANKING,
 	E_TEST = 99,
-	E_OWARI
+	E_OWARI,
+	E_HELP2,
+	E_HELP3
 };
 
 //���V�[���N���X
