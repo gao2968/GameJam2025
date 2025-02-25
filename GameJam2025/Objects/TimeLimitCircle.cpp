@@ -124,7 +124,9 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 	if (i == 3)
 	{
 		//�}�`�̕`��
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
 		DrawTriangle(460, 475, 830, 475, 645, 125, GetColor(255, 255, 255), TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 		//�{�^���̕`��
 		if (num == 3) {
@@ -198,8 +200,10 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 	if (i == 4)
 	{
 		//�}�`�̕`��
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
 		DrawTriangle(430, 350, 860, 350, 645, 130, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(430, 350, 860, 350, 645, 560, GetColor(255, 255, 255), TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 		//�{�^���̕`��
 		if (num == 4) 
@@ -299,9 +303,11 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 	if (i == 5)
 	{
 		//�}�`�̕`��
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
 		DrawTriangle(440, 270, 645, 130, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 270, 525, 530, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(525, 530, 765, 530, 850, 270, GetColor(255, 255, 255), TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 		//�{�^���̕`��
 		if (num == 5)
@@ -428,10 +434,12 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 	if (i == 6)
 	{
 		//�}�`�̕`��
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
 		DrawTriangle(440, 270, 645, 130, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 270, 440, 430, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 430, 850, 430, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 430, 645, 570, 850, 430, GetColor(255, 255, 255), TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 		//�{�^���̕`��
 		if (num == 6)
@@ -587,11 +595,13 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 	if (i == 7)
 	{
 		//�}�`�̕`��
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 150);
 		DrawTriangle(460, 230, 645, 130, 830, 230, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(460, 230, 430, 380, 830, 230, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(430, 380, 860, 380, 830, 230, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(430, 380, 550, 550, 860, 380, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(550, 550, 730, 550, 860, 380, GetColor(255, 255, 255), TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 		//�{�^���̕`��
 		if (num == 7)
