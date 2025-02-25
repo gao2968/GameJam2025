@@ -44,6 +44,8 @@ private:
 	float anim_len;
 	Vector2D anim_location[4];
 	float anim_rate = 1024.f;
+
+	int image_original; //透過してない画像
 public:
 	Enemy();
 	virtual ~Enemy();
