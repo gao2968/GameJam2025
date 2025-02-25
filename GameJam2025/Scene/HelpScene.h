@@ -5,6 +5,7 @@ class HelpScene : public SceneBase
 {
 private:
 	int help_image;
+	int next;
 public:
 	HelpScene();
 	virtual ~HelpScene();

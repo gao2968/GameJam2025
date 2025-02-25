@@ -19,6 +19,8 @@ private:
 	int ran;
 	int ran_red;
 	int kao;
+	int kasoru;
+	int kakutei;
 	EndSelect sel;
 public:
 	EndScene();

@@ -11,6 +11,8 @@ EndScene::EndScene() :
 	ran_red(NULL),
 	kao(NULL),
 	sel(EndSelect::Title)
+	,kasoru(NULL)
+	,kakutei(NULL)
 {
 	
 }
@@ -30,12 +32,16 @@ void EndScene::Initialize()
 	ran = rm->GetImages("Resource/Images/ranking.png")[0];
 	ran_red = rm->GetImages("Resource/Images/ranking_red.png")[0];
 	kao = rm->GetImages("Resource/Images/point.png")[0];
+
+	kasoru = rm->GetSounds("Resource/SE/ka-soru.mp3");
+	kakutei = rm->GetSounds("Resource/SE/kakutei.mp3");
 }
 
 eSceneType EndScene::Update()
 {
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_DOWN))
 	{
+		PlaySoundMem(kasoru, DX_PLAYTYPE_BACK);
 		if (sel == EndSelect::Ran)
 		{
 			sel = EndSelect::Title;
@@ -47,6 +53,7 @@ eSceneType EndScene::Update()
 	}
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_UP))
 	{
+		PlaySoundMem(kasoru, DX_PLAYTYPE_BACK);
 		if (sel == EndSelect::Title)
 		{
 			sel = EndSelect::Ran;
@@ -58,6 +65,7 @@ eSceneType EndScene::Update()
 	}
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_A))
 	{
+		PlaySoundMem(kakutei, DX_PLAYTYPE_BACK);
 		if (sel == EndSelect::Ran)
 		{
 			return eSceneType::E_RANKING;

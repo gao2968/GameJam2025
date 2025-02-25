@@ -33,6 +33,8 @@ private:
 	int kao2;
 	int kao3;
 	int kao4;
+	int kasoru;
+	int kakutei;
 	bool end_flg;
 	TitleSelect select;
 

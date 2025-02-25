@@ -18,6 +18,8 @@ TitleScene::TitleScene()
 	, kao2(NULL)
 	, kao3(NULL)
 	, kao4(NULL)
+	,kasoru(NULL)
+	,kakutei(NULL)
 	, select(TitleSelect::InGame)
 	, end_flg(false)
 {
@@ -48,6 +50,10 @@ void TitleScene::Initialize()
 	kao2 = rm->GetImages("Resource/Images/point2.png")[0];
 	kao3 = rm->GetImages("Resource/Images/point3.png")[0];
 	kao4 = rm->GetImages("Resource/Images/point4.png")[0];
+
+	kasoru = rm->GetSounds("Resource/SE/ka-soru.mp3");
+	kakutei = rm->GetSounds("Resource/SE/kakutei.mp3");
+
 	
 	SetFontSize(60);
 }
@@ -56,6 +62,7 @@ eSceneType TitleScene::Update()
 {
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_DOWN))
 	{
+		PlaySoundMem(kasoru, DX_PLAYTYPE_BACK);
 		if (select == TitleSelect::EXIT)
 		{
 			select = TitleSelect::InGame;
@@ -75,6 +82,7 @@ eSceneType TitleScene::Update()
 	}
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_DPAD_UP))
 	{
+		PlaySoundMem(kasoru, DX_PLAYTYPE_BACK);
 		if (select == TitleSelect::InGame)
 		{
 			select = TitleSelect::EXIT;
@@ -94,6 +102,7 @@ eSceneType TitleScene::Update()
 	}
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_A))
 	{
+		PlaySoundMem(kakutei, DX_PLAYTYPE_BACK);
 		if (select == TitleSelect::EXIT)
 		{
 			return eSceneType::E_OWARI;

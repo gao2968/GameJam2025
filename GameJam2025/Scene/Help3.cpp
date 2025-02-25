@@ -5,6 +5,7 @@
 
 Help3::Help3()
 	: help_image(NULL)
+	, next(NULL)
 {
 
 }
@@ -21,12 +22,15 @@ void Help3::Initialize()
 	ResourceManager* rm = ResourceManager::GetInstance();
 
 	help_image = rm->GetImages("Resource/Images/Help3.png")[0];
+	next = rm->GetSounds("Resource/SE/kakutei.mp3");
+
 }
 //�X�V����
 eSceneType Help3::Update()
 {
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_B))
 	{
+		PlaySoundMem(next, DX_PLAYTYPE_BACK);
 		return eSceneType::E_TITLE;
 	}
 	return GetNowScene();
