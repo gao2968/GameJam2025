@@ -76,6 +76,7 @@ eSceneType GameMainScene::Update()
 
 	ui->SetHp(hp);
 	ui->Setenemy_cnt(enemy_cnt);
+	ui->SetScore(score);
 
 	if (result)
 	{
