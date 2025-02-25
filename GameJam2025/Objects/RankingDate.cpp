@@ -82,21 +82,7 @@ void RankingDate::SortData()
 		}
 	}
 
-	// 順位を整列させる
-	for (int i = 0; i < 5; i++)
-	{
-		rank[i] = 1;
-	}
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = i + 1; j < 6; j++)
-		{
-			if (score[i] > score[j])
-			{
-				rank[j]++;
-			}
-		}
-	}
+	
 
 	// ランキングデータの書き込み
 	FILE* fp = nullptr;
@@ -113,7 +99,7 @@ void RankingDate::SortData()
 	// 対象ファイルに書き込み
 	for (int i = 0; i < 5; i++)
 	{
-		fprintf(fp, "%d,%d,\n", score[i], rank[i]);
+		fprintf(fp, "%d,%d,\n", score[i]);
 	}
 
 	// ファイルクローズ
