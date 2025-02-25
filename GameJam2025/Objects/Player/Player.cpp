@@ -30,6 +30,12 @@ void Player::Initialize()
 
 	ResourceManager* rm = ResourceManager::GetInstance();
 	cursor = rm->GetImages("Resource/Images/cursor.png")[0];
+
+	cursor_se[0] = rm->GetSounds("Resource/SE/Teki_search_1.mp3");
+	cursor_se[1] = rm->GetSounds("Resource/SE/Teki_search_2.mp3");
+	cursor_se[2] = rm->GetSounds("Resource/SE/Teki_search_3.mp3");
+
+	//SetFrequencySoundMem(15000, cursor_se[0]);
 }
 
 void Player::Update()
@@ -77,6 +83,29 @@ void Player::Update()
 			oval_flg = !oval_flg;
 		}
 	}
+
+	if (nearest_enemy_length >= 200.f)
+	{
+		if (!CheckSoundMem(cursor_se[0]))
+		{
+			PlaySoundMem(cursor_se[0], DX_PLAYTYPE_BACK, TRUE);
+		}
+	}
+	else if (nearest_enemy_length < 100.f)
+	{
+		if (!CheckSoundMem(cursor_se[2])) 
+		{
+			PlaySoundMem(cursor_se[2], DX_PLAYTYPE_BACK, TRUE);
+		}
+	}
+	else if (nearest_enemy_length < 200.f)
+	{
+		if (!CheckSoundMem(cursor_se[1]))
+		{
+			PlaySoundMem(cursor_se[1], DX_PLAYTYPE_BACK, TRUE);
+		}
+	}
+	
 }
 
 void Player::Draw() const

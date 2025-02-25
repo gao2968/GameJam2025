@@ -58,6 +58,9 @@ void GameMainScene::Initialize()
 	if (CheckSoundMem(gamemain_sound) == 0) {
 		PlaySoundMem(gamemain_sound, DX_PLAYTYPE_BACK);
 	}
+
+	contact_se = rm->GetSounds("Resource/SE/Tekimikke.mp3");
+
 }
 
 eSceneType GameMainScene::Update()
@@ -129,11 +132,13 @@ eSceneType GameMainScene::Update()
 				SearchNearestEnemy();
 
 
-				if (nearest_enemy != nullptr && p->ObjectLength(nearest_enemy) <= 100.f
+				if (nearest_enemy != nullptr && p->ObjectLength(nearest_enemy) <= 50.f
 					&& InputControl::GetButtonDown(XINPUT_BUTTON_A) && nearest_enemy->battle_phase == 0)
 				{
 					nearest_enemy->StartBattlePhaseOne();
 					state = BattlePhaseOne;
+					PlaySoundMem(contact_se, DX_PLAYTYPE_BACK, TRUE);
+
 				}
 			}
 
@@ -276,19 +281,19 @@ void GameMainScene::DrawResult() const
 
 Vector2D GameMainScene::GetInputVelocity()
 {
-	Vector2D velocity;
+	Vector2D velocity = InputControl::GetLeftStick();
 
-	velocity = InputControl::GetLeftStick() * 10.f;
-
-	if (fabsf(velocity.x) <= 0.1f)
+	if (fabsf(velocity.x) <= 0.2f)
 	{
 		velocity.x = 0.f;
 	}
 
-	if (fabsf(velocity.y) <= 0.1f)
+	if (fabsf(velocity.y) <= 0.2f)
 	{
 		velocity.y = 0.f;
 	}
+
+	velocity *=10.f;
 
 	return velocity;
 }

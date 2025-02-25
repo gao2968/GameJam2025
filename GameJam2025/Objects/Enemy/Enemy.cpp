@@ -49,6 +49,12 @@ void Enemy::Initialize()
 	sya_image = rm->GetImages("Resource/Images/sya_128.png")[0];
 	taisya_image = rm->GetImages("Resource/Images/taisya_fonts_200.png")[0];
 
+	lose_se = rm->GetSounds("Resource/SE/Tekinosi.mp3");
+	attack_se[0] = rm->GetSounds("Resource/SE/Kougeki_1.mp3");
+	attack_se[1] = rm->GetSounds("Resource/SE/Kougeki_2.mp3");
+	damage_se = rm->GetSounds("Resource/SE/Damage.mp3");
+	taisya_se = rm->GetSounds("Resource/SE/Combo.mp3");
+
 	anim_len = 500.f;
 	anim_state = 0;
 	anim_rate = 512.f;
@@ -194,7 +200,6 @@ void Enemy::Draw() const
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, timecard, TRUE);
 	}
 
-
 	if (battle_phase == 2)
 	{
 		if (pattern_cnt == -1)
@@ -207,9 +212,6 @@ void Enemy::Draw() const
 		}
 		circle.TimeLimitCircleDraw();
 	}
-
-	
-
 
 	if (anim_state != 0)
 	{
@@ -267,6 +269,8 @@ void Enemy::InBattlePhaseOne()
 			timecard_button = QTESystem::GetButtonPhaseOne();
 			StartBattlePhaseOne();
 		}
+
+		PlaySoundMem(attack_se[0], DX_PLAYTYPE_BACK, TRUE);
 	}
 	else if (result == faild)
 	{
@@ -274,6 +278,7 @@ void Enemy::InBattlePhaseOne()
 		StartBattlePhaseOne();
 		miss = true;
 		phase_one_enemy_size = 0;
+		PlaySoundMem(damage_se, DX_PLAYTYPE_BACK, TRUE);
 	}
 }
 
@@ -307,7 +312,7 @@ void Enemy::InBattlePhaseTwo()
 			}
 			state = 0;
 		}
-		
+		PlaySoundMem(attack_se[1], DX_PLAYTYPE_BACK, TRUE);
 	}
 	else if (res == input_faild)
 	{
@@ -334,6 +339,7 @@ void Enemy::EndBattlePhaseTwo()
 {
 	battle_phase = 99;
 	state = 0;
+	PlaySoundMem(lose_se, DX_PLAYTYPE_BACK, TRUE);
 }
 
 void Enemy::InitializationForRestart()
@@ -346,7 +352,7 @@ void Enemy::InitializationForRestart()
 
 	for (int i = 0; i < 3; i++)
 	{
-		pattern_num.push_back(pattern[i].size() - 1);
+		pattern_num[i] = (pattern[i].size() - 1);
 		pattern_cnt = i;
 	}
 }
@@ -379,7 +385,7 @@ bool Enemy::SetEnemyType(int type)
 
 	case toubaru:
 		image = rm->GetImages("Resource/Images/toubaru_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/maesiro_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/toubaru_512_org.png")[0];
 		break;
 
 	default:
@@ -394,6 +400,11 @@ void Enemy::PhaseTwoAnimDraw() const
 {
 	if (anim_state == 1)	//四方から来るほう
 	{
+		if (!CheckSoundMem(taisya_se))
+		{
+			PlaySoundMem(taisya_se, DX_PLAYTYPE_BACK, TRUE);
+		}
+
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 210);
 
 		for (int i = 0; i < 4; i++)

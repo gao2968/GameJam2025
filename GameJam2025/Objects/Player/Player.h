@@ -12,6 +12,8 @@ private:
 	float speed;
 
 	int cursor;
+
+	int cursor_se[3];
 public:
 	Player();
 	virtual ~Player();
