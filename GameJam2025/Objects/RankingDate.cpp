@@ -4,7 +4,7 @@
 
 RankingDate::RankingDate()
 {
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		score[i] = NULL;
 	}
@@ -31,7 +31,7 @@ void RankingDate::Initialize()
 	}
 
 	// 対象ファイルから読み込む
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		fscanf_s(fp, "%6d\n", &score[i]);
 	}
@@ -40,7 +40,7 @@ void RankingDate::Initialize()
 	fclose(fp);
 
 	// 末尾データの設定
-	score[5] = 0;
+	score[3] = 0;
 }
 
 // 終了処理
@@ -52,7 +52,7 @@ void RankingDate::Finalize()
 // データ設定処理
 void RankingDate::SetRankingDate(int score, const char* name)
 {
-	this->score[5] = score;
+	this->score[3] = score;
 
 	SortData();
 }
@@ -68,9 +68,9 @@ int RankingDate::GetScore(int value) const
 void RankingDate::SortData()
 {
 	// 選択法ソートを使用し、降順で入れ替える
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		for (int j = i + 1; j < 6; j++)
+		for (int j = i + 1; j < 4; j++)
 		{
 			if (score[i] <= score[j])
 			{
@@ -97,9 +97,9 @@ void RankingDate::SortData()
 	}
 
 	// 対象ファイルに書き込み
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		fprintf(fp, "%d,%d,\n", score[i]);
+		fprintf(fp, "%d\n", score[i]);
 	}
 
 	// ファイルクローズ

@@ -48,9 +48,9 @@ void RankingScene::Draw() const
 	DrawRotaGraph(640, 360, 1.0, 0.0, ranking_image, TRUE);
 
 	//　取得したランキングデータを描画する
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		DrawFormatString(50, 170 + i * 25, 0xffffff, "%2d", ranking->GetScore(i));
+		DrawFormatString(600, 170 + i * 180, 0xffffff, "%2d", ranking->GetScore(i));
 	}
 
 }

@@ -3,8 +3,7 @@
 class RankingDate
 {
 private:
-	int score[6];  //スコアデータ
-	int rank[6];  //ランクデータ
+	int score[4];  //スコアデータ
 
 public:
 	RankingDate();
