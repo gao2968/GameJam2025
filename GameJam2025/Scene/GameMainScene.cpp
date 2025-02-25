@@ -240,10 +240,15 @@ void GameMainScene::Finalize()
 {
 	for (int i = 0; i < object.size(); i++)
 	{
+		object[i]->Finalize();
 		delete object[i];
 	}
+
 	// 音楽を止める
 	StopSoundMem(gamemain_sound);
+
+	ui->Finalize();
+	delete ui;
 }
 
 //    ݂̃V [     擾

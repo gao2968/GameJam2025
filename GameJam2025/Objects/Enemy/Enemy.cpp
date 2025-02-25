@@ -221,7 +221,11 @@ void Enemy::Draw() const
 		draw_box_size = Vector2D(256.f);
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
+
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 120);
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image_original, TRUE);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+		
 	}
 
 	if (anim_state != 0)
