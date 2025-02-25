@@ -101,12 +101,14 @@ void TimeLimitCircle::TimeLimitCircleInit(void)
 	button_images_outline[3] = LoadGraph("Resource/Images/xbox_button_color_y_outline.png");
 }
 
+
 //制限時間の円型ゲージの描画
 void TimeLimitCircle::TimeLimitCircleDraw(void) const
 {
 	//円のグラフの描画
 	DrawCircleGauge(645, 350, 100.0, timelimit_circle_image, AnglePercent);
 }
+
 
 //戦闘時のコマンド画面の描画
 int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int num) const
@@ -130,14 +132,15 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(720, 370, button_images[button[1]], TRUE);
 			DrawGraph(580, 125, button_images[button[2]], TRUE);
 
+			//ミスした場合
 			if (miss_flg)
 			{
-				SlideX = GetRand(6) - 3;
-				SlideY = GetRand(6) - 3;	
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;	
 
 				DrawGraph(580 + SlideX, 125 + SlideY, cursor_aura, TRUE);
-
 			}
+			//ミスしていない場合
 			else
 			{
 				DrawGraph(580, 125, cursor_aura, TRUE);
@@ -149,7 +152,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(720, 370, button_images[button[1]], TRUE);
 			DrawGraph(580, 125, button_images_outline[button[2]], TRUE);
 
-			DrawGraph(720, 370, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(720 + SlideX, 370 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(720, 370, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 1)
 		{
@@ -157,7 +172,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(720, 370, button_images_outline[button[1]], TRUE);
 			DrawGraph(580, 125, button_images_outline[button[2]], TRUE);
 
-			DrawGraph(440, 370, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(440 + SlideX, 370 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(440, 370, cursor_aura, TRUE);
+			}
 		}
 		else
 		{
@@ -182,7 +209,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 280, button_images[button[2]], TRUE);
 			DrawGraph(580, 120, button_images[button[3]], TRUE);
 
-			DrawGraph(580, 120, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(580 + SlideX, 120 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(580, 120, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 3)
 		{
@@ -191,7 +230,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 280, button_images[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
 
-			DrawGraph(740, 280, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(740 + SlideX, 280 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(740, 280, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 2)
 		{
@@ -200,7 +251,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 280, button_images_outline[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
 
-			DrawGraph(580, 450, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(580 + SlideX, 450 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(580, 450, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 1)
 		{
@@ -209,7 +272,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 280, button_images_outline[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
 
-			DrawGraph(420, 280, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(420 + SlideX, 280 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(420, 280, cursor_aura, TRUE);
+			}
 		}
 		else
 		{
@@ -237,7 +312,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images[button[3]], TRUE);
 			DrawGraph(580, 115, button_images[button[4]], TRUE);
 
-			DrawGraph(580, 115, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(580 + SlideX, 115 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(580, 115, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 4)
 		{
@@ -247,7 +334,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
 
-			DrawGraph(740, 230, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(740 + SlideX, 230 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(740, 230, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 3)
 		{
@@ -257,7 +356,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
 
-			DrawGraph(690, 440, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(690 + SlideX, 440 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(690, 440, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 2)
 		{
@@ -267,7 +378,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
 
-			DrawGraph(480, 440, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(480 + SlideX, 440 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(480, 440, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 1)
 		{
@@ -277,7 +400,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
 
-			DrawGraph(420, 230, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(420 + SlideX, 230 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(420, 230, cursor_aura, TRUE);
+			}
 		}
 		else
 		{
@@ -308,7 +443,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images[button[4]], TRUE);
 			DrawGraph(580, 115, button_images[button[5]], TRUE);
 
-			DrawGraph(580, 115, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(580 + SlideX, 115 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(580, 115, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 5)
 		{
@@ -319,7 +466,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			DrawGraph(740, 210, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(740 + SlideX, 210 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(740, 210, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 4)
 		{
@@ -330,7 +489,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			DrawGraph(740, 370, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(740 + SlideX, 370 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(740, 370, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 3)
 		{
@@ -341,7 +512,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			DrawGraph(580, 460, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(580 + SlideX, 460 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(580, 460, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 2)
 		{
@@ -352,7 +535,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			DrawGraph(420, 370, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(420 + SlideX, 370 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(420, 370, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 1)
 		{
@@ -363,7 +558,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			DrawGraph(420, 210, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(420 + SlideX, 210 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(420, 210, cursor_aura, TRUE);
+			}
 		}
 		else
 		{
@@ -397,7 +604,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images[button[5]], TRUE);
 			DrawGraph(580, 115, button_images[button[6]], TRUE);
 
-			DrawGraph(580, 115, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(580 + SlideX, 115 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(580, 115, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 6)
 		{
@@ -409,7 +628,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			DrawGraph(740, 200, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(740 + SlideX, 200 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(740, 200, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 5)
 		{
@@ -421,7 +652,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			DrawGraph(760, 340, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(760 + SlideX, 340 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(760, 340, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 4)
 		{
@@ -433,7 +676,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			DrawGraph(680, 460, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(680 + SlideX, 460 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(680, 460, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 3)
 		{
@@ -445,7 +700,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			DrawGraph(500, 460, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(500 + SlideX, 460 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(500, 460, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 2)
 		{
@@ -457,7 +724,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			DrawGraph(400, 340, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(400 + SlideX, 340 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(400, 340, cursor_aura, TRUE);
+			}
 		}
 		else if (num == 1)
 		{
@@ -469,7 +748,19 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			DrawGraph(420, 200, cursor_aura, TRUE);
+			//ミスした場合
+			if (miss_flg)
+			{
+				SlideX = GetRand(20) - 15;
+				SlideY = GetRand(20) - 15;
+
+				DrawGraph(420 + SlideX, 200 + SlideY, cursor_aura, TRUE);
+			}
+			//ミスしていない場合
+			else
+			{
+				DrawGraph(420, 200, cursor_aura, TRUE);
+			}
 		}
 		else
 		{
