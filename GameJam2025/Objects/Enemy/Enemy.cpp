@@ -47,10 +47,11 @@ void Enemy::Initialize()
 	timecard = rm->GetImages("Resource/Images/time_card.png")[0];
 	tai_image = rm->GetImages("Resource/Images/tai_128.png")[0];
 	sya_image = rm->GetImages("Resource/Images/sya_128.png")[0];
-	taisya_image = rm->GetImages("Resource/Images/taisya_fonts_.png")[0];
+	taisya_image = rm->GetImages("Resource/Images/taisya_fonts_200.png")[0];
 
 	anim_len = 500.f;
 	anim_state = 0;
+	anim_rate = 512.f;
 	circle.TimeLimitCircleInit();
 }
 
@@ -109,7 +110,10 @@ void Enemy::Update()
 			break;
 
 		case 2:
-			EndBattlePhaseTwo();
+			if (anim_state == 0)
+			{
+				EndBattlePhaseTwo();
+			}
 			break;
 
 		default:
@@ -155,13 +159,13 @@ void Enemy::Draw() const
 
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
-		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image, TRUE);
+		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image_original, TRUE);
 
 		draw_location = Vector2D(640.f, 360.f);
 		draw_box_size = Vector2D(256.f);
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
-		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image, TRUE);
+		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image_original, TRUE);
 	}
 
 	if (timecard_flg)
@@ -193,7 +197,14 @@ void Enemy::Draw() const
 
 	if (battle_phase == 2)
 	{
-		circle.BattleSquareDraw(pattern[pattern_cnt].size(), pattern[pattern_cnt], pattern_num[pattern_cnt]);
+		if (pattern_cnt == -1)
+		{
+			circle.BattleSquareDraw(pattern[0].size(), pattern[0], pattern_num[0]);
+		}
+		else
+		{
+			circle.BattleSquareDraw(pattern[pattern_cnt].size(), pattern[pattern_cnt], pattern_num[pattern_cnt]);
+		}
 		circle.TimeLimitCircleDraw();
 	}
 
@@ -214,7 +225,7 @@ void Enemy::Finalize()
 void Enemy::StartBattlePhaseOne()
 {
 	//フェーズ1の秒数の調整をするならここ
-	if (QTESystem::StartQTE(300) == success)
+	if (QTESystem::StartQTE(180) == success)
 	{
 		state = 1;
 		battle_phase = 1;
@@ -262,6 +273,7 @@ void Enemy::InBattlePhaseOne()
 		/*state = 0;*/
 		StartBattlePhaseOne();
 		miss = true;
+		phase_one_enemy_size = 0;
 	}
 }
 
@@ -278,6 +290,8 @@ void Enemy::InBattlePhaseTwo()
 			color = 0x0000ff;
 			result = true; //成功
 			add_score = 100;
+			pattern_cnt = -1;
+			anim_state = 1;
 		}
 		else
 		{
@@ -345,22 +359,27 @@ bool Enemy::SetEnemyType(int type)
 	{
 	case arai:
 		image = rm->GetImages("Resource/Images/arai_512.png")[0];
+		image_original = rm->GetImages("Resource/Images/arai_512_org.png")[0];
 		break;
 
 	case maesiro:
 		image = rm->GetImages("Resource/Images/maesiro_512.png")[0];
+		image_original = rm->GetImages("Resource/Images/maesiro_512_org.png")[0];
 		break;
 
 	case maetu:
 		image = rm->GetImages("Resource/Images/maetu_512.png")[0];
+		image_original = rm->GetImages("Resource/Images/maetu_512_org.png")[0];
 		break;
 
 	case ryouka:
 		image = rm->GetImages("Resource/Images/ryouka_512.png")[0];
+		image_original = rm->GetImages("Resource/Images/ryouka_512_org.png")[0];
 		break;
 
 	case toubaru:
 		image = rm->GetImages("Resource/Images/toubaru_512.png")[0];
+		image_original = rm->GetImages("Resource/Images/maesiro_512_org.png")[0];
 		break;
 
 	default:
@@ -373,7 +392,7 @@ bool Enemy::SetEnemyType(int type)
 
 void Enemy::PhaseTwoAnimDraw() const
 {
-	if (anim_state == 1)
+	if (anim_state == 1)	//四方から来るほう
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 210);
 
@@ -381,6 +400,12 @@ void Enemy::PhaseTwoAnimDraw() const
 		{
 			Vector2D draw_location = anim_location[i];
 			Vector2D draw_box_size = Vector2D(anim_rate);
+
+			if (pattern_cnt == -1)
+			{
+				draw_box_size = Vector2D(anim_rate * 1.5f);
+			}
+
 			Vector2D upper_left = draw_location - (draw_box_size / 2.f);
 			Vector2D lower_right = draw_location + (draw_box_size / 2.f);
 			if (pattern_cnt == 1)
@@ -391,14 +416,29 @@ void Enemy::PhaseTwoAnimDraw() const
 			{
 				DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, sya_image, TRUE);
 			}
+			else 
+			{
+				DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, taisya_image, TRUE);
+			}
 		}
 	}
 	else if (anim_state == 2)
 	{
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+		int blend = (int)(255.f - ((anim_rate - 300.f) / 700.f) * 255.f);
+		if (blend < 0)
+		{
+			blend = 0;
+		}
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, blend);
 
 		Vector2D draw_location(640.f, 360.f);
-		Vector2D draw_box_size = Vector2D(256.f);
+		Vector2D draw_box_size = Vector2D(anim_rate);
+
+		if (pattern_cnt == -1)
+		{
+			draw_box_size = Vector2D(anim_rate * 1.5f);
+		}
+
 		Vector2D upper_left = draw_location - (draw_box_size / 2.f);
 		Vector2D lower_right = draw_location + (draw_box_size / 2.f);
 		if (pattern_cnt == 1)
@@ -408,6 +448,10 @@ void Enemy::PhaseTwoAnimDraw() const
 		else if (pattern_cnt == 0)
 		{
 			DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, sya_image, TRUE);
+		}
+		else
+		{
+			DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, taisya_image, TRUE);
 		}
 	}
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
@@ -443,7 +487,12 @@ void Enemy::PhaseTwoAnimUpdate()
 		float length;
 		length = powf(powf(center.x - loc[0].x, 2.f) + powf(center.y - loc[0].y, 2.f), 0.5f);
 
-		anim_rate -= 16.f;
+		anim_rate -= 4.f;
+
+		if (anim_rate < 0.f)
+		{
+			anim_rate = 0.f;
+		}
 
 		if (length <= 0.f)
 		{
@@ -457,7 +506,7 @@ void Enemy::PhaseTwoAnimUpdate()
 
 		if (anim_rate >= 1024.f)
 		{
-			anim_rate = 1024.f;
+			anim_rate = 512.f;
 			anim_state = 0;
 			anim_len = 500.f;
 		}

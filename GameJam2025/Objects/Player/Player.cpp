@@ -2,6 +2,7 @@
 #include "../../Utility/InputControl.h"
 #include "../../Utility/UserTemplate.h"
 #include "DxLib.h"
+#include "../../Utility/ResourceManager.h"
 
 Player::Player() :camera_stop_x(false), camera_stop_y(false)
 {
@@ -26,6 +27,9 @@ void Player::Initialize()
 	oval_flg = true;
 
 	speed = 1.f;
+
+	ResourceManager* rm = ResourceManager::GetInstance();
+	cursor = rm->GetImages("Resource/Images/cursor.png")[0];
 }
 
 void Player::Update()
@@ -93,7 +97,8 @@ void Player::Draw() const
 	DrawOvalAA(local_location.x, local_location.y, oval_radius.x, oval_radius.y, 32, color, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 	
-	
+	DrawRotaGraph(local_location.x + 5, local_location.y + 12, 0.2, 0.0, cursor, TRUE);
+
 }
 
 void Player::Finalize()
