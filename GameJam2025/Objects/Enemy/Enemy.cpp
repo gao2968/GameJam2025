@@ -39,7 +39,7 @@ void Enemy::Initialize()
 	}
 	
 	ResourceManager* rm = ResourceManager::GetInstance();
-	timecard = rm->GetImages("Resource/Images/time_card.png")[0];
+	timecard = rm->GetImages("Resource/Images/time_card_flash.png")[0];
 	tai_image = rm->GetImages("Resource/Images/tai_128.png")[0];
 	sya_image = rm->GetImages("Resource/Images/sya_128.png")[0];
 	taisya_image = rm->GetImages("Resource/Images/taisya_fonts_200.png")[0];
@@ -87,9 +87,10 @@ void Enemy::Update()
 			{
 				timecard_flg = false;
 				timecard_cnt = 0;
+				timecard_size = 0.f;
 			}
 
-			timecard_size += 0.1f;
+			timecard_size += 0.05f;
 		}
 	}
 
@@ -188,7 +189,7 @@ void Enemy::Draw() const
 			break;
 		}
 
-		draw_box_size = Vector2D(140.f, 240.f);
+		draw_box_size = Vector2D(240.f) * (2 - timecard_size);
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, timecard, TRUE);
@@ -205,6 +206,12 @@ void Enemy::Draw() const
 			circle.BattleSquareDraw(pattern[pattern_cnt].size(), pattern[pattern_cnt], pattern_num[pattern_cnt]);
 		}
 		circle.TimeLimitCircleDraw();
+
+		draw_location = Vector2D(640.f, 360.f);
+		draw_box_size = Vector2D(256.f);
+		upper_left = draw_location - (draw_box_size / 2.f);
+		lower_right = draw_location + (draw_box_size / 2.f);
+		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image_original, TRUE);
 	}
 
 	if (anim_state != 0)
