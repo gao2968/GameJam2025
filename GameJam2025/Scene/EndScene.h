@@ -1,6 +1,7 @@
 #pragma once
 #include "SceneBase.h"
 #include "../Utility/Vector2D.h"
+#include "../Scene/GameMainScene.h"
 
 #define DRAW_SET_X 540
 #define DRAW_SET_Y 500
@@ -22,6 +23,8 @@ private:
 	int kasoru;
 	int kakutei;
 	EndSelect sel;
+	GameMainScene* game;
+	
 public:
 	EndScene();
 	~EndScene();

@@ -1,6 +1,7 @@
 #include "RankingScene.h"
 #include "../Utility/InputControl.h"
 #include "../Utility/ResourceManager.h"
+#include "../Scene/GameMainScene.h"
 #include "DxLib.h"
 
 RankingScene::RankingScene() :
