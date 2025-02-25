@@ -9,6 +9,7 @@
 float QTESystem::elapsed_time = -1.f;
 int QTESystem::button = 0;
 int QTESystem::phase = 0;
+float QTESystem::timer_qte = 0.f;
 
 QTEState QTESystem::StartQTE(float second)
 {
@@ -42,7 +43,10 @@ QTEState QTESystem::StartQTEPhaseTwo(float second, int target_button)
 
 QTEState QTESystem::InQTE()
 {
+	//timer_qte += 100.f / elapsed_time;
+
 	if (elapsed_time-- < 0.f)
+	//if (timer_qte >= 100.f)
 	{
 		elapsed_time = -1.f;
 		return faild;

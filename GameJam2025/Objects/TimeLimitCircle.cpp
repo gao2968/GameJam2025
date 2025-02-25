@@ -1,46 +1,46 @@
 #include "DxLib.h"
 #include "TimeLimitCircle.h"
 
-////ƒOƒ[ƒoƒ‹•Ï”
+////ï¿½Oï¿½ï¿½ï¿½[ï¿½oï¿½ï¿½ï¿½Ïï¿½
 //int timelimit_circle_image;
 //double AnglePercent = 0.0;
 //
 //
-////§ŒÀŠÔ‚Ì‰~‚ÌƒOƒ‰ƒt‚Ì‰Šú‰»
+////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚Ì‰~ï¿½ÌƒOï¿½ï¿½ï¿½tï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½
 //void TimeLimitCircleInit(void)
 //{
-//	//‰æ‘œ‚Ì“Ç‚İ‚İ
+//	//ï¿½æ‘œï¿½Ì“Ç‚İï¿½ï¿½ï¿½
 //	timelimit_circle_image = LoadGraph("Resource/simple_frame_01_circle_red.png");
 //}
 //
 //
-////§ŒÀŠÔ‚Ì‰~‚ÌƒOƒ‰ƒt‚Ì•`‰æ
+////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚Ì‰~ï¿½ÌƒOï¿½ï¿½ï¿½tï¿½Ì•`ï¿½ï¿½
 //void TimeLimitCircleDraw(void)
 //{
-//	//‰~‚ÌƒOƒ‰ƒt‚Ì•`‰æ
+//	//ï¿½~ï¿½ÌƒOï¿½ï¿½ï¿½tï¿½Ì•`ï¿½ï¿½
 //	DrawCircleGauge(645, 350, 100.0, timelimit_circle_image, AnglePercent);
 //}
 //
-////í“¬‚ÌƒRƒ}ƒ“ƒh“ü—ÍƒGƒtƒFƒNƒg‚Ì•`‰æ
+////ï¿½í“¬ï¿½ï¿½ï¿½ÌƒRï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½ÍƒGï¿½tï¿½Fï¿½Nï¿½gï¿½Ì•`ï¿½ï¿½
 //int BattleSquareDraw(int square)
 //{
-//	//}Œ`‚Ì’l“n‚µ
+//	//ï¿½}ï¿½`ï¿½Ì’lï¿½nï¿½ï¿½
 //	int i = square;
 //
-//	//OŠpŒ`‚Ì•`‰æ
+//	//ï¿½Oï¿½pï¿½`ï¿½Ì•`ï¿½ï¿½
 //	if (i == 3)
 //	{
 //		DrawTriangle(460, 475, 830, 475, 645, 125, GetColor(255, 255, 255), TRUE);
 //	}
 //
-//	//lŠpŒ`‚Ì•`‰æ
+//	//ï¿½lï¿½pï¿½`ï¿½Ì•`ï¿½ï¿½
 //	if (i == 4)
 //	{
 //		DrawTriangle(430, 350, 860, 350, 645, 130, GetColor(255, 255, 255), TRUE);
 //		DrawTriangle(430, 350, 860, 350, 645, 560, GetColor(255, 255, 255), TRUE);
 //	}
 //
-//	//ŒÜŠpŒ`‚Ì•`‰æ
+//	//ï¿½ÜŠpï¿½`ï¿½Ì•`ï¿½ï¿½
 //	if (i == 5)
 //	{
 //		DrawTriangle(440, 270, 645, 130, 850, 270, GetColor(255, 255, 255), TRUE);
@@ -48,7 +48,7 @@
 //		DrawTriangle(525, 530, 765, 530, 850, 270, GetColor(255, 255, 255), TRUE);
 //	}
 //
-//	//˜ZŠpŒ`‚Ì•`‰æ
+//	//ï¿½Zï¿½pï¿½`ï¿½Ì•`ï¿½ï¿½
 //	if (i == 6)
 //	{
 //		DrawTriangle(440, 270, 645, 130, 850, 270, GetColor(255, 255, 255), TRUE);
@@ -57,7 +57,7 @@
 //		DrawTriangle(440, 430, 645, 570, 850, 430, GetColor(255, 255, 255), TRUE);
 //	}
 //
-//	//µŠpŒ`‚Ì•`‰æ
+//	//ï¿½ï¿½ï¿½pï¿½`ï¿½Ì•`ï¿½ï¿½
 //	if (i == 7)
 //	{
 //		DrawTriangle(460, 230, 645, 130, 830, 230, GetColor(255, 255, 255), TRUE);
@@ -70,23 +70,23 @@
 //	return i;
 //}
 //
-////§ŒÀŠÔ‚Ì‰~‚ÌƒOƒ‰ƒt‚ÌXV
+////ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚Ì‰~ï¿½ÌƒOï¿½ï¿½ï¿½tï¿½ÌXï¿½V
 //void TimeLimitCircleUpdate(float time)
 //{
-//	//360ƒtƒŒ[ƒ€‚Åˆêü‚·‚é‚æ‚¤‚ÉŠp“x“‚Ì’l‚ğ‰ÁZ
+//	//360ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Åˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½ÉŠpï¿½xï¿½ï¿½ï¿½Ì’lï¿½ï¿½ï¿½ï¿½Z
 //	AnglePercent += 100.0 / time;
 //
-//	//100%‚ğ’´‚¦‚½‚ç0%‚É–ß‚·
+//	//100%ï¿½ğ’´‚ï¿½ï¿½ï¿½ï¿½ï¿½0%ï¿½É–ß‚ï¿½
 //	if (AnglePercent >= 100.0)
 //	{
 //		AnglePercent = 0.0;
 //	}
 //}
 
-//í“¬‰‰o‚Ì‰Šú‰»
+//ï¿½í“¬ï¿½ï¿½ï¿½oï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½
 void TimeLimitCircle::TimeLimitCircleInit(void)
 {
-	//‰æ‘œ‚Ì“Ç‚İ‚İ
+	//ï¿½æ‘œï¿½Ì“Ç‚İï¿½ï¿½ï¿½
 	timelimit_circle_image = LoadGraph("Resource/Images/simple_frame_01_circle_red.png");
 	cursor_aura = LoadGraph("Resource/Images/command_aura.png");
 
@@ -102,37 +102,37 @@ void TimeLimitCircle::TimeLimitCircleInit(void)
 }
 
 
-//§ŒÀŠÔ‚Ì‰~Œ^ƒQ[ƒW‚Ì•`‰æ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚Ì‰~ï¿½^ï¿½Qï¿½[ï¿½Wï¿½Ì•`ï¿½ï¿½
 void TimeLimitCircle::TimeLimitCircleDraw(void) const
 {
-	//‰~‚ÌƒOƒ‰ƒt‚Ì•`‰æ
+	//ï¿½~ï¿½ÌƒOï¿½ï¿½ï¿½tï¿½Ì•`ï¿½ï¿½
 	DrawCircleGauge(645, 350, 100.0, timelimit_circle_image, AnglePercent);
 }
 
 
-//í“¬‚ÌƒRƒ}ƒ“ƒh‰æ–Ê‚Ì•`‰æ
+//ï¿½í“¬ï¿½ï¿½ï¿½ÌƒRï¿½}ï¿½ï¿½ï¿½hï¿½ï¿½Ê‚Ì•`ï¿½ï¿½
 int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int num) const
 {
-	//}Œ`‚Ì’l“n‚µ
+	//ï¿½}ï¿½`ï¿½Ì’lï¿½nï¿½ï¿½
 	int i = square;
 	num += 1;
 
 	int SlideX = 0;
 	int SlideY = 0;
 
-	//OŠpŒ`‚Ì•`‰æ
+	//ï¿½Oï¿½pï¿½`ï¿½Ì•`ï¿½ï¿½
 	if (i == 3)
 	{
-		//}Œ`‚Ì•`‰æ
+		//ï¿½}ï¿½`ï¿½Ì•`ï¿½ï¿½
 		DrawTriangle(460, 475, 830, 475, 645, 125, GetColor(255, 255, 255), TRUE);
 
-		//ƒ{ƒ^ƒ“‚Ì•`‰æ
+		//ï¿½{ï¿½^ï¿½ï¿½ï¿½Ì•`ï¿½ï¿½
 		if (num == 3) {
 			DrawGraph(440, 370, button_images[button[0]], TRUE);
 			DrawGraph(720, 370, button_images[button[1]], TRUE);
 			DrawGraph(580, 125, button_images[button[2]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -140,7 +140,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(580 + SlideX, 125 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(580, 125, cursor_aura, TRUE);
@@ -152,7 +152,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(720, 370, button_images[button[1]], TRUE);
 			DrawGraph(580, 125, button_images_outline[button[2]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -160,7 +160,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(720 + SlideX, 370 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(720, 370, cursor_aura, TRUE);
@@ -172,7 +172,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(720, 370, button_images_outline[button[1]], TRUE);
 			DrawGraph(580, 125, button_images_outline[button[2]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -180,7 +180,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(440 + SlideX, 370 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(440, 370, cursor_aura, TRUE);
@@ -194,14 +194,14 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 		}
 	}
 
-	//lŠpŒ`‚Ì•`‰æ
+	//ï¿½lï¿½pï¿½`ï¿½Ì•`ï¿½ï¿½
 	if (i == 4)
 	{
-		//}Œ`‚Ì•`‰æ
+		//ï¿½}ï¿½`ï¿½Ì•`ï¿½ï¿½
 		DrawTriangle(430, 350, 860, 350, 645, 130, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(430, 350, 860, 350, 645, 560, GetColor(255, 255, 255), TRUE);
 
-		//ƒ{ƒ^ƒ“‚Ì•`‰æ
+		//ï¿½{ï¿½^ï¿½ï¿½ï¿½Ì•`ï¿½ï¿½
 		if (num == 4) 
 		{
 			DrawGraph(420, 280, button_images[button[0]], TRUE);
@@ -209,7 +209,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 280, button_images[button[2]], TRUE);
 			DrawGraph(580, 120, button_images[button[3]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -217,7 +217,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(580 + SlideX, 120 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(580, 120, cursor_aura, TRUE);
@@ -230,7 +230,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 280, button_images[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -238,7 +238,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(740 + SlideX, 280 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(740, 280, cursor_aura, TRUE);
@@ -251,7 +251,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 280, button_images_outline[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -259,7 +259,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(580 + SlideX, 450 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(580, 450, cursor_aura, TRUE);
@@ -272,7 +272,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 280, button_images_outline[button[2]], TRUE);
 			DrawGraph(580, 120, button_images_outline[button[3]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -280,7 +280,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(420 + SlideX, 280 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(420, 280, cursor_aura, TRUE);
@@ -295,15 +295,15 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 		}
 	}
 
-	//ŒÜŠpŒ`‚Ì•`‰æ
+	//ï¿½ÜŠpï¿½`ï¿½Ì•`ï¿½ï¿½
 	if (i == 5)
 	{
-		//}Œ`‚Ì•`‰æ
+		//ï¿½}ï¿½`ï¿½Ì•`ï¿½ï¿½
 		DrawTriangle(440, 270, 645, 130, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 270, 525, 530, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(525, 530, 765, 530, 850, 270, GetColor(255, 255, 255), TRUE);
 
-		//ƒ{ƒ^ƒ“‚Ì•`‰æ
+		//ï¿½{ï¿½^ï¿½ï¿½ï¿½Ì•`ï¿½ï¿½
 		if (num == 5)
 		{
 			DrawGraph(420, 230, button_images[button[0]], TRUE);
@@ -312,7 +312,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images[button[3]], TRUE);
 			DrawGraph(580, 115, button_images[button[4]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -320,7 +320,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(580 + SlideX, 115 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(580, 115, cursor_aura, TRUE);
@@ -334,7 +334,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -342,7 +342,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(740 + SlideX, 230 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(740, 230, cursor_aura, TRUE);
@@ -356,7 +356,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -364,7 +364,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(690 + SlideX, 440 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(690, 440, cursor_aura, TRUE);
@@ -378,7 +378,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -386,7 +386,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(480 + SlideX, 440 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(480, 440, cursor_aura, TRUE);
@@ -400,7 +400,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 230, button_images_outline[button[3]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[4]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -408,7 +408,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(420 + SlideX, 230 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(420, 230, cursor_aura, TRUE);
@@ -424,16 +424,16 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 		}
 	}
 
-	//˜ZŠpŒ`‚Ì•`‰æ
+	//ï¿½Zï¿½pï¿½`ï¿½Ì•`ï¿½ï¿½
 	if (i == 6)
 	{
-		//}Œ`‚Ì•`‰æ
+		//ï¿½}ï¿½`ï¿½Ì•`ï¿½ï¿½
 		DrawTriangle(440, 270, 645, 130, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 270, 440, 430, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 430, 850, 430, 850, 270, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(440, 430, 645, 570, 850, 430, GetColor(255, 255, 255), TRUE);
 
-		//ƒ{ƒ^ƒ“‚Ì•`‰æ
+		//ï¿½{ï¿½^ï¿½ï¿½ï¿½Ì•`ï¿½ï¿½
 		if (num == 6)
 		{
 			DrawGraph(420, 210, button_images[button[0]], TRUE);
@@ -443,7 +443,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images[button[4]], TRUE);
 			DrawGraph(580, 115, button_images[button[5]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -451,7 +451,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(580 + SlideX, 115 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(580, 115, cursor_aura, TRUE);
@@ -466,7 +466,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -474,7 +474,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(740 + SlideX, 210 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(740, 210, cursor_aura, TRUE);
@@ -489,7 +489,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -497,7 +497,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(740 + SlideX, 370 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(740, 370, cursor_aura, TRUE);
@@ -512,7 +512,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -520,7 +520,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(580 + SlideX, 460 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(580, 460, cursor_aura, TRUE);
@@ -535,7 +535,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -543,7 +543,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(420 + SlideX, 370 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(420, 370, cursor_aura, TRUE);
@@ -558,7 +558,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 210, button_images_outline[button[4]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[5]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -566,7 +566,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(420 + SlideX, 210 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(420, 210, cursor_aura, TRUE);
@@ -583,17 +583,17 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 		}
 	}
 
-	//µŠpŒ`‚Ì•`‰æ
+	//ï¿½ï¿½ï¿½pï¿½`ï¿½Ì•`ï¿½ï¿½
 	if (i == 7)
 	{
-		//}Œ`‚Ì•`‰æ
+		//ï¿½}ï¿½`ï¿½Ì•`ï¿½ï¿½
 		DrawTriangle(460, 230, 645, 130, 830, 230, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(460, 230, 430, 380, 830, 230, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(430, 380, 860, 380, 830, 230, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(430, 380, 550, 550, 860, 380, GetColor(255, 255, 255), TRUE);
 		DrawTriangle(550, 550, 730, 550, 860, 380, GetColor(255, 255, 255), TRUE);
 
-		//ƒ{ƒ^ƒ“‚Ì•`‰æ
+		//ï¿½{ï¿½^ï¿½ï¿½ï¿½Ì•`ï¿½ï¿½
 		if (num == 7)
 		{
 			DrawGraph(420, 200, button_images[button[0]], TRUE);
@@ -604,7 +604,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images[button[5]], TRUE);
 			DrawGraph(580, 115, button_images[button[6]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -612,7 +612,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(580 + SlideX, 115 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(580, 115, cursor_aura, TRUE);
@@ -628,7 +628,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -636,7 +636,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(740 + SlideX, 200 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(740, 200, cursor_aura, TRUE);
@@ -652,7 +652,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -660,7 +660,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(760 + SlideX, 340 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(760, 340, cursor_aura, TRUE);
@@ -676,7 +676,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -684,7 +684,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(680 + SlideX, 460 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(680, 460, cursor_aura, TRUE);
@@ -700,7 +700,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -708,7 +708,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(500 + SlideX, 460 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(500, 460, cursor_aura, TRUE);
@@ -724,7 +724,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -732,7 +732,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(400 + SlideX, 340 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(400, 340, cursor_aura, TRUE);
@@ -748,7 +748,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 			DrawGraph(740, 200, button_images_outline[button[5]], TRUE);
 			DrawGraph(580, 115, button_images_outline[button[6]], TRUE);
 
-			//ƒ~ƒX‚µ‚½ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½ï¿½ï¿½ê‡
 			if (miss_flg)
 			{
 				SlideX = GetRand(20) - 15;
@@ -756,7 +756,7 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 
 				DrawGraph(420 + SlideX, 200 + SlideY, cursor_aura, TRUE);
 			}
-			//ƒ~ƒX‚µ‚Ä‚¢‚È‚¢ê‡
+			//ï¿½~ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡
 			else
 			{
 				DrawGraph(420, 200, cursor_aura, TRUE);
@@ -777,15 +777,15 @@ int TimeLimitCircle::BattleSquareDraw(int square, std::vector<int> button, int n
 	return i;
 }
 
-//§ŒÀŠÔ‚ÌXV
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ÌXï¿½V
 void TimeLimitCircle::TimeLimitCircleUpdate(float time, bool miss)
 {
 	miss_flg = miss;
 
-	//360ƒtƒŒ[ƒ€‚Åˆêü‚·‚é‚æ‚¤‚ÉŠp“x“‚Ì’l‚ğ‰ÁZ
+	//360ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Åˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½ÉŠpï¿½xï¿½ï¿½ï¿½Ì’lï¿½ï¿½ï¿½ï¿½Z
 	AnglePercent += 100.0 / time;
 
-	//100%‚ğ’´‚¦‚½‚ç0%‚É–ß‚·
+	//100%ï¿½ğ’´‚ï¿½ï¿½ï¿½ï¿½ï¿½0%ï¿½É–ß‚ï¿½
 	if (AnglePercent >= 100.0)
 	{
 		AnglePercent = 0.0;

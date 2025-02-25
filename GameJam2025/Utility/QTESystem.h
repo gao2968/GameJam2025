@@ -12,6 +12,7 @@ private:
 	static float elapsed_time;
 	static int button;
 	static int phase; //1 フェーズ1   2 フェーズ2
+	static float timer_qte;
 
 public:
 	//ランダムにQTEを発生　初期値の設定に成功すればtrue
