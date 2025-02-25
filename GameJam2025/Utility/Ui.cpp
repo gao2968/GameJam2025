@@ -41,8 +41,8 @@ void Ui::Draw()
 	DrawRotaGraph(140, 120, 0.37, 0.0, meibo_image, TRUE);
 
 	DrawFormatString(115, 532, 0x000000, "TIME\n%d", hp / 60);
-	DrawFormatString(50, 82, 0xff0000, "score %d", score);
-	DrawFormatString(150, 82, 0xff0000, "enemy %d", enemy_cnt);
+	DrawFormatString(50, 82, 0x330000, "SCORE %d", score);
+	DrawFormatString(50, 52, 0x191970, "TEACHER %d", enemy_cnt);
 
 }
 
