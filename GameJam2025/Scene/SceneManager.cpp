@@ -168,8 +168,8 @@ SceneBase* SceneManager::CreateScene(eSceneType scene_type)
 		return new HelpScene;
 	case eSceneType::E_END:
 		return new EndScene;
-	/*case eSceneType::E_RANKING:
-		return new RankingScene;*/
+	case eSceneType::E_RANKING:
+		return new RankingScene;
 	default:
 		return nullptr;
 	}

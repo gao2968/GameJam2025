@@ -3,7 +3,8 @@
 #include "../Utility/ResourceManager.h"
 #include "DxLib.h"
 
-RankingScene::RankingScene()
+RankingScene::RankingScene() :
+	ranking_image(NULL)
 {
 
 }
@@ -16,10 +17,18 @@ void RankingScene::Initialize()
 {
 	//インスタンス取得
 	ResourceManager* rm = ResourceManager::GetInstance();
+
+	ranking_image = rm->GetImages("Resource/Images/ranking_image.png")[0];
 }
 
 eSceneType RankingScene::Update()
 {
+	
+	if (InputControl::GetButtonDown(XINPUT_BUTTON_B))
+	{
+		return eSceneType::E_TITLE;
+	}
+	
 	return GetNowScene();
 
 }
@@ -29,7 +38,9 @@ void RankingScene::Draw() const
 	//親クラスのDrawを呼び出す。
 	__super::Draw();
 
-	DrawString(100, 100, "ranking", GetColor(255, 1, 1));
+	// 背景画像の描画
+	DrawRotaGraph(640, 360, 1.0, 0.0, ranking_image, TRUE);
+
 }
 
 void RankingScene::Finalize()

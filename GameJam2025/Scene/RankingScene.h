@@ -2,9 +2,10 @@
 #include "SceneBase.h"
 #include "../Utility/Vector2D.h"
 
-class RankingScene : SceneBase
+class RankingScene : public SceneBase
 {
 private:
+	int ranking_image;
 	
 public:
 	RankingScene();
