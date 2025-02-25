@@ -190,12 +190,7 @@ eSceneType GameMainScene::Update()
 	//シーンチェンジ
 	if (hp < 0 || enemy_cnt == 0/*(object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr)*/)
 	{
-		return E_TITLE;
-	}
-
-	if (InputControl::GetButtonDown(XINPUT_BUTTON_LEFT_SHOULDER))
-	{
-		return eSceneType::E_END;
+		return E_END;
 	}
 
 	return GetNowScene();
