@@ -358,27 +358,27 @@ bool Enemy::SetEnemyType(int type)
 	{
 	case arai:
 		image = rm->GetImages("Resource/Images/arai_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/arai_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/arai_aura.png")[0];
 		break;
 
 	case maesiro:
 		image = rm->GetImages("Resource/Images/maesiro_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/maesiro_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/maesiro_aura.png")[0];
 		break;
 
 	case maetu:
 		image = rm->GetImages("Resource/Images/maetu_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/maetu_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/maetu_aura.png")[0];
 		break;
 
 	case ryouka:
 		image = rm->GetImages("Resource/Images/ryouka_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/ryouka_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/ryouka_aura.png")[0];
 		break;
 
 	case toubaru:
 		image = rm->GetImages("Resource/Images/toubaru_512.png")[0];
-		image_original = rm->GetImages("Resource/Images/toubaru_512_org.png")[0];
+		image_original = rm->GetImages("Resource/Images/toubaru_aura.png")[0];
 		break;
 
 	default:
