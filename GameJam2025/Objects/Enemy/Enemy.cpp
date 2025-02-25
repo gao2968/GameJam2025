@@ -15,7 +15,6 @@ Enemy::~Enemy()
 
 void Enemy::Initialize()
 {
-	//location = Vector2D(960.f, 540.f);
 	location = Vector2D((float)GetRand(1720) + 100, (float)GetRand(880) + 100);
 	local_location = (location - Vector2D(1920 / 2, 1080 / 2)) + Vector2D(1280 / 2, 720 / 2);
 	box_size = Vector2D(128.f);
@@ -31,17 +30,13 @@ void Enemy::Initialize()
 	pattern.resize(3);
 	for (int i = 0; i < 3; i++)
 	{
-		//for (int j = 0; j < 5; j++)
 		for (int j = 0; j < GetRand(4) + 3; j++)
 		{
-			//pattern.push_back(GetRand(3));
 			pattern[i].push_back(GetRand(3));
 		}
 		pattern_num.push_back(pattern[i].size() - 1);
 		pattern_cnt = i;
 	}
-	
-	/*pattern_num = pattern.size() - 1;*/
 	
 	ResourceManager* rm = ResourceManager::GetInstance();
 	timecard = rm->GetImages("Resource/Images/time_card.png")[0];
@@ -58,6 +53,7 @@ void Enemy::Initialize()
 	anim_len = 500.f;
 	anim_state = 0;
 	anim_rate = 512.f;
+
 	circle.TimeLimitCircleInit();
 }
 
@@ -67,9 +63,6 @@ void Enemy::Update()
 	{
 		switch (state)
 		{
-		case 0:
-			break;
-
 		case 1:
 			if (!timecard_flg)
 			{
@@ -102,8 +95,6 @@ void Enemy::Update()
 
 	if (battle_phase == 2)
 	{
-		phase_two_timer--;
-
 		switch (state)
 		{
 		case 0:
@@ -125,10 +116,13 @@ void Enemy::Update()
 		default:
 			break;
 		}
-
 		if (anim_state != 0)
 		{
 			PhaseTwoAnimUpdate();
+		}
+		else
+		{
+			phase_two_timer--;
 		}
 	}
 }
@@ -217,6 +211,7 @@ void Enemy::Draw() const
 	{
 		PhaseTwoAnimDraw();
 	}
+
 }
 
 void Enemy::Finalize()
@@ -300,13 +295,11 @@ void Enemy::InBattlePhaseTwo()
 		}
 		else
 		{
-			//pattern_num--;
 			if (pattern_num[pattern_cnt]-- == 0)	//このタイミングで一行終了
 			{
 				pattern_cnt--;
 				font += 255;
 				add_score = 50;
-				//phase_two_timer = 1200.f;
 				anim_state = 1;
 
 			}
@@ -476,11 +469,6 @@ void Enemy::PhaseTwoAnimUpdate()
 		Vector2D center(640.f, 360.f);
 		Vector2D vec[4];
 
-	/*	vec[0] = Vector2D(-1, -1);
-		vec[1] = Vector2D(1, -1);
-		vec[2] = Vector2D(1, 1);
-		vec[3] = Vector2D(-1, 1);*/
-
 		vec[0] = Vector2D(Vector2D(0,0) - center).normalized();
 		vec[1] = Vector2D(Vector2D(1280, 0) - center).normalized();
 		vec[2] = Vector2D(Vector2D(1280, 720) - center).normalized();
@@ -489,7 +477,6 @@ void Enemy::PhaseTwoAnimUpdate()
 		for (int i = 0; i < 4; i++)
 		{
 			loc[i] = center + vec[i] * anim_len;
-
 			anim_location[i] = loc[i];
 		}
 
@@ -508,7 +495,6 @@ void Enemy::PhaseTwoAnimUpdate()
 		if (length <= 0.f)
 		{
 			anim_state = 2;
-			//anim_rate = 256.f;
 		}
 	}
 	else if (anim_state == 2)

@@ -23,7 +23,7 @@ SceneManager::~SceneManager()
 void SceneManager::Initialize()
 {
 	//�E�B���h�E�̃^�C�g����ݒ�
-	SetMainWindowText("タイトル");
+	SetMainWindowText("退勤ラッシュ");
 
 	SetGraphMode(1280, 720, 32);
 

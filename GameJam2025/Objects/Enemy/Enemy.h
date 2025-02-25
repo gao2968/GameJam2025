@@ -47,7 +47,6 @@ private:
 
 	int image_original; //透過してない画像
 
-
 	int lose_se;
 	int attack_se[2];
 	int damage_se;
