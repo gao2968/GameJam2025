@@ -38,16 +38,16 @@ void Ui::Draw()
 	
 
 	// ストップウォッチ画像の描画
-	DrawRotaGraph(120, 650, 0.5, 0.0, stopwatch_image, TRUE);
+	DrawRotaGraph(140, 620, 0.5, 0.0, stopwatch_image, TRUE);
 
 	// カーソル画像の描画
 	DrawRotaGraph(644, 372, 0.2, 0.0, cursor_image, TRUE);
 
 	// 名簿画像の描画
-	DrawRotaGraph(120, 90, 0.37, 0.0, meibo_image, TRUE);
+	DrawRotaGraph(140, 120, 0.37, 0.0, meibo_image, TRUE);
 
-	DrawFormatString(76, 550, 0xff0000, "time limit\n %d", hp / 60);
-	DrawFormatString(20, 360, 0xff0000, "score %d", score);
+	DrawFormatString(115, 532, 0x000000, "TIME\n%d", hp / 60);
+	DrawFormatString(50, 82, 0xff0000, "score %d", score);
 }
 
 void Ui::Finalize()

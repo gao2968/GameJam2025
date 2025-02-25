@@ -38,6 +38,8 @@ private:
 	int enemy_cnt;	//残りの敵
 
 	int gamemain_sound;
+	int tekinosi_sound;
+	int damage_sound;
 
 	bool result;
 

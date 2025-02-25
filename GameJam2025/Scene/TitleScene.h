@@ -21,6 +21,8 @@ class TitleScene : public SceneBase
 private:
 	int title_image;
 	int title_sound;
+	int kettei_sound;
+	int sentaku_sound;
 	int start;
 	int help;
 	int ranking;

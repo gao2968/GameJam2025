@@ -6,6 +6,7 @@ class HelpScene : public SceneBase
 private:
 	int help_image;
 	int next;
+	int modori_sound;
 public:
 	HelpScene();
 	virtual ~HelpScene();

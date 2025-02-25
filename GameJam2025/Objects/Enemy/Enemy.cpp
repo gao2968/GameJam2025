@@ -44,6 +44,16 @@ void Enemy::Initialize()
 	sya_image = rm->GetImages("Resource/Images/sya_128.png")[0];
 	taisya_image = rm->GetImages("Resource/Images/taisya_fonts_200.png")[0];
 
+	teki_idou_sound = rm->GetSounds("Resource/SE/Teki_idou.mp3");
+
+	combo_sound = rm->GetSounds("Resource/SE/Combo.mp3");
+
+	mojikannsei_sound = rm->GetSounds("Resource/SE/Mojikannsei.mp3");
+
+	kougeki_1_sound = rm->GetSounds("Resource/SE/Kougeki_1.mp3");
+
+	kougeki_2_sound = rm->GetSounds("Resource/SE/Kougeki_2.mp3");
+
 	lose_se = rm->GetSounds("Resource/SE/Tekinosi.mp3");
 	attack_se[0] = rm->GetSounds("Resource/SE/Kougeki_1.mp3");
 	attack_se[1] = rm->GetSounds("Resource/SE/Kougeki_2.mp3");
@@ -251,6 +261,7 @@ void Enemy::StartBattlePhaseTwo()
 
 void Enemy::InBattlePhaseOne()
 {
+	PlaySoundMem(teki_idou_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 	phase_one_enemy_size += 3; //だんだん近づかせる
 	int result = QTESystem::InQTE();
 	if (result == success)
@@ -258,6 +269,8 @@ void Enemy::InBattlePhaseOne()
 		phase_one_enemy_size = 0;
 
 		timecard_flg = true;
+
+		PlaySoundMem(kougeki_1_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 
 		add_score = 10;
 		if (++phase_one_cnt > 3)
@@ -290,6 +303,7 @@ void Enemy::InBattlePhaseTwo()
 	if (res == success)
 	{
 		add_score = 10;
+		PlaySoundMem(kougeki_2_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		//一定回数こなしたら終わり
 		if (pattern_cnt == 0 && pattern_num[pattern_cnt] == 0)
 		{
@@ -299,6 +313,7 @@ void Enemy::InBattlePhaseTwo()
 			add_score = 100;
 			pattern_cnt = -1;
 			anim_state = 1;
+			PlaySoundMem(combo_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		else
 		{
@@ -308,7 +323,7 @@ void Enemy::InBattlePhaseTwo()
 				font += 255;
 				add_score = 50;
 				anim_state = 1;
-
+				PlaySoundMem(mojikannsei_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 			}
 			state = 0;
 		}

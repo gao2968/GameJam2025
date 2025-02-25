@@ -10,6 +10,8 @@
 
 GameMainScene::GameMainScene()
 	:gamemain_sound(NULL)
+	, tekinosi_sound(NULL)
+	,damage_sound(NULL)
 {
 	
 }
@@ -54,8 +56,14 @@ void GameMainScene::Initialize()
 
 	gamemain_sound = rm->GetSounds("Resource/BGM/Sentou_1.mp3");
 
+	damage_sound = rm->GetSounds("Resource/SE/Damage.mp3");
+
+	tekinosi_sound = rm->GetSounds("Resource/SE/Tekinosi.mp3");
+
 	// 音楽がすでに再生中かどうかを確認
 	if (CheckSoundMem(gamemain_sound) == 0) {
+		// 音量を設定 (0〜255 の範囲内)
+		ChangeVolumeSoundMem(200, gamemain_sound); // ここで音量を設定
 		PlaySoundMem(gamemain_sound, DX_PLAYTYPE_BACK);
 	}
 
@@ -136,11 +144,15 @@ eSceneType GameMainScene::Update()
 		case BattlePhaseOne:
 			nearest_enemy->Update();
 			state = nearest_enemy->battle_phase;
+			// 音量を設定 (0〜255 の範囲内)
+			ChangeVolumeSoundMem(140, gamemain_sound); // ここで音量を設定
 			break;
 
 		case BattlePhaseTwo:
 			nearest_enemy->Update();
 			state = nearest_enemy->battle_phase;
+			// 音量を設定 (0〜255 の範囲内)
+			ChangeVolumeSoundMem(140, gamemain_sound); // ここで音量を設定
 			break;
 
 		case EndPhase:
@@ -149,7 +161,8 @@ eSceneType GameMainScene::Update()
 			if (nearest_enemy_num != -1)
 			{
 				object[nearest_enemy_num] = nullptr;
-			}
+			}// 音量を設定 (0〜255 の範囲内)
+			ChangeVolumeSoundMem(200, gamemain_sound); // ここで音量を設定
 			break;
 
 		default:
@@ -228,6 +241,8 @@ void GameMainScene::Finalize()
 	{
 		delete object[i];
 	}
+	// 音楽を止める
+	StopSoundMem(gamemain_sound);
 }
 
 //    ݂̃V [     擾
@@ -325,6 +340,7 @@ void GameMainScene::CalculationHp()
 		{
 			hp -= 120;
 			nearest_enemy->miss = false;
+			PlaySoundMem(damage_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
 		hp -= 1;
 		break;
