@@ -1,11 +1,13 @@
 #pragma once
 #include "SceneBase.h"
 #include "../Utility/Vector2D.h"
+#include "../Objects/RankingDate.h"
 
 class RankingScene : public SceneBase
 {
 private:
 	int ranking_image;
+	RankingDate* ranking;  //ƒ‰ƒ“ƒLƒ“ƒOî•ñ
 	
 public:
 	RankingScene();

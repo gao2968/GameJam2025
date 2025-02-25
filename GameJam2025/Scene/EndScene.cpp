@@ -36,7 +36,6 @@ void EndScene::Initialize()
 	kasoru = rm->GetSounds("Resource/SE/ka-soru.mp3");
 	kakutei = rm->GetSounds("Resource/SE/kakutei.mp3");
 
-	getscore = game->GetScore();
 }
 
 eSceneType EndScene::Update()
@@ -89,8 +88,6 @@ void EndScene::Draw() const
 
 	// ”wŒi‰æ‘œ‚Ì•`‰æ
 	DrawRotaGraph(640, 360, 1.0, 0.0, end_image, TRUE);
-
-	DrawFormatString(640, 250, 0xffffff, "%d",getscore);
 
 	switch (sel)
 	{
