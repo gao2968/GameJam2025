@@ -22,6 +22,7 @@ private:
 	int kao;
 	int kasoru;
 	int kakutei;
+	int getscore;
 	EndSelect sel;
 	GameMainScene* game;
 	
