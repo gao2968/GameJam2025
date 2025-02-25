@@ -252,7 +252,6 @@ void GameMainScene::Finalize()
 {
 	for (int i = 0; i < object.size(); i++)
 	{
-		object[i]->Finalize();
 		delete object[i];
 	}
 
