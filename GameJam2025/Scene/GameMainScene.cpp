@@ -63,8 +63,8 @@ void GameMainScene::Initialize()
 	// 音楽がすでに再生中かどうかを確認
 	if (CheckSoundMem(gamemain_sound) == 0) {
 		// 音量を設定 (0〜255 の範囲内)
-		ChangeVolumeSoundMem(200, gamemain_sound); // ここで音量を設定
-		PlaySoundMem(gamemain_sound, DX_PLAYTYPE_BACK);
+		ChangeVolumeSoundMem(210, gamemain_sound); // ここで音量を設定
+		PlaySoundMem(gamemain_sound, DX_PLAYTYPE_LOOP);
 	}
 
 	contact_se = rm->GetSounds("Resource/SE/Tekimikke.mp3");
@@ -164,10 +164,12 @@ eSceneType GameMainScene::Update()
 			{
 				object[nearest_enemy_num] = nullptr;
 			}// 音量を設定 (0〜255 の範囲内)
-			ChangeVolumeSoundMem(200, gamemain_sound); // ここで音量を設定
+			ChangeVolumeSoundMem(210, gamemain_sound); // ここで音量を設定
 			break;
 
 		default:
+			// 音量を設定 (0〜255 の範囲内)
+			ChangeVolumeSoundMem(210, gamemain_sound); // ここで音量を設定
 			break;
 		}
 
