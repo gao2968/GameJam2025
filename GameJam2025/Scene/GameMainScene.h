@@ -7,6 +7,7 @@
 #include "../Utility/Ui.h"
 
 #define INITHP 10800
+//#define INITHP 108
 
 enum MainState
 {

@@ -26,6 +26,7 @@ private:
 	EndSelect sel;
 	RankingDate* result;
 	
+	int score;
 public:
 	EndScene();
 	~EndScene();

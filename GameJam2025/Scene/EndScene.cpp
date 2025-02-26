@@ -23,7 +23,7 @@ EndScene::~EndScene()
 
 void EndScene::Initialize()
 {
-	//ƒCƒ“ƒXƒ^ƒ“ƒXæ“¾
+	//ï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½æ“¾
 	ResourceManager* rm = ResourceManager::GetInstance();
 
 	end_image = rm->GetImages("Resource/Images/end_image.png")[0];
@@ -36,11 +36,40 @@ void EndScene::Initialize()
 	kasoru = rm->GetSounds("Resource/SE/ka-soru.mp3");
 	kakutei = rm->GetSounds("Resource/SE/kakutei.mp3");
 
-	// ƒ‰ƒ“ƒLƒ“ƒOî•ñ‚ğæ“¾
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½æ“¾
 	result = new RankingDate;
 	result->Initialize();
 
 	SetFontSize(95);
+
+	//ãƒªã‚¶ãƒ«ãƒˆãƒ‡ãƒ¼ã‚¿ã®èª­è¾¼
+	FILE* fp = nullptr;
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
+	errno_t result = fopen_s(&fp, "Resource/result.csv", "r");
+
+	//ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
+	if (result != 0)
+	{
+		throw("Resource/dat/result_data.csvãŒé–‹ã‘ã¾ã›ã‚“\n");
+	}
+	
+	char buffer[64]; // ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡
+	
+	if (fgets(buffer, sizeof(buffer), fp) == nullptr) 
+	{
+		throw("fgetsãŒå¤±æ•—ã—ã¾ã—ãŸ\n");
+	}
+
+	// UTF-8 BOMã®å‰Šé™¤
+	if ((unsigned char)buffer[0] == 0xEF && (unsigned char)buffer[1] == 0xBB && (unsigned char)buffer[2] == 0xBF) 
+	{
+		memmove(buffer, buffer + 3, strlen(buffer) - 2);  // BOMã‚’å‰Šé™¤
+	}
+
+	sscanf_s(buffer, "%6d,\n", &score);
+	
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º
+	fclose(fp);
 }
 
 eSceneType EndScene::Update()
@@ -74,24 +103,24 @@ eSceneType EndScene::Update()
 		PlaySoundMem(kakutei, DX_PLAYTYPE_BACK);
 		if (sel == EndSelect::Ran)
 		{
+			result->SetRankingDate(score);
 			return eSceneType::E_OWARI;
 		}
 		else {
-
+			result->SetRankingDate(score);
 			return eSceneType::E_TITLE;
 		}
 	}
 
 	return GetNowScene();
-
 }
 
 void EndScene::Draw() const
 {
-	//eƒNƒ‰ƒX‚ÌDraw‚ğŒÄ‚Ño‚·B
+	//ï¿½eï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½Drawï¿½ï¿½Ä‚Ñoï¿½ï¿½ï¿½B
 	__super::Draw();
 
-	// ”wŒi‰æ‘œ‚Ì•`‰æ
+	// ï¿½wï¿½iï¿½æ‘œï¿½Ì•`ï¿½ï¿½
 	DrawRotaGraph(640, 360, 1.0, 0.0, end_image, TRUE);
 
 	switch (sel)
@@ -108,16 +137,19 @@ void EndScene::Draw() const
 		break;
 	}
 
-	//@æ“¾‚µ‚½ƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‚ğ•`‰æ‚·‚é
-	for (int i = 0; i < 1; i++)
-	{
-		DrawFormatString(620, 180, 0xffffff, "%6d", result->GetScore(i));
-	}
+	////ï¿½@ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Oï¿½fï¿½[ï¿½^ï¿½ï¿½`ï¿½æ‚·ï¿½ï¿½
+	//for (int i = 0; i < 1; i++)
+	//{
+	//	DrawFormatString(620, 180, 0xffffff, "%6d", result->GetScore(i));
+	//}
+
+	//DrawFormatString(620, 180, 0xffffff, "%6d", result->GetScore(5));
+	DrawFormatString(620, 180, 0xffffff, "%6d", score);
 }
 
 void EndScene::Finalize()
 {
-	// eƒNƒ‰ƒX‚ÌI—¹ˆ—‚ğŒÄ‚Ño‚·
+	// ï¿½eï¿½Nï¿½ï¿½ï¿½Xï¿½ÌIï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Ñoï¿½ï¿½
 	__super::Finalize();
 }
 

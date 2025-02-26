@@ -30,7 +30,6 @@ void RankingDate::Initialize()
 		throw ("Resource/ranking.csv���J���܂���ł���\n");
 	}
 
-	int a;
 	char buffer[64]; // 一時バッファ
 	// �Ώۃt�@�C������ǂݍ���
 	for (int i = 0; i < 5; i++)
@@ -63,7 +62,7 @@ void RankingDate::Finalize()
 }
 
 // �f�[�^�ݒ菈��
-void RankingDate::SetRankingDate(int score, const char* name)
+void RankingDate::SetRankingDate(int score)
 {
 	this->score[5] = score;
 
