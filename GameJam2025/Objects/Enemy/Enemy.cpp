@@ -111,6 +111,7 @@ void Enemy::Update()
 		{
 		case 0:
 			StartBattlePhaseTwo();
+			circle.TimeLimitCircleUpdate(PhaseTwoTimer, miss);
 			break;
 
 		case 1:

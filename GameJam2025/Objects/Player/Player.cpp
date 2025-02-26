@@ -111,17 +111,6 @@ void Player::Update()
 void Player::Draw() const
 {
 	__super::Draw();
-
-	/*DrawFormatString(local_location.x, local_location.y, 0x0000ff, "x%f y%f", location.x, location.y);
-	DrawFormatString(local_location.x, local_location.y + 20, 0x0000ff, "x%f y%f", local_location.x, local_location.y);*/
-
-	//DrawLine(640, 0, 640, 1280, 0xff0000);
-	//DrawLine(0, 360, 1280, 360, 0xff0000);
-
-	//DrawBoxAA(upper_left.x, upper_left.y, lower_right.x, lower_right.y, color, TRUE);
-	/*DrawOvalAA(local_location.x, local_location.y,
-		oval_radius.x + oval_radius.x / 2, oval_radius.y + oval_radius.y / 2, 32, 0x7d7d7d, TRUE);*/
-
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200);
 	DrawOvalAA(local_location.x, local_location.y, oval_radius.x, oval_radius.y, 32, color, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
