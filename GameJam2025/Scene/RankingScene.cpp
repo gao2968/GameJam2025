@@ -25,6 +25,8 @@ void RankingScene::Initialize()
 	// ランキング情報を取得
 	ranking = new RankingDate;
 	ranking->Initialize();
+
+	SetFontSize(95);
 }
 
 eSceneType RankingScene::Update()
@@ -50,7 +52,7 @@ void RankingScene::Draw() const
 	//　取得したランキングデータを描画する
 	for (int i = 0; i < 3; i++)
 	{
-		DrawFormatString(500, 170 + i * 180, 0xffffff, "%6d", ranking->GetScore(i));
+		DrawFormatString(415, 155 + i * 177, 0xffffff, "%6d", ranking->GetScore(i));
 	}
 
 }
