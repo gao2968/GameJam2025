@@ -23,6 +23,7 @@ private:
 	int kasoru;
 	int kakutei;
 	int getscore;
+	int gameclear_sound;
 	EndSelect sel;	
 	RankingDate* result;
 	int score;

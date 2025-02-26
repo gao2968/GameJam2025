@@ -13,6 +13,7 @@ EndScene::EndScene() :
 	sel(EndSelect::Title)
 	,kasoru(NULL)
 	,kakutei(NULL)
+	,gameclear_sound(NULL)
 {
 	
 }
@@ -35,6 +36,12 @@ void EndScene::Initialize()
 
 	kasoru = rm->GetSounds("Resource/SE/ka-soru.mp3");
 	kakutei = rm->GetSounds("Resource/SE/kakutei.mp3");
+
+	gameclear_sound = rm->GetSounds("Resource/BGM/Sentou_2.mp3");
+
+	ChangeVolumeSoundMem(230, gameclear_sound); // ここで音量を設定
+
+	PlaySoundMem(gameclear_sound, DX_PLAYTYPE_LOOP); // 効果音を再生
 
 	// ランキング情報を取得
 	result = new RankingDate;
@@ -152,6 +159,9 @@ void EndScene::Draw() const
 
 void EndScene::Finalize()
 {
+	// 音楽を止める
+	StopSoundMem(gameclear_sound);
+
 	// 親クラスの終了時処理を呼び出す
 	__super::Finalize();
 }
