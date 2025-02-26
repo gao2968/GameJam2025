@@ -19,6 +19,7 @@ class Enemy : public GameObject
 private:
 	std::vector<std::vector <int>> pattern;	//QTEパターン
 	std::vector<int> pattern_num; //パターンの添え字
+	std::vector<int> pattern_num_init; //パターンの添え字の初期値
 	int pattern_cnt; //2重配列の一つ目
 	int state;
 	int phase_two_timer;	//フェーズ2の時間制限

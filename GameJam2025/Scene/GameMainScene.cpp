@@ -189,11 +189,11 @@ eSceneType GameMainScene::Update()
 		}
 	}
 
-	//シーンチェンジ
-	if (hp < 0 || enemy_cnt == 0/*(object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr)*/)
-	{
-		return E_END;
-	}
+	////シーンチェンジ
+	//if (hp < 0 || enemy_cnt == 0/*(object[enemy_num[0]] == nullptr && object[enemy_num[1]] == nullptr && object[enemy_num[2]] == nullptr)*/)
+	//{
+	//	return E_END;
+	//}
 
 	if (InputControl::GetButtonDown(XINPUT_BUTTON_LEFT_SHOULDER))
 	{
@@ -279,11 +279,11 @@ void GameMainScene::DrawResult() const
 	SetFontSize(128);
 	DrawString(400, 280, "GAMESET", 0xffffff);
 
-	SetFontSize(64);
+	/*SetFontSize(64);
 	int sec = hp / 60;
 	DrawFormatString(450, 250, 0xffffff, "残り時間 %d", sec);
 	DrawFormatString(450, 320, 0xffffff, "スコア %d", score);
-	DrawFormatString(280, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);
+	DrawFormatString(280, 400, 0xffffff, "最終得点 %d × %d = %d", score, sec, score * sec);*/
 
 	SetFontSize(64);
 	DrawString(700, 600, "push to A button", 0xffffff);

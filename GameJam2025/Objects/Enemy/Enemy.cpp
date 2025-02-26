@@ -35,6 +35,7 @@ void Enemy::Initialize()
 			pattern[i].push_back(GetRand(3));
 		}
 		pattern_num.push_back(pattern[i].size() - 1);
+		pattern_num_init.push_back(pattern[i].size() - 1);
 		pattern_cnt = i;
 	}
 	
@@ -336,6 +337,7 @@ void Enemy::InBattlePhaseTwo()
 	else if (res == input_faild)
 	{
 		miss = true;
+		pattern_num[pattern_cnt] = pattern_num_init[pattern_cnt];
 	}
 	else if (res == faild)
 	{
