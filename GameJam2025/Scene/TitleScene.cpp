@@ -68,8 +68,8 @@ void TitleScene::Initialize()
 	// 音楽がすでに再生中かどうかを確認
 	if (CheckSoundMem(title_sound) == 0) {
 		// 音量を設定 (0〜255 の範囲内)
-		ChangeVolumeSoundMem(200, title_sound); // ここで音量を設定
-		PlaySoundMem(title_sound, DX_PLAYTYPE_BACK);
+		ChangeVolumeSoundMem(230, title_sound); // ここで音量を設定
+		PlaySoundMem(title_sound, DX_PLAYTYPE_LOOP);
 	}
 }
 
