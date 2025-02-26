@@ -29,15 +29,15 @@ void EndScene::Initialize()
 	end_image = rm->GetImages("Resource/Images/end_image.png")[0];
 	title = rm->GetImages("Resource/Images/title_font.png")[0];
 	title_red = rm->GetImages("Resource/Images/title_font_red.png")[0];
-	ran = rm->GetImages("Resource/Images/end.png")[0];
-	ran_red = rm->GetImages("Resource/Images/end_red.png")[0];
+	ran = rm->GetImages("Resource/Images/ranking.png")[0];
+	ran_red = rm->GetImages("Resource/Images/ranking_red.png")[0];
 	kao = rm->GetImages("Resource/Images/point.png")[0];
 
 	kasoru = rm->GetSounds("Resource/SE/ka-soru.mp3");
 	kakutei = rm->GetSounds("Resource/SE/kakutei.mp3");
 
 	// ƒ‰ƒ“ƒLƒ“ƒOî•ñ‚ðŽæ“¾
-	result = new RankingDate;
+	result = new ResultDate;
 	result->Initialize();
 
 	SetFontSize(95);
@@ -74,7 +74,7 @@ eSceneType EndScene::Update()
 		PlaySoundMem(kakutei, DX_PLAYTYPE_BACK);
 		if (sel == EndSelect::Ran)
 		{
-			return eSceneType::E_OWARI;
+			return eSceneType::E_RANKING;
 		}
 		else {
 
@@ -99,12 +99,12 @@ void EndScene::Draw() const
 	case EndSelect::Title:
 		DrawRotaGraph(DRAW_SET_X - 100, DRAW_SET_Y - 3, 0.3, 0.0, kao, TRUE);
 		DrawRotaGraph(640, DRAW_SET_Y, 1.0, 0.0, title_red, TRUE);
-		DrawRotaGraph(580, DRAW_SET_Y + 110, 1.0, 0.0, ran, TRUE);
+		DrawRotaGraph(680, DRAW_SET_Y + 110, 1.0, 0.0, ran, TRUE);
 		break;
 	case EndSelect::Ran:
 		DrawRotaGraph(DRAW_SET_X - 100, DRAW_SET_Y + 110, 0.3, 0.0, kao, TRUE);
 		DrawRotaGraph(640, DRAW_SET_Y, 1.0, 0.0, title, TRUE);
-		DrawRotaGraph(580, DRAW_SET_Y + 110, 1.0, 0.0, ran_red, TRUE);
+		DrawRotaGraph(680, DRAW_SET_Y + 110, 1.0, 0.0, ran_red, TRUE);
 		break;
 	}
 
