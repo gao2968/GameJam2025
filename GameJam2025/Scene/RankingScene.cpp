@@ -50,7 +50,7 @@ void RankingScene::Draw() const
 	//　取得したランキングデータを描画する
 	for (int i = 0; i < 3; i++)
 	{
-		DrawFormatString(600, 170 + i * 180, 0xffffff, "%2d", ranking->GetScore(i));
+		DrawFormatString(500, 170 + i * 180, 0xffffff, "%6d", ranking->GetScore(i));
 	}
 
 }
