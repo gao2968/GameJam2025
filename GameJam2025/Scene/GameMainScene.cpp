@@ -187,6 +187,23 @@ eSceneType GameMainScene::Update()
 		{
 			score *= (hp / 60);
 			result = true;
+
+			//リザルトデータの書き込み
+			FILE* fp = nullptr;
+			//ファイルオープン
+			errno_t result = fopen_s(&fp, "Resource/result.csv", "w");
+
+			//エラーチェック
+			if (result != 0)
+			{
+				throw("Resource/dat/result_data.csvが開けません\n");
+			}
+
+			//スコアを保存
+			fprintf(fp, "%d,\n", score);
+
+			//ファイルクローズ
+			fclose(fp);
 		}
 
 		//リザルトデータの書き込み
@@ -223,6 +240,8 @@ eSceneType GameMainScene::Update()
 
 		//ファイルクローズ
 		fclose(FP);
+
+		
 	}
 
 	////シーンチェンジ

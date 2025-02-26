@@ -3,23 +3,23 @@
 class RankingDate
 {
 private:
-	int score[6];  //ƒXƒRƒAƒf[ƒ^
+	int score[6];  //ï¿½Xï¿½Rï¿½Aï¿½fï¿½[ï¿½^
 
 public:
 	RankingDate();
 	~RankingDate();
 
-	void Initialize();  //‰Šúˆ—
-	void Finalize();  //I—¹ˆ—
+	void Initialize();  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	void Finalize();  //ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 public:
-	//ƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‚Ìİ’è
-	void SetRankingDate(int score, const char* name);
-	//ƒXƒRƒAæ“¾ˆ—
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Oï¿½fï¿½[ï¿½^ï¿½Ìİ’ï¿½
+	void SetRankingDate(int score);
+	//ï¿½Xï¿½Rï¿½Aï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 	int GetScore(int value) const;
 
 private:
-	//ƒf[ƒ^“ü‚ê‘Ö‚¦ˆ—
+	//ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½ï¿½ï¿½ï¿½
 	void SortData();
 };
 

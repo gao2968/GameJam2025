@@ -26,6 +26,7 @@ private:
 	EndSelect sel;
 	ResultDate* result;
 	
+	int score;
 public:
 	EndScene();
 	~EndScene();

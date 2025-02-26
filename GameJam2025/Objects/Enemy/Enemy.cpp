@@ -227,7 +227,7 @@ void Enemy::Draw() const
 		switch (timecard_button)
 		{
 		case 0:	//A
-			draw_location = Vector2D(640.f, 480.f);
+			draw_location = Vector2D(640.f, 540.f);
 			break;
 		case 1: //B
 			draw_location = Vector2D(960.f, 360.f);
@@ -242,7 +242,7 @@ void Enemy::Draw() const
 			break;
 		}
 
-		draw_box_size = Vector2D(240.f) * (2 - timecard_size);
+		draw_box_size = Vector2D(240.f) * (2.f - timecard_size);
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, timecard, TRUE);
