@@ -58,6 +58,8 @@ private:
 	int attack_se[2];
 	int damage_se;
 	int taisya_se;
+
+	int button_image[4];
 public:
 	Enemy();
 	virtual ~Enemy();

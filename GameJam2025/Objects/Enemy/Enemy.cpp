@@ -61,6 +61,12 @@ void Enemy::Initialize()
 	damage_se = rm->GetSounds("Resource/SE/Damage.mp3");
 	taisya_se = rm->GetSounds("Resource/SE/Combo.mp3");
 
+	button_image[0] = rm->GetImages("Resource/Images/xbox_button_color_a_outline.png")[0];
+	button_image[1] = rm->GetImages("Resource/Images/xbox_button_color_b_outline.png")[0];
+	button_image[2] = rm->GetImages("Resource/Images/xbox_button_color_x_outline.png")[0];
+	button_image[3] = rm->GetImages("Resource/Images/xbox_button_color_y_outline.png")[0];
+
+
 	anim_len = 500.f;
 	anim_state = 0;
 	anim_rate = 512.f;
@@ -111,17 +117,10 @@ void Enemy::Update()
 		{
 		case 0:
 			StartBattlePhaseTwo();
-			if (anim_state != 0) 
-			{
-				//circle.TimeLimitCircleUpdate(PhaseTwoTimer, miss);
-			}
 			break;
 
 		case 1:
 			InBattlePhaseTwo();
-			
-			//circle.TimeLimitCircleUpdate(PhaseTwoTimer, miss);
-			
 			break;
 
 		case 2:
@@ -161,7 +160,7 @@ void Enemy::Draw() const
 		switch (QTESystem::GetButtonPhaseOne())
 		{
 		case 0:	//A
-			draw_location = Vector2D(640.f, 480.f);
+			draw_location = Vector2D(640.f, 540.f);
 			break;
 		case 1: //B
 			draw_location = Vector2D(960.f, 360.f);
@@ -176,6 +175,7 @@ void Enemy::Draw() const
 			break;
 		}
 
+		//迫りくる先生
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image_original, TRUE);
@@ -185,6 +185,37 @@ void Enemy::Draw() const
 		upper_left = draw_location - (draw_box_size / 2.f);
 		lower_right = draw_location + (draw_box_size / 2.f);
 		DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, image_original, TRUE);
+
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
+		
+		for (int i = 0; i < 4; i++)
+		{
+			switch (i)
+			{
+			case 0:	//A
+				draw_location = Vector2D(640.f, 540.f);
+				break;
+			case 1: //B
+				draw_location = Vector2D(960.f, 360.f);
+				break;
+			case 2: //X
+				draw_location = Vector2D(320.f, 360.f);
+				break;
+			case 3: //Y
+				draw_location = Vector2D(640.f, 180.f);
+				break;
+			default:
+				break;
+			}
+
+			draw_box_size = Vector2D(128.f);
+			upper_left = draw_location - (draw_box_size / 2.f);
+			lower_right = draw_location + (draw_box_size / 2.f);
+			DrawExtendGraphF(upper_left.x, upper_left.y, lower_right.x, lower_right.y, button_image[i], TRUE);
+		}
+		
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
+
 	}
 
 	if (timecard_flg)
