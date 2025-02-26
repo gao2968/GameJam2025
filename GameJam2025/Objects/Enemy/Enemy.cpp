@@ -42,8 +42,8 @@ void Enemy::Initialize()
 	ResourceManager* rm = ResourceManager::GetInstance();
 	timecard = rm->GetImages("Resource/Images/time_card_flash.png")[0];
 	tai_image = rm->GetImages("Resource/Images/tai_128.png")[0];
-	sya_image = rm->GetImages("Resource/Images/sya_128.png")[0];
-	taisya_image = rm->GetImages("Resource/Images/taisya_fonts_200.png")[0];
+	sya_image = rm->GetImages("Resource/Images/kinn_128.png")[0];
+	taisya_image = rm->GetImages("Resource/Images/taikin_200.png")[0];
 
 	teki_idou_sound = rm->GetSounds("Resource/SE/Teki_idou.mp3");
 
@@ -338,6 +338,7 @@ void Enemy::InBattlePhaseTwo()
 	{
 		miss = true;
 		pattern_num[pattern_cnt] = pattern_num_init[pattern_cnt];
+		state = 0;
 	}
 	else if (res == faild)
 	{
