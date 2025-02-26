@@ -793,10 +793,10 @@ void TimeLimitCircle::TimeLimitCircleUpdate(float time, bool miss)
 	miss_flg = miss;
 
 	//360�t���[���ň������悤�Ɋp�x���̒l����Z
-	AnglePercent += 550.0 / time;
+	AnglePercent += 100.0 / time;
 
 	//100%�𒴂�����0%�ɖ߂�
-	if (AnglePercent >= 550.0)
+	if (AnglePercent >= 100.0)
 	{
 		AnglePercent = 0.0;
 	}

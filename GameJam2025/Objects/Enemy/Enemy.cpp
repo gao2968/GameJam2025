@@ -5,7 +5,7 @@
 #include "DxLib.h"
 #include "../TimeLimitCircle.h"
 
-Enemy::Enemy() 
+Enemy::Enemy() : pattern(), pattern_num()
 {
 }
 
@@ -21,7 +21,7 @@ void Enemy::Initialize()
 	color = 0x0000ff;
 	state = 0;
 	battle_phase = 0;
-	phase_two_timer = 1200.f;
+	phase_two_timer = PhaseTwoTimer;
 	battle_count = 0;
 	phase_one_cnt = 0;
 	phase_one_enemy_size = 0;
@@ -114,7 +114,7 @@ void Enemy::Update()
 
 		case 1:
 			InBattlePhaseTwo();
-			circle.TimeLimitCircleUpdate(1200, miss);
+			circle.TimeLimitCircleUpdate(PhaseTwoTimer, miss);
 			break;
 
 		case 2:
@@ -365,7 +365,7 @@ void Enemy::InitializationForRestart()
 {
 	state = 0;
 	battle_phase = 0;
-	phase_two_timer = 1200.f;
+	phase_two_timer = PhaseTwoTimer;
 	battle_count = 0;
 	phase_one_cnt = 0;
 

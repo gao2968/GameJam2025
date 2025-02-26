@@ -3,6 +3,8 @@
 #include <vector>
 #include "../TimeLimitCircle.h"
 
+#define PhaseTwoTimer 720.f
+
 enum Enemy_Type
 {
 	arai,
@@ -15,9 +17,7 @@ enum Enemy_Type
 class Enemy : public GameObject
 {
 private:
-	//std::vector<int> pattern;	//QTEパターン
 	std::vector<std::vector <int>> pattern;	//QTEパターン
-	//int pattern_num; //パターンの添え字
 	std::vector<int> pattern_num; //パターンの添え字
 	int pattern_cnt; //2重配列の一つ目
 	int state;
