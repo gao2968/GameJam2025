@@ -341,26 +341,26 @@ void GameMainScene::CalculationHp()
 	switch (state)
 	{
 	case SearchPhase:
-		hp -= 1; //通常時は時間経過で減少
+		hp -= 3; //通常時は時間経過で減少
 		break;
 
 	case BattlePhaseOne:
 		if (nearest_enemy->miss)	//入力ミスで減少
 		{
-			hp -= 120;
+			hp -= 240;
 			nearest_enemy->miss = false;
 		}
-		hp -= 1;
+		hp -= 2;
 		break;
 
 	case BattlePhaseTwo:
 		if (nearest_enemy->miss)
 		{
-			hp -= 120;
+			hp -= 240;
 			nearest_enemy->miss = false;
 			PlaySoundMem(damage_sound, DX_PLAYTYPE_BACK); // 効果音を再生
 		}
-		hp -= 1;
+		hp -= 2;
 		break;
 
 	case EndPhase:
