@@ -139,8 +139,7 @@ eSceneType GameMainScene::Update()
 
 				}
 			}
-
-
+			ChangeVolumeSoundMem(210, gamemain_sound); // ここで音量を設定
 			break;
 
 		case BattlePhaseOne:

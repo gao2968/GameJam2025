@@ -35,21 +35,14 @@ void Player::Initialize()
 	cursor_se[1] = rm->GetSounds("Resource/SE/Teki_search_2.mp3");
 	cursor_se[2] = rm->GetSounds("Resource/SE/Teki_search_3.mp3");
 
-	//SetFrequencySoundMem(15000, cursor_se[0]);
+	ChangeVolumeSoundMem(160, cursor_se[2]);
 }
 
 void Player::Update()
 {
-	/*if (nearest_enemy_length > 300) { color = 0x00ff00; }
-
-	if (nearest_enemy_length < 100) { color = 0x0000ff; }
-	else if (nearest_enemy_length < 200) { color = 0x00ffff; }
-	else if (nearest_enemy_length < 300) { color = 0xffff00; }*/
-
 	//色の変化
 	int r, g, b;
 	float step = (nearest_enemy_length - 50.0) / (300.0 - 50.0);
-
 	if (step > 1.f)
 	{
 		step = 1.f;
@@ -58,13 +51,10 @@ void Player::Update()
 	{
 		step = 0.f;
 	}
-
 	r = static_cast<int>(255 * (1 - step));
 	g = static_cast<int>(255 * step);
 	b = 0;
-
 	color = GetColor(r, g, b);
-
 	speed = (1 - step) * 5.f + 1.f;
 
 	if (oval_flg)
