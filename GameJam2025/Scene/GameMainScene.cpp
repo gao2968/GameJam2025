@@ -223,24 +223,6 @@ eSceneType GameMainScene::Update()
 		//ファイルクローズ
 		fclose(fp);
 
-
-		//リザルトデータの書き込み
-		FILE* FP = nullptr;
-		//ファイルオープン
-		errno_t res = fopen_s(&FP, "Resource/result.csv", "w");
-
-		//エラーチェック
-		if (res != 0)
-		{
-			throw("Resource/result.csvが開けません\n");
-		}
-
-		//スコアを保存
-		fprintf(FP, "%d,\n", score);
-
-		//ファイルクローズ
-		fclose(FP);
-
 		
 	}
 

@@ -141,7 +141,6 @@
   <ItemGroup>
     <ClCompile Include="AppMain.cpp" />
     <ClCompile Include="Objects\RankingDate.cpp" />
-    <ClCompile Include="Objects\ResultDate.cpp" />
     <ClCompile Include="Scene\Help2.cpp" />
     <ClCompile Include="Scene\Help3.cpp" />
     <ClCompile Include="Objects\Enemy\Enemy.cpp" />
@@ -163,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects\RankingDate.h" />
-    <ClInclude Include="Objects\ResultDate.h" />
     <ClInclude Include="Scene\Help2.h" />
     <ClInclude Include="Scene\Help3.h" />
     <ClInclude Include="Objects\Enemy\Enemy.h" />
