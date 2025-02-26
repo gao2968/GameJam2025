@@ -205,25 +205,6 @@ eSceneType GameMainScene::Update()
 			//ファイルクローズ
 			fclose(fp);
 		}
-
-		//リザルトデータの書き込み
-		FILE* fp = nullptr;
-		//ファイルオープン
-		errno_t result = fopen_s(&fp, "Resource/ranking.csv", "w");
-
-		//エラーチェック
-		if (result != 0)
-		{
-			throw("Resource/ranking.csvが開けません\n");
-		}
-
-		//スコアを保存
-		fprintf(fp, "%d,\n", score);
-
-		//ファイルクローズ
-		fclose(fp);
-
-		
 	}
 
 	////シーンチェンジ
