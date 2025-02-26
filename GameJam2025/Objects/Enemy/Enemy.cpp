@@ -72,6 +72,8 @@ void Enemy::Initialize()
 	anim_rate = 512.f;
 
 	circle.TimeLimitCircleInit();
+
+	transp = GetRand(155) + 100;
 }
 
 void Enemy::Update()
@@ -148,7 +150,9 @@ void Enemy::Update()
 void Enemy::Draw() const
 {
 	//親クラスで画像の描画
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, transp);
 	__super::Draw();
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255);
 
 	//フェーズ1の敵の描画
 	Vector2D draw_location;

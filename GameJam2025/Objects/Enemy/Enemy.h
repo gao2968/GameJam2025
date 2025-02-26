@@ -60,6 +60,8 @@ private:
 	int taisya_se;
 
 	int button_image[4];
+
+	int transp;
 public:
 	Enemy();
 	virtual ~Enemy();
