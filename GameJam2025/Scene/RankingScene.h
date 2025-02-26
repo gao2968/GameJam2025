@@ -7,7 +7,7 @@ class RankingScene : public SceneBase
 {
 private:
 	int ranking_image;
-	RankingDate* ranking;  //ƒ‰ƒ“ƒLƒ“ƒOî•ñ
+	RankingDate* ranking;  //ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½
 	
 public:
 	RankingScene();

@@ -20,43 +20,56 @@ RankingDate::~RankingDate()
 
 }
 
-// ‰Šú‰»ˆ—
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void RankingDate::Initialize()
 {
-	// ƒ‰ƒCƒ“ƒLƒ“ƒOƒf[ƒ^‚Ì“Ç‚İ‚İ
+	// ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Oï¿½fï¿½[ï¿½^ï¿½Ì“Ç‚İï¿½ï¿½ï¿½
 	FILE* fp = nullptr;
 
-	// ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+	// ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Iï¿½[ï¿½vï¿½ï¿½
 	errno_t result = fopen_s(&fp, "Resource/ranking.csv", "r");
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ï¿½Gï¿½ï¿½ï¿½[ï¿½`ï¿½Fï¿½bï¿½N
 	if (result != 0)
 	{
-		throw ("Resource/ranking.csv‚ªŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½\n");
+		throw ("Resource/ranking.csvï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½\n");
 	}
 
-	// ‘ÎÛƒtƒ@ƒCƒ‹‚©‚ç“Ç‚İ‚Ş
+	int a;
+	char buffer[64]; // ä¸€æ™‚ãƒãƒƒãƒ•ã‚¡
+	// ï¿½ÎÛƒtï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
 	for (int i = 0; i < 5; i++)
 	{
-		fscanf_s(fp, "%6d,%2d,%[^,],\n", &score[i], &rank[i], name[i], 15);
+		if (fgets(buffer, sizeof(buffer), fp) == nullptr) {
+			break;
+		}
+
+		// UTF-8 BOMã®å‰Šé™¤
+		if (i == 0 && (unsigned char)buffer[0] == 0xEF && (unsigned char)buffer[1] == 0xBB && (unsigned char)buffer[2] == 0xBF) {
+			memmove(buffer, buffer + 3, strlen(buffer) - 2);  // BOMã‚’å‰Šé™¤
+		}
+
+		sscanf_s(buffer, "%6d,%2d,%15[^,],\n", &score[i], &rank[i], name[i], 15);
 	}
 
-	// ƒtƒ@ƒCƒ‹ƒNƒ[ƒY
+	
+
+	// ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½[ï¿½Y
 	fclose(fp);
 
-	// ––”öƒf[ƒ^‚Ìİ’è
+	// ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½Ìİ’ï¿½
 	score[5] = 0;
 	rank[5] = 0;
 	name[5][0] = '\0';
 }
 
-// I—¹ˆ—
+// ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void RankingDate::Finalize()
 {
 
 }
 
-// ƒf[ƒ^İ’èˆ—
+// ï¿½fï¿½[ï¿½^ï¿½İ’èˆï¿½ï¿½
 void RankingDate::SetRankingDate(int score, const char* name)
 {
 	this->score[5] = score;
@@ -65,28 +78,28 @@ void RankingDate::SetRankingDate(int score, const char* name)
 	SortData();
 }
 
-// ƒXƒRƒAæ“¾ˆ—
+// ï¿½Xï¿½Rï¿½Aï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 int RankingDate::GetScore(int value) const
 {
 	return score[value];
 }
 
-// ƒ‰ƒ“ƒNæ“¾ˆ—
+// ï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 int RankingDate::GetRank(int value) const
 {
 	return rank[value];
 }
 
-// –¼‘Oæ“¾ˆ—
+// ï¿½ï¿½ï¿½Oï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 const char* RankingDate::GetName(int value) const
 {
 	return name[value];
 }
 
-// ƒf[ƒ^“ü‚ê‘Ö‚¦ˆ—
+// ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½ï¿½ï¿½ï¿½
 void RankingDate::SortData()
 {
-	// ‘I‘ğ–@ƒ\[ƒg‚ğg—p‚µA~‡‚Å“ü‚ê‘Ö‚¦‚é
+	// ï¿½Iï¿½ï¿½@ï¿½\ï¿½[ï¿½gï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Aï¿½~ï¿½ï¿½ï¿½Å“ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½ï¿½
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = i + 1; j < 6; j++)
@@ -105,7 +118,7 @@ void RankingDate::SortData()
 		}
 	}
 
-	// ‡ˆÊ‚ğ®—ñ‚³‚¹‚é
+	// ï¿½ï¿½ï¿½Ê‚ğ®—ñ‚³‚ï¿½ï¿½ï¿½
 	for (int i = 0; i < 5; i++)
 	{
 		rank[i] = 1;
@@ -123,24 +136,24 @@ void RankingDate::SortData()
 
 	
 
-	// ƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‚Ì‘‚«‚İ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Oï¿½fï¿½[ï¿½^ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	FILE* fp = nullptr;
 
-	// ƒtƒ@ƒCƒ‹ƒI[ƒvƒ“
+	// ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Iï¿½[ï¿½vï¿½ï¿½
 	errno_t result = fopen_s(&fp, "Resource/ranking.csv", "w");
 
-	// ƒGƒ‰[ƒ`ƒFƒbƒN
+	// ï¿½Gï¿½ï¿½ï¿½[ï¿½`ï¿½Fï¿½bï¿½N
 	if (result != 0)
 	{
-		throw ("Resource/ranking.csv‚ªŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½\n");
+		throw ("Resource/ranking.csvï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Å‚ï¿½ï¿½ï¿½\n");
 	}
 
-	// ‘ÎÛƒtƒ@ƒCƒ‹‚É‘‚«‚İ
+	// ï¿½ÎÛƒtï¿½@ï¿½Cï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (int i = 0; i < 5; i++)
 	{
 		fprintf(fp, "%d,%d,%s,\n", score[i], rank[i], name[i]);
 	}
 
-	// ƒtƒ@ƒCƒ‹ƒNƒ[ƒY
+	// ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½[ï¿½Y
 	fclose(fp);
 }
