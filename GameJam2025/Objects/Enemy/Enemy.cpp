@@ -111,12 +111,17 @@ void Enemy::Update()
 		{
 		case 0:
 			StartBattlePhaseTwo();
-			circle.TimeLimitCircleUpdate(PhaseTwoTimer, miss);
+			if (anim_state != 0) 
+			{
+				//circle.TimeLimitCircleUpdate(PhaseTwoTimer, miss);
+			}
 			break;
 
 		case 1:
 			InBattlePhaseTwo();
-			circle.TimeLimitCircleUpdate(PhaseTwoTimer, miss);
+			
+			//circle.TimeLimitCircleUpdate(PhaseTwoTimer, miss);
+			
 			break;
 
 		case 2:
@@ -136,6 +141,7 @@ void Enemy::Update()
 		else
 		{
 			phase_two_timer--;
+			circle.TimeLimitCircleUpdate(PhaseTwoTimer, miss);
 		}
 	}
 }

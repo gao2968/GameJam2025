@@ -23,7 +23,7 @@ SceneManager::~SceneManager()
 void SceneManager::Initialize()
 {
 	//�E�B���h�E�̃^�C�g����ݒ�
-	SetMainWindowText("退勤ラッシュ");
+	SetMainWindowText("Taikin Rush");
 
 	SetGraphMode(1280, 720, 32);
 
